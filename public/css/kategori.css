@@ -1,0 +1,400 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: #f1f6f1;
+    color: #777777;
+}
+
+.page-wrapper {
+    min-height: 100vh;
+    padding: 20px;
+}
+
+
+/* =========================
+   CARD
+========================= */
+
+.kategori-card {
+    background: white;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+.kategori-header {
+    height: 65px;
+    padding: 10px 18px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    border-bottom: 1px solid #eeeeee;
+}
+
+.header-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.header-icon {
+    width: 38px;
+    height: 38px;
+
+    background: #71bd7a;
+    color: white;
+
+    border-radius: 8px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 18px;
+}
+
+.header-title h4 {
+    margin: 0;
+
+    font-size: 15px;
+    color: #315f38;
+}
+
+.header-title p {
+    margin: 2px 0 0;
+
+    font-size: 9px;
+    color: #999;
+}
+
+.back-link {
+    font-size: 10px;
+    color: #4b8a55;
+    text-decoration: none;
+}
+
+
+/* =========================
+   CONTENT
+========================= */
+
+.kategori-content {
+    padding: 22px;
+}
+
+.kategori-title h3 {
+    margin: 0;
+
+    font-size: 15px;
+    color: #315f38;
+}
+
+.kategori-title p {
+    margin: 4px 0 18px;
+
+    font-size: 9px;
+    color: #999;
+}
+
+
+/* =========================
+   TOOLBAR
+========================= */
+
+.kategori-toolbar {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    gap: 8px;
+
+    margin-bottom: 12px;
+}
+
+.search-box {
+    width: 230px;
+    height: 32px;
+
+    border: 1px solid #ddd;
+    border-radius: 6px;
+
+    display: flex;
+    align-items: center;
+
+    padding: 0 9px;
+}
+
+.search-box i {
+    color: #888;
+    font-size: 12px;
+    margin-right: 6px;
+}
+
+.search-box input {
+    width: 100%;
+
+    border: none;
+    outline: none;
+
+    font-size: 10px;
+}
+
+.btn-tambah {
+    height: 32px;
+
+    padding: 0 12px;
+
+    display: flex;
+    align-items: center;
+    gap: 5px;
+
+    background: #71bd7a;
+    color: white;
+
+    border-radius: 6px;
+
+    text-decoration: none;
+
+    font-size: 10px;
+}
+
+.btn-tambah:hover {
+    background: #5da966;
+    color: white;
+}
+
+
+/* =========================
+   TABLE
+========================= */
+
+.table-wrapper {
+    width: 100%;
+    overflow: hidden;
+    border: 1px solid #999;
+    border-radius: 5px;
+}
+
+.kategori-table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+
+    font-family: 'Poppins', sans-serif;
+    font-size: 12px;
+}
+
+/* HEADER */
+
+.kategori-table thead {
+    background: #7ac47f;
+    color: white;
+}
+
+.kategori-table th {
+    height: 35px;
+
+    padding: 0 20px;
+
+    text-align: left;
+
+    font-size: 11px;
+    font-weight: 500;
+
+    border-right: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+.kategori-table th:last-child {
+    border-right: none;
+}
+
+
+/* ISI */
+
+.kategori-table td {
+    height: 37px;
+
+    padding: 0 20px;
+
+    color: #777;
+
+    font-size: 11px;
+    font-weight: 400;
+
+    border-bottom: 1px solid #bdbdbd;
+}
+
+.kategori-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+
+/* LEBAR KOLOM */
+
+.kategori-table th:nth-child(1),
+.kategori-table td:nth-child(1) {
+    width: 13%;
+}
+
+.kategori-table th:nth-child(2),
+.kategori-table td:nth-child(2) {
+    width: 32%;
+}
+
+.kategori-table th:nth-child(3),
+.kategori-table td:nth-child(3) {
+    width: 33%;
+}
+
+.kategori-table th:nth-child(4),
+.kategori-table td:nth-child(4) {
+    width: 22%;
+}
+
+
+.nama-kategori {
+    font-weight: 600;
+    color: #3d6543;
+}
+
+.btn-hapus {
+    display: inline-flex;
+
+    align-items: center;
+    gap: 4px;
+
+    padding: 4px 8px;
+
+    border: 1px solid #ed7474;
+
+    border-radius: 5px;
+
+    font-size: 9px;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.btn-hapus:hover {
+    background: #fff3f3;
+      color: #c0392b;   
+}
+
+.data-kosong {
+    text-align: center;
+    color: #999;
+    padding: 35px !important;
+}
+
+.data-kosong i {
+    font-size: 24px;
+}
+
+.data-kosong p {
+    margin: 6px 0 0;
+}
+
+
+/* =========================
+   HALAMAN TAMBAH
+========================= */
+
+.tambah-card {
+    max-width: 850px;
+    margin: 0 auto;
+}
+
+.form-content {
+    padding: 25px;
+}
+
+.form-group {
+    margin-bottom: 30px;
+}
+
+.form-group label {
+    display: block;
+
+    margin-bottom: 8px;
+
+    font-size: 10px;
+    color: #555;
+}
+
+.form-group input {
+    width: 100%;
+    height: 38px;
+
+    padding: 0 12px;
+
+    border: 1px solid #d8d8d8;
+    border-radius: 7px;
+
+    outline: none;
+
+    font-size: 10px;
+}
+
+.form-group input:focus {
+    border-color: #71bd7a;
+
+    box-shadow: 0 0 0 2px rgba(113, 189, 122, 0.12);
+}
+
+.error-message {
+    display: block;
+
+    margin-top: 5px;
+
+    color: #dc3545;
+}
+
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+}
+
+.btn-kembali,
+.btn-simpan {
+    height: 32px;
+
+    padding: 0 13px;
+
+    border: none;
+    border-radius: 6px;
+
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+
+    font-size: 10px;
+
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.btn-kembali {
+    background: #eeeeee;
+    color: #555;
+}
+
+.btn-simpan {
+    background: #315f38;
+    color: white;
+}
+
+.btn-simpan:hover {
+    background: #274d2d;
+}

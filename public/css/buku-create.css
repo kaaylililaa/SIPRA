@@ -1,0 +1,492 @@
+/* =========================================================
+   TAMBAH BUKU
+   ========================================================= */
+
+.create-book-page {
+    width: 100%;
+    min-height: calc(100vh - 40px);
+    padding: 20px 26px 30px;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+
+/* ================= HEADER ================= */
+
+.create-book-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 28px;
+}
+
+.create-book-title-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 11px;
+    background: #78c47c;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: white;
+    font-size: 19px;
+    flex-shrink: 0;
+}
+
+.create-book-header h1 {
+    margin: 0;
+    color: #27795f;
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1.1;
+}
+
+.create-book-header p {
+    margin: 3px 0 0;
+    color: #999;
+    font-size: 7px;
+    font-weight: 400;
+}
+
+
+/* ================= CARD ================= */
+
+.create-book-card {
+   width: calc(100% - 20px);
+    max-width: 1100px;
+    margin: 0 auto;
+
+    background: #fff;
+    border-radius: 20px;
+    padding: 25px 28px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.14);
+}
+
+
+/* ================= LAYOUT ================= */
+
+.create-book-layout {
+    display: grid;
+
+    grid-template-columns: 177px minmax(0, 1fr);
+
+    column-gap: 18px;
+
+    align-items: start;
+}
+
+
+/* ================= LEFT COVER ================= */
+
+.book-cover-section {
+    width: 177px;
+}
+
+.section-label {
+    display: block;
+
+    margin-bottom: 7px;
+
+    color: #555;
+
+    font-size: 10px;
+    font-weight: 600;
+}
+
+
+/* UPLOAD BOX */
+
+.upload-box {
+    width: 177px;
+    height: 169px;
+
+    box-sizing: border-box;
+
+    border: 1px dashed #aaa;
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    background: #fff;
+
+    transition: 0.2s ease;
+}
+
+.upload-box:hover {
+    border-color: #78c47c;
+    background: #fbfffb;
+}
+
+.upload-icon {
+    width: 63px;
+    height: 63px;
+
+    border-radius: 50%;
+
+    background: #c5e8c8;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #27795f;
+
+    font-size: 25px;
+
+    margin-bottom: 8px;
+}
+
+.upload-box strong {
+    color: #666;
+
+    font-size: 10px;
+    font-weight: 600;
+
+    margin-bottom: 2px;
+}
+
+.upload-box span {
+    color: #999;
+
+    font-size: 8px;
+
+    line-height: 1.45;
+}
+
+.upload-box small {
+    margin-top: 11px;
+
+    color: #999;
+
+    font-size: 6.5px;
+}
+
+
+/* ================= PREVIEW ================= */
+
+.cover-preview-box {
+    width: 177px;
+    height: 160px;
+
+    box-sizing: border-box;
+
+    border: 1px solid #777;
+
+    margin-top: 10px;
+
+    display: none;
+
+    position: relative;
+
+    background: #fff;
+}
+
+.cover-preview-box.show {
+    display: block;
+}
+
+.preview-header {
+    height: 23px;
+
+    padding: 5px 8px;
+
+    box-sizing: border-box;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    color: #777;
+
+    font-size: 9px;
+}
+
+.remove-preview {
+    width: 15px;
+    height: 15px;
+
+    padding: 0;
+
+    border: 1px solid #555;
+
+    border-radius: 50%;
+
+    background: white;
+
+    color: #222;
+
+    font-size: 10px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+}
+
+.remove-preview:hover {
+    background: #f5f5f5;
+}
+
+.preview-image-wrapper {
+    height: calc(100% - 23px);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+}
+
+.preview-image-wrapper img {
+    max-width: 83px;
+    max-height: 117px;
+
+    width: auto;
+    height: auto;
+
+    object-fit: contain;
+
+    border-radius: 4px;
+}
+
+
+/* ================= FORM ================= */
+
+.book-form-section {
+    width: 100%;
+}
+
+.form-row {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    column-gap: 10px;
+
+    margin-bottom: 16px;
+}
+
+.form-group {
+    width: 100%;
+    min-width: 0;
+}
+
+.form-group label {
+    display: block;
+
+    margin-bottom: 5px;
+
+    color: #777;
+
+    font-size: 8px;
+    font-weight: 400;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    height: 30px;
+
+    box-sizing: border-box;
+
+    border: 1px solid #aaa;
+    border-radius: 7px;
+
+    background: #fff;
+
+    outline: none;
+
+    padding: 0 10px;
+
+    color: #555;
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: 9px;
+
+    transition: border-color 0.2s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    border-color: #78c47c;
+    box-shadow: 0 0 0 2px rgba(120, 196, 124, 0.12);
+}
+
+
+/* YEAR */
+
+#tahun_terbit {
+    padding-right: 8px;
+}
+
+
+/* CATEGORY */
+
+.category-group {
+    margin-top: 0;
+}
+
+.select-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.select-wrapper select {
+    appearance: none;
+    -webkit-appearance: none;
+
+    padding-right: 30px;
+
+    cursor: pointer;
+}
+
+.select-wrapper i {
+    position: absolute;
+
+    right: 11px;
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    color: #999;
+
+    font-size: 9px;
+
+    pointer-events: none;
+}
+
+
+/* ERROR */
+
+.form-error {
+    display: block;
+
+    margin-top: 3px;
+
+    color: #e85d5d;
+
+    font-size: 7px;
+}
+
+
+/* ================= BUTTON ================= */
+
+.create-book-actions {
+    display: flex;
+
+    justify-content: flex-end;
+    align-items: center;
+
+    gap: 8px;
+
+    margin-top: 25px;
+}
+
+.btn-cancel,
+.btn-save {
+    height: 25px;
+
+    border-radius: 5px;
+
+    border: none;
+
+    padding: 0 12px;
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: 7px;
+
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    text-decoration: none;
+
+    box-sizing: border-box;
+
+    cursor: pointer;
+}
+
+.btn-cancel {
+    background: #d9d9d9;
+    color: #777;
+}
+
+.btn-cancel:hover {
+    background: #cecece;
+    color: #666;
+}
+
+.btn-save {
+    background: #27795f;
+    color: white;
+}
+
+.btn-save:hover {
+    background: #20694f;
+}
+
+.btn-save i {
+    margin-right: 3px;
+    font-size: 8px;
+}
+
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 850px) {
+
+    .create-book-card {
+        max-width: 100%;
+    }
+
+}
+
+
+@media (max-width: 650px) {
+
+    .create-book-page {
+        padding: 15px;
+    }
+
+    .create-book-layout {
+        grid-template-columns: 1fr;
+        row-gap: 20px;
+    }
+
+    .book-cover-section {
+        width: 177px;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+        row-gap: 14px;
+    }
+
+}
+
+
+@media (max-width: 450px) {
+
+    .create-book-header h1 {
+        font-size: 19px;
+    }
+
+    .create-book-card {
+        padding: 20px 18px;
+    }
+
+}

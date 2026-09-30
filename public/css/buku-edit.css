@@ -1,0 +1,368 @@
+/* =========================
+   EDIT BUKU - SIPRA
+========================= */
+
+.edit-page {
+    width: 100%;
+    min-height: 100vh;
+    background: #eeeeee;
+    padding: 24px 28px 40px;
+    font-family: "Poppins", sans-serif;
+    box-sizing: border-box;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+.edit-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 32px;
+}
+
+.edit-title-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.edit-icon {
+    width: 48px;
+    height: 48px;
+    background: #7acb80;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 20px;
+}
+
+.edit-title {
+    margin: 0;
+    color: #28765f;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.edit-subtitle {
+    margin: 3px 0 0;
+    color: #999999;
+    font-size: 9px;
+}
+
+.edit-back {
+    color: #2478d0;
+    text-decoration: none;
+    font-size: 10px;
+}
+
+.edit-back:hover {
+    text-decoration: underline;
+}
+
+/* =========================
+   CARD PUTIH
+========================= */
+
+.edit-card {
+    width: 100%;
+    min-height: 430px;
+    background: #ffffff;
+    border-radius: 24px;
+    padding: 32px 36px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.14);
+
+    display: grid;
+    grid-template-columns: 135px 1fr;
+    column-gap: 32px;
+
+    box-sizing: border-box;
+}
+
+/* =========================
+   BAGIAN SAMPUL
+========================= */
+
+.edit-cover-section {
+    width: 135px;
+}
+
+.edit-cover-title {
+    margin: 0 0 12px;
+    color: #666666;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+/* TEMPAT GAMBAR SAMPUL */
+
+.edit-cover-preview {
+    width: 135px;
+    height: 151px;
+
+    border: 2px solid #69c574;
+    border-radius: 7px;
+
+    overflow: hidden;
+    background: #f8f8f8;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.edit-cover-image {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+    display: block;
+}
+
+.no-cover {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #999999;
+    font-size: 10px;
+    text-align: center;
+}
+
+/* =========================
+   TOMBOL SAMPUL
+========================= */
+
+.edit-cover-buttons {
+    margin-top: 12px;
+}
+
+.edit-change-cover {
+    width: 107px;
+    height: 35px;
+
+    border: 2px solid #69c574;
+    border-radius: 7px;
+
+    background: white;
+    color: #62b96b;
+
+    font-family: "Poppins", sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+.edit-change-cover:hover {
+    background: #f1fff2;
+}
+
+.edit-delete-cover {
+    margin-top: 8px;
+
+    border: none;
+    background: transparent;
+
+    color: #ff5757;
+
+    font-family: "Poppins", sans-serif;
+    font-size: 10px;
+
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.edit-delete-cover:hover {
+    color: #e33d3d;
+}
+
+/* =========================
+   FORMAT INFO
+========================= */
+
+.edit-format-info {
+    width: 107px;
+    margin-top: 28px;
+
+    padding: 8px;
+
+    background: #79c77d;
+    border-radius: 6px;
+
+    color: white;
+
+    font-size: 8px;
+    line-height: 1.35;
+}
+
+/* =========================
+   FORM
+========================= */
+
+.edit-form-section {
+    min-width: 0;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 20px;
+    row-gap: 20px;
+}
+
+.edit-form-group {
+    width: 100%;
+}
+
+.edit-form-group.full {
+    grid-column: 1 / -1;
+}
+
+.edit-form-group label {
+    display: block;
+    margin-bottom: 6px;
+
+    color: #777777;
+    font-size: 9px;
+    font-weight: 400;
+}
+
+.edit-form-group input,
+.edit-form-group select {
+    width: 100%;
+    height: 36px;
+
+    padding: 0 10px;
+
+    border: 1px solid #aaaaaa;
+    border-radius: 7px;
+
+    background: #ffffff;
+
+    font-family: "Poppins", sans-serif;
+    font-size: 9px;
+    color: #555555;
+
+    outline: none;
+    box-sizing: border-box;
+}
+
+.edit-form-group input:focus,
+.edit-form-group select:focus {
+    border-color: #71c978;
+    box-shadow: 0 0 0 2px rgba(113, 201, 120, 0.12);
+}
+
+.edit-form-group select {
+    appearance: auto;
+    cursor: pointer;
+}
+
+/* =========================
+   BUTTON BAWAH
+========================= */
+
+.edit-actions {
+    grid-column: 1 / -1;
+
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+
+    gap: 10px;
+    margin-top: 8px;
+}
+
+.edit-btn-cancel {
+    height: 31px;
+    padding: 0 16px;
+
+    border: none;
+    border-radius: 6px;
+
+    background: #dddddd;
+    color: #888888;
+
+    font-family: "Poppins", sans-serif;
+    font-size: 9px;
+
+    cursor: pointer;
+}
+
+.edit-btn-save {
+    height: 31px;
+    padding: 0 16px;
+
+    border: none;
+    border-radius: 6px;
+
+    background: #287e61;
+    color: white;
+
+    font-family: "Poppins", sans-serif;
+    font-size: 9px;
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+.edit-btn-save:hover {
+    background: #216b52;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 900px) {
+    .edit-card {
+        grid-template-columns: 120px 1fr;
+        column-gap: 24px;
+        padding: 25px;
+    }
+
+    .edit-cover-section,
+    .edit-cover-preview {
+        width: 120px;
+    }
+
+    .edit-form-section {
+        column-gap: 15px;
+    }
+}
+
+@media (max-width: 650px) {
+    .edit-card {
+        grid-template-columns: 1fr;
+        row-gap: 25px;
+    }
+
+    .edit-cover-section {
+        width: 135px;
+    }
+
+    .edit-form-section {
+        grid-template-columns: 1fr;
+    }
+
+    .edit-form-group.full {
+        grid-column: 1;
+    }
+
+    .edit-actions {
+        grid-column: 1;
+    }
+}

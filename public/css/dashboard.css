@@ -1,0 +1,721 @@
+/* =========================================
+   RESET
+========================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    min-height: 100%;
+}
+
+body {
+    font-family: "Poppins", sans-serif;
+    background: #f1f3f3;
+    color: #555;
+}
+
+
+/* =========================================
+   WRAPPER
+========================================= */
+
+.dashboard-wrapper {
+    min-height: 100vh;
+    display: flex;
+    background: #f1f3f3;
+}
+
+
+/* =========================================
+   SIDEBAR
+========================================= */
+
+.sidebar {
+    width: 128px;
+    min-height: 100vh;
+
+    background: #f8fafa;
+
+    border-right: 1px solid #e2e2e2;
+
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+
+    flex-shrink: 0;
+}
+
+
+/* Logo */
+
+.sidebar-logo {
+    width: 100%;
+
+    padding-top: 13px;
+
+    display: flex;
+    justify-content: center;
+}
+
+.sidebar-logo img {
+    width: 62px;
+    height: auto;
+    display: block;
+}
+
+
+/* =========================================
+   MENU TITLE
+========================================= */
+
+.menu-title {
+    margin-top: 60px;
+    margin-left: 11px;
+
+    color: #888;
+
+    font-size: 7px;
+    font-weight: 500;
+}
+
+
+/* =========================================
+   SIDEBAR MENU
+========================================= */
+
+.sidebar-menu {
+    margin-top: 7px;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 6px;
+}
+
+.menu-item {
+    width: calc(100% - 12px);
+    height: 27px;
+
+    margin-left: 6px;
+
+    padding: 0 8px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 8px;
+
+    text-decoration: none;
+
+    color: #666;
+
+    font-size: 7px;
+    font-weight: 400;
+
+    border-radius: 9px;
+
+    transition: 0.2s;
+}
+
+.menu-item:hover {
+    background: #e9f3ea;
+    color: #286b4c;
+}
+
+
+/* Active */
+
+.menu-item.active {
+    background: #7bc47f;
+
+    color: white;
+
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+}
+
+
+/* Icon */
+
+.menu-icon {
+    width: 15px;
+
+    display: flex;
+    justify-content: center;
+
+    font-size: 10px;
+}
+
+
+/* =========================================
+   LOGOUT
+========================================= */
+
+.sidebar-bottom {
+    margin-top: auto;
+
+    padding: 0 7px 33px;
+}
+
+.sidebar-bottom form {
+    width: 100%;
+}
+
+.logout-button {
+    width: 100%;
+    height: 26px;
+
+    border: none;
+    border-radius: 9px;
+
+    background: #f75d5d;
+
+    color: white;
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: 7px;
+
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 4px;
+
+    transition: 0.2s;
+}
+
+.logout-button:hover {
+    background: #ed4d4d;
+}
+
+
+/* =========================================
+   MAIN CONTENT
+========================================= */
+
+.main-content {
+    flex: 1;
+
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+}
+
+
+/* =========================================
+   TOP HEADER
+========================================= */
+
+.top-header {
+    height: 69px;
+
+    padding: 11px 23px 10px 15px;
+
+    background: #f8fafa;
+
+    display: flex;
+
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+
+/* Header title */
+
+.header-title h1 {
+    color: #286b4c;
+
+    font-size: 13px;
+    font-weight: 700;
+
+    line-height: 1.3;
+}
+
+.header-title p {
+    margin-top: 1px;
+
+    color: #777;
+
+    font-size: 10px;
+    font-weight: 400;
+}
+
+
+/* User */
+
+.header-user {
+    display: flex;
+    flex-direction: column;
+
+    align-items: flex-end;
+
+    padding-top: 1px;
+}
+
+.header-user strong {
+    color: #286b4c;
+
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.header-user span {
+    margin-top: 1px;
+
+    color: #888;
+
+    font-size: 7px;
+}
+
+
+/* =========================================
+   DASHBOARD CONTENT
+========================================= */
+
+.dashboard-content {
+    padding: 16px 15px 14px;
+
+    flex: 1;
+}
+
+
+/* =========================================
+   WELCOME CARD
+========================================= */
+
+.welcome-card {
+    width: 100%;
+    height: 176px;
+    padding: 40px 45px;
+    background: #7bc47f;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    overflow: hidden;
+}
+
+
+/* Welcome text */
+
+.welcome-content {
+    position: relative;
+
+    z-index: 2;
+}
+
+.sipra-badge {
+    width: 52px;
+    height: 16px;
+
+    background: white;
+
+    border-radius: 10px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 3px;
+
+    color: #7bc47f;
+
+    font-size: 6px;
+    font-weight: 600;
+
+    margin-bottom: 10px;
+}
+
+.sipra-badge i {
+    font-size: 7px;
+}
+
+
+.welcome-content h2 {
+    color: white;
+
+    font-size: 17px;
+    font-weight: 700;
+
+    margin-bottom: 3px;
+}
+
+.welcome-content p {
+    color: white;
+
+    font-size: 6px;
+    line-height: 1.55;
+
+    font-weight: 400;
+}
+
+
+/* =========================================
+   WELCOME ILLUSTRATION
+========================================= */
+
+.welcome-image {
+    width: 180px;
+    height: 145px;
+
+    margin-right: 15px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.welcome-image img {
+    width: 160px;
+    max-height: 140px;
+
+    object-fit: contain;
+}
+
+
+/* =========================================
+   SECTION TITLE
+========================================= */
+
+.section-title {
+    margin-top: 15px;
+    margin-left: 5px;
+    margin-bottom: 9px;
+
+    color: #286b4c;
+
+    font-size: 12px;
+    font-weight: 700;
+}
+
+
+/* =========================================
+   SUMMARY GRID
+========================================= */
+
+.summary-grid {
+    display: grid;
+
+    grid-template-columns: repeat(4, 1fr);
+
+    gap: 17px;
+}
+
+
+/* Summary Card */
+
+.summary-card {
+    height: 51px;
+
+    background: white;
+
+    border-radius: 10px;
+
+    display: flex;
+    align-items: center;
+
+    padding: 7px 10px;
+
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.25);
+}
+
+
+/* Icon */
+
+.summary-icon {
+    width: 37px;
+    height: 37px;
+
+    border-radius: 9px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: white;
+
+    font-size: 17px;
+
+    flex-shrink: 0;
+}
+
+
+/* Icon colors */
+
+.buku-icon {
+    background: #7bc47f;
+}
+
+.pinjam-icon {
+    background: #598bef;
+}
+
+.anggota-icon {
+    background: #8b3deb;
+}
+
+.kategori-icon {
+    background: #f6a632;
+}
+
+
+/* Summary info */
+
+.summary-info {
+    margin-left: 11px;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.summary-info strong {
+    color: #286b4c;
+
+    font-size: 15px;
+    line-height: 1.1;
+
+    font-weight: 600;
+}
+
+.summary-info span {
+    margin-top: 3px;
+
+    color: #999;
+
+    font-size: 6px;
+    font-weight: 400;
+}
+
+
+/* =========================================
+   BOTTOM GRID
+========================================= */
+
+.bottom-grid {
+    margin-top: 18px;
+
+    display: grid;
+
+    grid-template-columns: 1.35fr 1fr;
+
+    gap: 9px;
+}
+
+
+/* =========================================
+   DASHBOARD BOX
+========================================= */
+
+.dashboard-box {
+    height: 137px;
+
+    background: white;
+
+    border-radius: 10px;
+
+    padding: 9px 11px;
+
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.20);
+}
+
+
+/* Box title */
+
+.box-title {
+    color: #286b4c;
+
+    font-size: 11px;
+    font-weight: 600;
+
+    margin-bottom: 8px;
+}
+
+
+/* =========================================
+   BUKU TERBARU
+========================================= */
+
+.book-item {
+    width: 188px;
+    height: 50px;
+
+    background: #286b4c;
+
+    border-radius: 5px;
+
+    display: flex;
+    align-items: center;
+
+    overflow: hidden;
+}
+
+
+/* Cover */
+
+.book-cover {
+    width: 42px;
+    height: 50px;
+
+    background: #7bc47f;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+}
+
+.book-cover img {
+    width: 32px;
+    height: 43px;
+
+    object-fit: cover;
+}
+
+.book-cover i {
+    color: white;
+    font-size: 18px;
+}
+
+
+/* Book name */
+
+.book-name {
+    padding: 0 8px;
+
+    color: white;
+
+    font-size: 10px;
+    font-weight: 500;
+
+    white-space: nowrap;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+/* =========================================
+   AKTIVITAS
+========================================= */
+
+.activity-list {
+    display: flex;
+    flex-direction: column;
+
+    gap: 12px;
+
+    margin-top: 13px;
+}
+
+.activity-item {
+    display: flex;
+    align-items: center;
+
+    gap: 6px;
+
+    color: #999;
+
+    font-size: 7px;
+}
+
+.activity-item i {
+    color: #7bc47f;
+
+    font-size: 8px;
+}
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 900px) {
+
+    .sidebar {
+        width: 110px;
+    }
+
+    .summary-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .bottom-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .welcome-card {
+        height: auto;
+        min-height: 170px;
+    }
+
+    .welcome-image {
+        width: 150px;
+    }
+}
+
+
+@media (max-width: 600px) {
+
+    .sidebar {
+        width: 70px;
+    }
+
+    .sidebar-logo img {
+        width: 45px;
+    }
+
+    .menu-title {
+        display: none;
+    }
+
+    .menu-item {
+        width: 45px;
+        margin-left: 12px;
+        justify-content: center;
+    }
+
+    .menu-item span:last-child {
+        display: none;
+    }
+
+    .logout-button {
+        font-size: 0;
+    }
+
+    .logout-button i {
+        font-size: 11px;
+    }
+
+    .summary-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+    }
+
+    .summary-card {
+        padding: 6px;
+    }
+
+    .summary-icon {
+        width: 32px;
+        height: 32px;
+    }
+
+    .welcome-image {
+        display: none;
+    }
+
+    .header-user {
+        display: none;
+    }
+}

@@ -1,0 +1,142 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+/* =========================
+   HALAMAN LOADING
+========================= */
+
+.loading-page {
+    width: 100%;
+    height: 100vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #ffffff;
+}
+
+/* =========================
+   CONTENT
+========================= */
+
+.loading-content {
+    width: 300px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    text-align: center;
+}
+
+/* =========================
+   LOGO
+========================= */
+
+.loading-logo {
+    width: 90px;
+    height: auto;
+
+    margin-bottom: 12px;
+}
+
+/* =========================
+   SIPRA
+========================= */
+
+.loading-content h1 {
+    margin: 0;
+
+    font-size: 18px;
+    font-weight: 700;
+
+    color: #286b4c;
+
+    letter-spacing: .3px;
+}
+
+/* =========================
+   TEKS
+========================= */
+
+.loading-text {
+    margin-top: 5px;
+
+    font-size: 11px;
+    font-weight: 400;
+
+    color: #286b4c;
+}
+
+/* =========================
+   ANIMASI TITIK
+========================= */
+
+.dots::after {
+    content: '';
+
+    animation: dots 1.5s infinite;
+}
+
+@keyframes dots {
+
+    0% {
+        content: '';
+    }
+
+    25% {
+        content: '.';
+    }
+
+    50% {
+        content: '..';
+    }
+
+    75% {
+        content: '...';
+    }
+
+    100% {
+        content: '';
+    }
+
+}
+
+/* =========================
+   SPINNER
+========================= */
+
+.spinner {
+    width: 43px;
+    height: 43px;
+
+    margin-top: 16px;
+
+    border-radius: 50%;
+
+    border: 5px solid #e5e5e5;
+
+    border-top-color: #78c47d;
+
+    animation: spin .8s linear infinite;
+}
+
+@keyframes spin {
+
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+
+}

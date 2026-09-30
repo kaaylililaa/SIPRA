@@ -1,0 +1,347 @@
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    font-family: "Poppins", sans-serif;
+}
+
+/* =========================
+   BACKGROUND
+========================= */
+
+body {
+    min-height: 100vh;
+    background-image: url("../images/library-bg.jpeg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Overlay gelap */
+.overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.43);
+    z-index: 1;
+}
+
+
+/* =========================
+   LOGO
+========================= */
+
+.logo-area {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    z-index: 5;
+}
+
+.logo-area img {
+    width: 105px;
+    height: auto;
+    display: block;
+}
+
+
+/* =========================
+   TAB LOGIN / DAFTAR
+========================= */
+
+.auth-tabs {
+    position: absolute;
+    top: 61px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    width: 318px;
+    height: 30px;
+
+    display: flex;
+
+    background: white;
+    border-radius: 20px;
+
+    overflow: hidden;
+
+    z-index: 5;
+}
+
+.tab {
+    width: 50%;
+    height: 30px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    text-decoration: none;
+
+    font-size: 12px;
+    font-weight: 500;
+
+    color: #286b4c;
+
+    transition: 0.2s;
+}
+
+.tab.active {
+    background: #2f765b;
+    color: white;
+    border-radius: 20px;
+}
+
+
+/* =========================
+   REGISTER CARD
+========================= */
+
+.register-card {
+    position: absolute;
+
+    top: 107px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    width: 496px;
+    min-height: 339px;
+
+    padding: 14px 28px 26px;
+
+    background: rgba(255, 255, 255, 0.97);
+
+    border-radius: 25px;
+
+    z-index: 5;
+}
+
+
+/* =========================
+   HEADER CARD
+========================= */
+
+.register-header {
+    display: flex;
+    align-items: center;
+
+    gap: 14px;
+
+    height: 42px;
+}
+
+
+/* Icon hijau */
+
+.register-icon {
+    width: 40px;
+    height: 40px;
+
+    background: #7bc47f;
+
+    border-radius: 10px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+}
+
+.register-icon i {
+    color: white;
+    font-size: 19px;
+}
+
+
+/* Judul */
+
+.register-title h2 {
+    margin: 0;
+
+    color: #286b4c;
+
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.register-title p {
+    margin: 0;
+
+    color: #777;
+
+    font-size: 11px;
+    font-weight: 400;
+}
+
+
+/* =========================
+   GARIS
+========================= */
+
+.divider {
+    width: 100%;
+    height: 1px;
+
+    background: #c7c7c7;
+
+    margin-top: 10px;
+    margin-bottom: 27px;
+}
+
+
+/* =========================
+   FORM
+========================= */
+
+.form-group {
+    margin-bottom: 16px;
+}
+
+.form-group label {
+    display: block;
+
+    margin-left: 5px;
+    margin-bottom: 1px;
+
+    color: #777;
+
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.form-group input {
+    width: 100%;
+    height: 36px;
+
+    padding: 0 12px;
+
+    background: white;
+
+    border: 1px solid #aaa;
+    border-radius: 8px;
+
+    outline: none;
+
+    font-family: "Poppins", sans-serif;
+    font-size: 13px;
+
+    color: #444;
+
+    transition: 0.2s;
+}
+
+.form-group input:focus {
+    border-color: #7bc47f;
+    box-shadow: 0 0 0 2px rgba(123, 196, 127, 0.15);
+}
+
+
+/* =========================
+   BUTTON DAFTAR
+========================= */
+
+.btn-daftar {
+    display: block;
+
+    width: 262px;
+    height: 43px;
+
+    margin: 40px auto 0;
+
+    border: 2px solid #00aaff;
+    border-radius: 13px;
+
+    background: #7bc47f;
+
+    color: white;
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: 18px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.btn-daftar:hover {
+    background: #6fba73;
+}
+
+.btn-daftar:active {
+    transform: scale(0.98);
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+.version {
+    position: absolute;
+
+    left: 18px;
+    bottom: 39px;
+
+    z-index: 5;
+
+    color: white;
+
+    font-size: 10px;
+    font-weight: 400;
+}
+
+.copyright {
+    position: absolute;
+
+    left: 18px;
+    bottom: 9px;
+
+    z-index: 5;
+
+    color: white;
+
+    font-size: 10px;
+    font-weight: 400;
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 600px) {
+
+    .logo-area img {
+        width: 85px;
+    }
+
+    .auth-tabs {
+        width: 280px;
+        top: 60px;
+    }
+
+    .register-card {
+        width: calc(100% - 30px);
+        top: 105px;
+        padding: 14px 20px 25px;
+    }
+
+    .form-group label {
+        font-size: 16px;
+    }
+
+    .btn-daftar {
+        width: 55%;
+    }
+
+}

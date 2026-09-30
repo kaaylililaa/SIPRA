@@ -56,10 +56,12 @@ class BukuController extends Controller
         ->with('success', 'Buku berhasil ditambahkan.');
 }
 
-    public function show(Buku $buku)
-    {
-        return view('buku.show', compact('buku'));
-    }
+        public function show($id)
+{
+    $buku = Buku::with('kategori')->findOrFail($id);
+
+    return view('buku.show', compact('buku'));
+}
 
     public function edit(Buku $buku)
     {

@@ -156,25 +156,94 @@
                             <i class="bi bi-pencil"></i>
                         </a>
 
-                        <form
-                            action="{{ route('buku.destroy', $buku->id) }}"
-                            method="POST"
-                            onsubmit="return confirm('Yakin ingin menghapus buku ini?')"
-                        >
+                        <button
+    type="button"
+    class="btn-delete"
+    onclick="openDeleteModal({{ $buku->id }}, @js($buku->judul_buku))"
+>
+    <i class="bi bi-trash"></i>
+</button>
 
-                            @csrf
-                            @method('DELETE')
+<!-- Modal Hapus Buku -->
+<div class="delete-modal-overlay" id="deleteModal">
 
-                            <button
-                                type="submit"
-                                class="buku-btn"
-                                title="Hapus"
-                            >
-                                <i class="bi bi-trash"></i>
-                            </button>
+    <div class="delete-modal">
 
-                        </form>
+        <div class="delete-icon">
+            <i class="bi bi-trash3"></i>
+        </div>
 
+        <h3>Hapus Buku?</h3>
+
+        <p>
+            Apakah kamu yakin ingin menghapus buku
+            <strong id="deleteBookTitle"></strong>?
+        </p>
+
+        <div class="delete-modal-buttons">
+
+            <button
+                type="button"
+                class="btn-cancel-delete"
+                onclick="closeDeleteModal()"
+            >
+                Batal
+            </button>
+
+            <form id="deleteBookForm" method="POST">
+                @csrf
+                @method('DELETE')
+
+                <button
+                    type="submit"
+                    class="btn-confirm-delete"
+                >
+                    <i class="bi bi-trash3"></i>
+                    Hapus
+                </button>
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+    function openDeleteModal(id, title) {
+        const modal = document.getElementById('deleteModal');
+        const titleElement = document.getElementById('deleteBookTitle');
+        const form = document.getElementById('deleteBookForm');
+
+        titleElement.textContent = '"' + title + '"';
+
+        form.action = "{{ url('/buku') }}/" + id;
+
+        modal.classList.add('show');
+
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeDeleteModal() {
+        const modal = document.getElementById('deleteModal');
+
+        modal.classList.remove('show');
+
+        document.body.style.overflow = '';
+    }
+
+    document.getElementById('deleteModal').addEventListener('click', function(event) {
+        if (event.target === this) {
+            closeDeleteModal();
+        }
+    });
+
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape') {
+            closeDeleteModal();
+        }
+    });
+</script>
                     </div>
 
                 </div>

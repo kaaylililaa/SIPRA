@@ -690,3 +690,180 @@
         min-width: 95px;
     }
 }
+
+.delete-modal-overlay {
+    position: fixed;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background: rgba(34, 48, 42, 0.45);
+
+    display: none;
+
+    align-items: center;
+    justify-content: center;
+
+    z-index: 9999;
+
+    padding: 20px;
+}
+
+.delete-modal-overlay.show {
+    display: flex;
+}
+
+.delete-modal {
+    width: 380px;
+    max-width: 100%;
+
+    padding: 28px 30px 25px;
+
+    background: #ffffff;
+
+    border-radius: 18px;
+
+    text-align: center;
+
+    box-shadow:
+        0 15px 40px rgba(0, 0, 0, 0.18);
+
+    animation: deleteModalShow 0.2s ease;
+}
+
+@keyframes deleteModalShow {
+
+    from {
+        opacity: 0;
+        transform: scale(0.94) translateY(8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+
+/* Icon */
+
+.delete-icon {
+    width: 52px;
+    height: 52px;
+
+    margin: 0 auto 13px;
+
+    border-radius: 50%;
+
+    background: #ffe9e9;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #f15b5b;
+}
+
+.delete-icon i {
+    font-size: 22px;
+}
+
+
+/* Title */
+
+.delete-modal h3 {
+    margin: 0;
+
+    color: #333333;
+
+    font-size: 18px;
+    font-weight: 700;
+}
+
+
+/* Description */
+
+.delete-modal p {
+    margin: 9px 10px 22px;
+
+    color: #888888;
+
+    font-size: 10px;
+    line-height: 1.7;
+}
+
+.delete-modal p strong {
+    color: #555555;
+    font-weight: 600;
+}
+
+
+/* Buttons */
+
+.delete-modal-buttons {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 10px;
+}
+
+.delete-modal-buttons form {
+    margin: 0;
+}
+
+.btn-cancel-delete,
+.btn-confirm-delete {
+    height: 32px;
+
+    min-width: 88px;
+
+    padding: 0 16px;
+
+    border: none;
+    border-radius: 8px;
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: 9px;
+    font-weight: 500;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+
+/* Batal */
+
+.btn-cancel-delete {
+    background: #eeeeee;
+
+    color: #666666;
+}
+
+.btn-cancel-delete:hover {
+    background: #e2e2e2;
+}
+
+
+/* Hapus */
+
+.btn-confirm-delete {
+    background: #f15b5b;
+
+    color: #ffffff;
+}
+
+.btn-confirm-delete:hover {
+    background: #e34d4d;
+}
+
+.btn-confirm-delete i {
+    margin-right: 5px;
+
+    font-size: 9px;
+}

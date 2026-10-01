@@ -156,10 +156,12 @@
                             <i class="bi bi-pencil"></i>
                         </a>
 
+                       <button
                         <button
     type="button"
-    class="btn-delete"
+    class="btn-action-delete"
     onclick="openDeleteModal({{ $buku->id }}, @js($buku->judul_buku))"
+    title="Hapus"
 >
     <i class="bi bi-trash"></i>
 </button>

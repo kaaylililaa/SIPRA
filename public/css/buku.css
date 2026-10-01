@@ -867,3 +867,36 @@
 
     font-size: 9px;
 }
+
+/* ================= TOMBOL HAPUS DI DAFTAR BUKU ================= */
+
+.btn-action-delete {
+    width: 27px !important;
+    height: 27px !important;
+    min-width: 27px !important;
+    padding: 0 !important;
+
+    border: none !important;
+    border-radius: 6px !important;
+
+    background: #dedede !important;
+    color: #ffffff !important;
+
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    cursor: pointer;
+    box-shadow: none !important;
+}
+
+.btn-action-delete i {
+    margin: 0 !important;
+    padding: 0 !important;
+    font-size: 12px !important;
+    color: #ffffff !important;
+}
+
+.btn-action-delete:hover {
+    background: #d0d0d0 !important;
+}

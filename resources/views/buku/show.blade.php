@@ -234,7 +234,7 @@
                     @if(!empty($buku->gambar_sampul))
 
                         <img
-                            src="{{ asset('storage/' . $buku->gambar_sampul) }}"
+                            src="{{ asset('uploads/sampul/' . $buku->gambar_sampul) }}"
                             alt="Sampul {{ $buku->judul_buku }}"
                             class="book-cover"
                         >

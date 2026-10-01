@@ -1,368 +1,474 @@
-/* =========================
-   EDIT BUKU - SIPRA
-========================= */
-
-.edit-page {
-    width: 100%;
-    min-height: 100vh;
-    background: #eeeeee;
-    padding: 24px 28px 40px;
-    font-family: "Poppins", sans-serif;
+* {
     box-sizing: border-box;
 }
 
-/* =========================
-   HEADER
-========================= */
+body {
+    margin: 0;
+    font-family: "Poppins", sans-serif;
+    background: #eeeeee;
+    color: #444;
+}
 
-.edit-header {
+.app-wrapper {
+    display: flex;
+    min-height: 100vh;
+}
+
+
+/* ================= SIDEBAR ================= */
+
+.sidebar {
+    width: 158px;
+    min-height: 100vh;
+    background: #f8faf9;
+    padding: 15px 12px;
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+}
+
+.logo-area {
+    text-align: center;
+}
+
+.logo {
+    width: 72px;
+    height: auto;
+    object-fit: contain;
+}
+
+.logo-area h2 {
+    margin: 3px 0 2px;
+    font-size: 16px;
+    color: #23764f;
+    font-weight: 700;
+}
+
+.logo-area p {
+    margin: 0;
+    font-size: 7px;
+    line-height: 1.5;
+    color: #666;
+}
+
+.menu-title {
+    margin-top: 30px;
+    margin-bottom: 13px;
+    padding-left: 8px;
+    font-size: 8px;
+    color: #888;
+}
+
+.sidebar-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.menu-item {
+    height: 32px;
+    padding: 0 10px;
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    border-radius: 9px;
+    color: #555;
+    text-decoration: none;
+    font-size: 8px;
+    transition: 0.2s ease;
+}
+
+.menu-item i {
+    width: 13px;
+    text-align: center;
+    font-size: 12px;
+}
+
+.menu-item:hover {
+    background: #e8f5ea;
+    color: #23764f;
+}
+
+.menu-item.active {
+    background: #76c87e;
+    color: #fff;
+    box-shadow: 0 4px 10px rgba(113, 189, 122, 0.25);
+}
+
+.logout-area {
+    position: absolute;
+    left: 12px;
+    right: 12px;
+    bottom: 32px;
+}
+
+.logout-area form {
+    margin: 0;
+}
+
+.logout-button {
+    width: 100%;
+    height: 30px;
+    border: none;
+    border-radius: 9px;
+    background: #f65b5b;
+    color: #fff;
+    font-family: "Poppins", sans-serif;
+    font-size: 8px;
+    cursor: pointer;
+}
+
+.logout-button i {
+    margin-right: 5px;
+}
+
+
+/* ================= MAIN ================= */
+
+.main-content {
+    margin-left: 158px;
+    width: calc(100% - 158px);
+    min-height: 100vh;
+    padding: 20px 26px 28px;
+}
+
+
+/* ================= HEADER ================= */
+
+.page-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin-bottom: 32px;
 }
 
-.edit-title-wrapper {
+.header-left {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 10px;
 }
 
-.edit-icon {
-    width: 48px;
-    height: 48px;
-    background: #7acb80;
-    border-radius: 12px;
+.header-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    background: #76c87e;
+    color: #fff;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: white;
-    font-size: 20px;
 }
 
-.edit-title {
+.header-icon i {
+    font-size: 18px;
+}
+
+.page-header h1 {
     margin: 0;
-    color: #28765f;
-    font-size: 24px;
+    color: #24744f;
+    font-size: 19px;
     font-weight: 700;
 }
 
-.edit-subtitle {
-    margin: 3px 0 0;
-    color: #999999;
-    font-size: 9px;
+.page-header p {
+    margin: 2px 0 0;
+    font-size: 7px;
+    color: #888;
 }
 
-.edit-back {
-    color: #2478d0;
+.back-link {
+    color: #2677d1;
     text-decoration: none;
-    font-size: 10px;
+    font-size: 8px;
 }
 
-.edit-back:hover {
+.back-link:hover {
     text-decoration: underline;
 }
 
-/* =========================
-   CARD PUTIH
-========================= */
+
+/* ================= EDIT CARD ================= */
 
 .edit-card {
     width: 100%;
-    min-height: 430px;
-    background: #ffffff;
-    border-radius: 24px;
-    padding: 32px 36px;
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.14);
-
-    display: grid;
-    grid-template-columns: 135px 1fr;
-    column-gap: 32px;
-
-    box-sizing: border-box;
+    max-width: 1000px;
+    min-height: 384px;
+    margin: 0 auto;
+    background: #fff;
+    border-radius: 22px;
+    padding: 24px 36px 20px;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
 }
 
-/* =========================
-   BAGIAN SAMPUL
-========================= */
+.edit-card form {
+    display: flex;
+    gap: 60px;
+}
 
-.edit-cover-section {
+
+/* ================= COVER ================= */
+
+.cover-section {
     width: 135px;
+    flex-shrink: 0;
 }
 
-.edit-cover-title {
-    margin: 0 0 12px;
-    color: #666666;
-    font-size: 13px;
+.cover-section h3 {
+    margin: 0 0 11px;
+    font-size: 12px;
+    color: #777;
     font-weight: 600;
 }
 
-/* TEMPAT GAMBAR SAMPUL */
-
-.edit-cover-preview {
-    width: 135px;
-    height: 151px;
-
-    border: 2px solid #69c574;
-    border-radius: 7px;
-
-    overflow: hidden;
-    background: #f8f8f8;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.edit-cover-image {
-    width: 100%;
-    height: 100%;
-
-    object-fit: cover;
-    display: block;
-}
-
-.no-cover {
-    width: 100%;
-    height: 100%;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    color: #999999;
-    font-size: 10px;
-    text-align: center;
-}
-
-/* =========================
-   TOMBOL SAMPUL
-========================= */
-
-.edit-cover-buttons {
-    margin-top: 12px;
-}
-
-.edit-change-cover {
-    width: 107px;
-    height: 35px;
-
-    border: 2px solid #69c574;
-    border-radius: 7px;
-
-    background: white;
-    color: #62b96b;
-
-    font-family: "Poppins", sans-serif;
-    font-size: 10px;
-    font-weight: 600;
-
-    cursor: pointer;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 5px;
-}
-
-.edit-change-cover:hover {
-    background: #f1fff2;
-}
-
-.edit-delete-cover {
-    margin-top: 8px;
-
-    border: none;
-    background: transparent;
-
-    color: #ff5757;
-
-    font-family: "Poppins", sans-serif;
-    font-size: 10px;
-
-    cursor: pointer;
-
-    display: flex;
-    align-items: center;
-    gap: 5px;
-}
-
-.edit-delete-cover:hover {
-    color: #e33d3d;
-}
-
-/* =========================
-   FORMAT INFO
-========================= */
-
-.edit-format-info {
-    width: 107px;
-    margin-top: 28px;
-
-    padding: 8px;
-
-    background: #79c77d;
+.cover-preview {
+    width: 105px;
+    height: 150px;
     border-radius: 6px;
-
-    color: white;
-
-    font-size: 8px;
-    line-height: 1.35;
+    overflow: hidden;
+    background: #f1f1f1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-/* =========================
-   FORM
-========================= */
+.cover-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
 
-.edit-form-section {
-    min-width: 0;
+.empty-cover {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #aaa;
+    gap: 5px;
+}
 
+.empty-cover i {
+    font-size: 28px;
+}
+
+.empty-cover span {
+    font-size: 7px;
+}
+
+.change-cover-button {
+    width: 106px;
+    height: 35px;
+    margin-top: 15px;
+    border: 1px solid #76c87e;
+    border-radius: 7px;
+    color: #62b96b;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    font-size: 8px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.change-cover-button:hover {
+    background: #effaf0;
+}
+
+.change-cover-button i {
+    font-size: 11px;
+}
+
+.remove-cover-button {
+    display: block;
+    margin-top: 8px;
+    padding: 0;
+    border: none;
+    background: none;
+    color: #f05252;
+    font-family: "Poppins", sans-serif;
+    font-size: 8px;
+    cursor: pointer;
+}
+
+.remove-cover-button i {
+    margin-right: 4px;
+}
+
+.remove-cover-button:hover {
+    color: #d83d3d;
+}
+
+.format-info {
+    width: 106px;
+    margin-top: 25px;
+    padding: 9px 7px;
+    background: #76c87e;
+    color: #fff;
+    border-radius: 6px;
+    font-size: 7px;
+    line-height: 1.5;
+}
+
+
+/* ================= FORM ================= */
+
+.form-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    column-gap: 20px;
-    row-gap: 20px;
+    column-gap: 12px;
+    row-gap: 17px;
 }
 
-.edit-form-group {
-    width: 100%;
+.form-group {
+    display: flex;
+    flex-direction: column;
 }
 
-.edit-form-group.full {
+.form-group.full-width {
     grid-column: 1 / -1;
 }
 
-.edit-form-group label {
-    display: block;
-    margin-bottom: 6px;
-
-    color: #777777;
-    font-size: 9px;
+.form-group label {
+    margin-bottom: 5px;
+    color: #888;
+    font-size: 8px;
     font-weight: 400;
 }
 
-.edit-form-group input,
-.edit-form-group select {
+.form-group input,
+.form-group select {
     width: 100%;
-    height: 36px;
-
+    height: 29px;
     padding: 0 10px;
-
-    border: 1px solid #aaaaaa;
-    border-radius: 7px;
-
-    background: #ffffff;
-
-    font-family: "Poppins", sans-serif;
-    font-size: 9px;
-    color: #555555;
-
+    border: 1px solid #aaa;
+    border-radius: 8px;
     outline: none;
-    box-sizing: border-box;
+    background: #fff;
+    color: #444;
+    font-family: "Poppins", sans-serif;
+    font-size: 8px;
 }
 
-.edit-form-group input:focus,
-.edit-form-group select:focus {
-    border-color: #71c978;
-    box-shadow: 0 0 0 2px rgba(113, 201, 120, 0.12);
+.form-group input:focus,
+.form-group select:focus {
+    border-color: #76c87e;
+    box-shadow: 0 0 0 2px rgba(118, 200, 126, 0.12);
 }
 
-.edit-form-group select {
+.form-group input:disabled {
+    background: #f8f8f8;
+    color: #999;
+}
+
+.form-group select {
     appearance: auto;
-    cursor: pointer;
 }
 
-/* =========================
-   BUTTON BAWAH
-========================= */
+.error-message {
+    margin-top: 4px;
+    color: #ed4f4f;
+    font-size: 7px;
+}
 
-.edit-actions {
-    grid-column: 1 / -1;
 
+/* ================= BUTTONS ================= */
+
+.form-buttons {
+    margin-top: auto;
     display: flex;
     justify-content: flex-end;
-    align-items: flex-end;
-
+    align-items: center;
     gap: 10px;
-    margin-top: 8px;
 }
 
-.edit-btn-cancel {
-    height: 31px;
-    padding: 0 16px;
+.btn-cancel {
+    width: 52px;
+    height: 25px;
+    border-radius: 5px;
+    background: #d8d8d8;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    font-size: 7px;
+}
 
+.btn-cancel:hover {
+    background: #c9c9c9;
+}
+
+.btn-update {
+    height: 25px;
+    padding: 0 12px;
     border: none;
-    border-radius: 6px;
-
-    background: #dddddd;
-    color: #888888;
-
+    border-radius: 5px;
+    background: #247451;
+    color: #fff;
     font-family: "Poppins", sans-serif;
-    font-size: 9px;
-
+    font-size: 7px;
     cursor: pointer;
 }
 
-.edit-btn-save {
-    height: 31px;
-    padding: 0 16px;
-
-    border: none;
-    border-radius: 6px;
-
-    background: #287e61;
-    color: white;
-
-    font-family: "Poppins", sans-serif;
-    font-size: 9px;
-    font-weight: 600;
-
-    cursor: pointer;
+.btn-update:hover {
+    background: #1d6345;
 }
 
-.edit-btn-save:hover {
-    background: #216b52;
+.btn-update i {
+    margin-right: 4px;
+    font-size: 8px;
 }
 
-/* =========================
-   RESPONSIVE
-========================= */
+
+/* ================= RESPONSIVE ================= */
 
 @media (max-width: 900px) {
+
     .edit-card {
-        grid-template-columns: 120px 1fr;
-        column-gap: 24px;
-        padding: 25px;
+        padding: 22px;
     }
 
-    .edit-cover-section,
-    .edit-cover-preview {
-        width: 120px;
+    .edit-card form {
+        gap: 35px;
     }
 
-    .edit-form-section {
-        column-gap: 15px;
-    }
 }
 
-@media (max-width: 650px) {
-    .edit-card {
+@media (max-width: 700px) {
+
+    .sidebar {
+        width: 130px;
+    }
+
+    .main-content {
+        margin-left: 130px;
+        width: calc(100% - 130px);
+        padding: 15px;
+    }
+
+    .edit-card form {
+        flex-direction: column;
+    }
+
+    .cover-section {
+        width: 100%;
+    }
+
+    .form-grid {
         grid-template-columns: 1fr;
-        row-gap: 25px;
     }
 
-    .edit-cover-section {
-        width: 135px;
+    .form-group.full-width {
+        grid-column: auto;
     }
 
-    .edit-form-section {
-        grid-template-columns: 1fr;
-    }
-
-    .edit-form-group.full {
-        grid-column: 1;
-    }
-
-    .edit-actions {
-        grid-column: 1;
-    }
 }

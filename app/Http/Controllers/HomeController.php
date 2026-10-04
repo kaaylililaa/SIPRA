@@ -19,7 +19,9 @@ class HomeController extends Controller
 
         $jumlahKategori = Kategori::count();
 
-        $bukuTerbaru = Buku::latest()->first();
+        $bukuTerbaru = Buku::latest()
+        ->take(5)
+        ->get();
 
         return view('home', compact(
             'jumlahBuku',

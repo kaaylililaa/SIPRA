@@ -9,12 +9,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('peminjaman', function (Blueprint $table) {
-            $table->foreignId('buku_id')
-                ->nullable()
-                ->after('id')
-                ->constrained('buku')
-                ->cascadeOnUpdate()
-                ->restrictOnDelete();
+            $table->unsignedBigInteger('buku_id')->nullable()->after('id');
+
+            $table->foreign('buku_id')
+                ->references('id')
+                ->on('buku')
+                ->onUpdate('cascade')
+                ->onDelete('restrict');
         });
     }
 

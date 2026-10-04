@@ -12,6 +12,7 @@ class Peminjaman extends Model
     protected $table = 'peminjaman';
 
     protected $fillable = [
+        'buku_id',
         'nama_peminjam',
         'tanggal_pinjam',
         'tanggal_kembali',
@@ -23,8 +24,8 @@ class Peminjaman extends Model
         'tanggal_kembali' => 'date',
     ];
 
-    public function detailPinjam()
+    public function buku()
     {
-        return $this->hasMany(DetailPinjam::class);
+        return $this->belongsTo(Buku::class, 'buku_id');
     }
 }

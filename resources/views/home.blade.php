@@ -6,18 +6,11 @@
 
     <title>Dashboard - SIPRA</title>
 
-    {{-- Poppins --}}
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;500;600;700&display=swap" rel="stylesheet">
-
     {{-- Bootstrap Icons --}}
-    <link
-        rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
-    >
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
-    {{-- Dashboard CSS --}}
+    {{-- CSS Dashboard --}}
     <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
 </head>
 
@@ -25,63 +18,45 @@
 
 <div class="dashboard-wrapper">
 
-    {{-- =====================================
-         SIDEBAR
-    ====================================== --}}
+    {{-- ================= SIDEBAR ================= --}}
     <aside class="sidebar">
 
-        {{-- Logo --}}
         <div class="sidebar-logo">
-            <img src="{{ asset('images/logo.png') }}" alt="Rajeg Bersatu">
+            <img src="{{ asset('images/logo.png') }}" alt="Logo Rajeg Bersatu">
+
+            <div class="sidebar-brand">
+                <span>SIPRA</span>
+            </div>
         </div>
 
-        {{-- Menu --}}
         <div class="menu-title">
             MENU
         </div>
 
         <nav class="sidebar-menu">
 
-            {{-- Dashboard --}}
-            <a href="{{ route('home') }}" class="menu-item active">
-                <span class="menu-icon">
-                    <i class="bi bi-grid-fill"></i>
-                </span>
-
+            <a href="{{ url('/home') }}" class="menu-item active">
+                <i class="bi bi-grid-fill"></i>
                 <span>Dashboard</span>
             </a>
 
-            {{-- Buku --}}
             <a href="{{ route('buku.index') }}" class="menu-item">
-                <span class="menu-icon">
-                    <i class="bi bi-book-fill"></i>
-                </span>
-
+                <i class="bi bi-book-fill"></i>
                 <span>Buku</span>
             </a>
 
-            {{-- Peminjaman --}}
             <a href="{{ route('peminjaman.index') }}" class="menu-item">
-                <span class="menu-icon">
-                    <i class="bi bi-journal-bookmark-fill"></i>
-                </span>
-
+                <i class="bi bi-journal-bookmark-fill"></i>
                 <span>Peminjaman</span>
             </a>
 
-            {{-- Profil --}}
-            <a href="{{ route('profile.index') }}" class="menu-item">
-                <span class="menu-icon">
-                    <i class="bi bi-person-fill"></i>
-                </span>
-
+            <a href="{{ url('/profil') }}" class="menu-item">
+                <i class="bi bi-person-fill"></i>
                 <span>Profil</span>
             </a>
 
         </nav>
 
-
-        {{-- Logout --}}
         <div class="sidebar-bottom">
 
             <form action="{{ route('logout') }}" method="POST">
@@ -89,7 +64,7 @@
 
                 <button type="submit" class="logout-button">
                     <i class="bi bi-box-arrow-right"></i>
-                    Logout
+                    <span>Logout</span>
                 </button>
             </form>
 
@@ -98,181 +73,150 @@
     </aside>
 
 
-    {{-- =====================================
-         MAIN CONTENT
-    ====================================== --}}
+    {{-- ================= MAIN CONTENT ================= --}}
     <main class="main-content">
 
         {{-- HEADER --}}
         <header class="top-header">
 
             <div class="header-title">
-
                 <h1>DASHBOARD</h1>
-
-                <p>
-                    Perpustakaan Desa Rajeg Bersatu
-                </p>
-
+                <p>Perpustakaan Desa Rajeg Bersatu</p>
             </div>
 
-
             <div class="header-user">
-
-                <strong>
-                    {{ auth()->user()->name ?? 'Kay' }}
-                </strong>
-
-                <span>
-                    Administrator
-                </span>
-
+                <strong>{{ Auth::user()->name ?? 'Kay' }}</strong>
+                <span>Administrator</span>
             </div>
 
         </header>
 
 
-        {{-- =====================================
-             CONTENT
-        ====================================== --}}
-        <section class="dashboard-content">
+        {{-- CONTENT --}}
+        <section class="content">
 
-
-            {{-- =================================
-                 WELCOME CARD
-            ================================== --}}
+            {{-- WELCOME CARD --}}
             <div class="welcome-card">
 
-                <div class="welcome-content">
+                <div class="welcome-text">
 
-                    <div class="sipra-badge">
+                    <div class="sipra-label">
                         <i class="bi bi-book-fill"></i>
                         SIPRA
                     </div>
 
                     <h2>
-                        Halo, {{ auth()->user()->name ?? 'Kay' }}!
+                        Halo, {{ Auth::user()->name ?? 'Kay' }}!
                     </h2>
 
                     <p>
                         Selamat datang kembali di Sistem Informasi Perpustakaan Desa Rajeg.
-                    </p>
-
-                    <p>
+                        <br>
                         Kelola peminjaman buku di Perpustakaan Desa Rajeg dengan lebih mudah.
                     </p>
 
                 </div>
 
+                <div class="welcome-illustration">
+                    <div class="plant plant-left">
+                        <i class="bi bi-flower1"></i>
+                    </div>
 
-                {{-- Ilustrasi --}}
-                <div class="welcome-image">
-                    <img
-                        src="{{ asset('images/library-illustration.png') }}"
-                        alt="Ilustrasi Perpustakaan"
-                    >
+                    <div class="bookshelf">
+
+                        <div class="shelf-top"></div>
+
+                        <div class="books-row">
+                            <span class="book book-1"></span>
+                            <span class="book book-2"></span>
+                            <span class="book book-3"></span>
+                            <span class="book book-4"></span>
+                            <span class="book book-5"></span>
+                        </div>
+
+                        <div class="books-row second-row">
+                            <span class="book book-6"></span>
+                            <span class="book book-7"></span>
+                            <span class="book book-8"></span>
+                            <span class="book book-9"></span>
+                        </div>
+
+                        <div class="shelf-bottom"></div>
+
+                    </div>
+
+                    <div class="plant plant-right">
+                        <i class="bi bi-flower1"></i>
+                    </div>
                 </div>
 
             </div>
 
 
-            {{-- =================================
-                 JUDUL RINGKASAN
-            ================================== --}}
-            <h2 class="section-title">
+            {{-- TITLE --}}
+            <h3 class="section-title">
                 Ringkasan Hari Ini
-            </h2>
+            </h3>
 
 
-            {{-- =================================
-                 SUMMARY CARDS
-            ================================== --}}
-            <div class="summary-grid">
+            {{-- STATISTICS --}}
+            <div class="statistics">
 
+                {{-- TOTAL BUKU --}}
+                <div class="stat-card">
 
-                {{-- Total Buku --}}
-                <div class="summary-card">
-
-                    <div class="summary-icon buku-icon">
+                    <div class="stat-icon green">
                         <i class="bi bi-book-fill"></i>
                     </div>
 
-                    <div class="summary-info">
-
-                        <strong>
-                            {{ $jumlahBuku ?? 1 }}
-                        </strong>
-
-                        <span>
-                            Total Buku
-                        </span>
-
+                    <div class="stat-info">
+                        <strong>{{ $totalBuku ?? 0 }}</strong>
+                        <span>Total Buku</span>
                     </div>
 
                 </div>
 
 
-                {{-- Dipinjam --}}
-                <div class="summary-card">
+                {{-- DIPINJAM --}}
+                <div class="stat-card">
 
-                    <div class="summary-icon pinjam-icon">
-                        <i class="bi bi-journal-text"></i>
+                    <div class="stat-icon blue">
+                        <i class="bi bi-journal-bookmark-fill"></i>
                     </div>
 
-                    <div class="summary-info">
-
-                        <strong>
-                            {{ $jumlahDipinjam ?? 59 }}
-                        </strong>
-
-                        <span>
-                            Dipinjam
-                        </span>
-
+                    <div class="stat-info">
+                        <strong>{{ $bukuDipinjam ?? 0 }}</strong>
+                        <span>Dipinjam</span>
                     </div>
 
                 </div>
 
 
-                {{-- Anggota --}}
-                <div class="summary-card">
+                {{-- ANGGOTA --}}
+                <div class="stat-card">
 
-                    <div class="summary-icon anggota-icon">
+                    <div class="stat-icon purple">
                         <i class="bi bi-person-fill"></i>
                     </div>
 
-                    <div class="summary-info">
-
-                        <strong>
-                            {{ $jumlahAnggota ?? 1 }}
-                        </strong>
-
-                        <span>
-                            Anggota
-                        </span>
-
+                    <div class="stat-info">
+                        <strong>{{ $totalUser ?? 0 }}</strong>
+                        <span>Anggota</span>
                     </div>
 
                 </div>
 
 
-                {{-- Kategori --}}
-                <div class="summary-card">
+                {{-- KATEGORI --}}
+                <div class="stat-card">
 
-                    <div class="summary-icon kategori-icon">
+                    <div class="stat-icon orange">
                         <i class="bi bi-bookmark-fill"></i>
                     </div>
 
-                    <div class="summary-info">
-
-                        <strong>
-                            {{ $jumlahKategori ?? 5 }}
-                        </strong>
-
-                        <span>
-                            Kategori
-                        </span>
-
+                    <div class="stat-info">
+                        <strong>{{ $totalKategori ?? 0 }}</strong>
+                        <span>Kategori</span>
                     </div>
 
                 </div>
@@ -280,56 +224,59 @@
             </div>
 
 
-            {{-- =================================
-                 BOTTOM SECTION
-            ================================== --}}
-            <div class="bottom-grid">
+            {{-- LOWER CONTENT --}}
+            <div class="dashboard-bottom">
 
+                {{-- BUKU TERBARU --}}
+                <div class="latest-books card-box">
 
-                {{-- ==============================
-                     BUKU TERBARU
-                =============================== --}}
-                <div class="dashboard-box buku-terbaru">
-
-                    <div class="box-title">
-                        Buku Terbaru
+                    <div class="card-header">
+                        <h3>Buku Terbaru</h3>
                     </div>
 
-                    @if(isset($bukuTerbaru) && $bukuTerbaru)
+                    @if(isset($bukuTerbaru) && $bukuTerbaru->count() > 0)
 
-                        <div class="book-item">
+                        @foreach($bukuTerbaru->take(1) as $buku)
 
-                            <div class="book-cover">
+                            <div class="latest-book-item">
 
-                                @if($bukuTerbaru->gambar_sampul)
-                                    <img
-                                        src="{{ asset('storage/' . $bukuTerbaru->gambar_sampul) }}"
-                                        alt="{{ $bukuTerbaru->judul_buku }}"
-                                    >
-                                @else
-                                    <i class="bi bi-book"></i>
-                                @endif
+                                <div class="book-cover">
+
+                                    @if($buku->gambarsampul)
+
+                                        @php
+                                            $gambar = $buku->gambarsampul;
+
+                                            if (!str_starts_with($gambar, 'uploads/')) {
+                                                $gambar = 'uploads/' . $gambar;
+                                            }
+                                        @endphp
+
+                                        <img src="{{ asset($gambar) }}"
+                                             alt="{{ $buku->judulbuku }}">
+
+                                    @else
+
+                                        <div class="no-cover">
+                                            <i class="bi bi-book"></i>
+                                        </div>
+
+                                    @endif
+
+                                </div>
+
+                                <div class="book-title">
+                                    {{ $buku->judulbuku }}
+                                </div>
 
                             </div>
 
-                            <div class="book-name">
-                                {{ $bukuTerbaru->judul_buku }}
-                            </div>
-
-                        </div>
+                        @endforeach
 
                     @else
 
-                        <div class="book-item">
-
-                            <div class="book-cover">
-                                <i class="bi bi-book"></i>
-                            </div>
-
-                            <div class="book-name">
-                                Waktu Aku Sama Mika
-                            </div>
-
+                        <div class="empty-book">
+                            Belum ada buku terbaru.
                         </div>
 
                     @endif
@@ -337,47 +284,28 @@
                 </div>
 
 
-                {{-- ==============================
-                     AKTIVITAS
-                =============================== --}}
-                <div class="dashboard-box aktivitas-box">
+                {{-- AKTIVITAS --}}
+                <div class="activity-card card-box">
 
-                    <div class="box-title">
-                        Aktivitas
+                    <div class="card-header">
+                        <h3>Aktivitas</h3>
                     </div>
 
                     <div class="activity-list">
 
                         <div class="activity-item">
-
-                            <i class="bi bi-check-circle-fill"></i>
-
-                            <span>
-                                Data buku berhasil ditambahkan
-                            </span>
-
+                            <span class="activity-dot green-dot"></span>
+                            <p>Data buku berhasil ditambahkan</p>
                         </div>
 
-
                         <div class="activity-item">
-
-                            <i class="bi bi-check-circle-fill"></i>
-
-                            <span>
-                                Peminjaman buku berlangsung
-                            </span>
-
+                            <span class="activity-dot outline-dot"></span>
+                            <p>Peminjaman buku berlangsung</p>
                         </div>
 
-
                         <div class="activity-item">
-
-                            <i class="bi bi-check-circle-fill"></i>
-
-                            <span>
-                                Buku berhasil dikembalikan
-                            </span>
-
+                            <span class="activity-dot green-dot"></span>
+                            <p>Buku berhasil dikembalikan</p>
                         </div>
 
                     </div>

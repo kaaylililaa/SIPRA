@@ -1,0 +1,739 @@
+/* =========================================================
+   DETAIL PEMINJAMAN
+   ========================================================= */
+
+.detail-peminjaman-page {
+    width: 100%;
+    min-height: calc(100vh - 70px);
+
+    padding: 13px 24px 20px;
+
+    box-sizing: border-box;
+}
+
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.detail-header {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 20px;
+}
+
+.detail-title-wrapper {
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+}
+
+.detail-title-icon {
+    width: 38px;
+    height: 38px;
+
+    min-width: 38px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 11px;
+
+    background: #7bc77d;
+
+    color: #ffffff;
+
+    font-size: 18px;
+}
+
+.detail-title-text h1 {
+    margin: 0;
+
+    color: #286e51;
+
+    font-size: 20px;
+    font-weight: 700;
+
+    line-height: 1.2;
+}
+
+.detail-title-text p {
+    margin: 3px 0 0;
+
+    color: #8b8b8b;
+
+    font-size: 8px;
+}
+
+.btn-kembalikan {
+    height: 26px;
+
+    padding: 0 11px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 5px;
+
+    border-radius: 5px;
+
+    background: #78c77c;
+
+    color: #ffffff;
+
+    font-size: 8px;
+    font-weight: 600;
+
+    text-decoration: none;
+
+    box-sizing: border-box;
+}
+
+.btn-kembalikan:hover {
+    background: #65b56a;
+
+    color: #ffffff;
+}
+
+
+/* =========================================================
+   SUMMARY
+   ========================================================= */
+
+.loan-summary {
+    width: calc(100% - 20px);
+    max-width: 870px;
+
+    min-height: 66px;
+
+    margin: 0 auto 13px;
+
+    display: grid;
+
+    grid-template-columns:
+        1.15fr
+        1fr
+        1fr
+        .72fr;
+
+    align-items: center;
+
+    background: #bfe1c1;
+
+    border-radius: 13px;
+
+    box-shadow:
+        0 3px 7px rgba(0, 0, 0, .15);
+
+    overflow: hidden;
+}
+
+.summary-item {
+    min-height: 42px;
+
+    display: flex;
+    align-items: center;
+
+    padding: 0 16px;
+
+    border-right: 1px solid rgba(85, 128, 88, .35);
+
+    box-sizing: border-box;
+}
+
+.summary-item:last-child {
+    border-right: none;
+}
+
+.summary-id {
+    gap: 9px;
+}
+
+.summary-icon {
+    width: 27px;
+    height: 27px;
+
+    min-width: 27px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 7px;
+
+    background: #ffffff;
+
+    color: #6cba73;
+
+    font-size: 13px;
+}
+
+.summary-content {
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.summary-label {
+    margin-bottom: 3px;
+
+    color: #333333;
+
+    font-size: 8px;
+    font-weight: 500;
+}
+
+.summary-content strong {
+    color: #286e51;
+
+    font-size: 11px;
+    font-weight: 700;
+
+    line-height: 1.2;
+}
+
+.summary-date {
+    display: flex !important;
+    align-items: center;
+
+    gap: 5px;
+
+    color: #333333 !important;
+
+    font-size: 9px !important;
+    font-weight: 500 !important;
+}
+
+.summary-date i {
+    color: #286e51;
+
+    font-size: 9px;
+}
+
+.summary-content small {
+    margin-top: 2px;
+
+    color: #666666;
+
+    font-size: 7px;
+}
+
+.status-badge {
+    width: fit-content;
+
+    min-height: 17px;
+
+    padding: 0 7px;
+
+    display: inline-flex;
+    align-items: center;
+
+    gap: 4px;
+
+    border-radius: 5px;
+
+    font-size: 7px;
+    font-weight: 600;
+}
+
+.status-dipinjam {
+    background: #4a9f62;
+
+    color: #ffffff;
+}
+
+.status-dikembalikan {
+    background: #f4a62a;
+
+    color: #ffffff;
+}
+
+.status-lainnya {
+    background: #999999;
+
+    color: #ffffff;
+}
+
+
+/* =========================================================
+   MAIN GRID
+   ========================================================= */
+
+.detail-main-grid {
+    width: calc(100% - 20px);
+    max-width: 870px;
+
+    margin: 0 auto 13px;
+
+    display: grid;
+
+    grid-template-columns: 1fr 1.35fr;
+
+    gap: 11px;
+
+    align-items: start;
+}
+
+
+/* =========================================================
+   CARD
+   ========================================================= */
+
+.detail-card {
+    background: #ffffff;
+
+    border-radius: 11px;
+
+    box-shadow:
+        0 2px 6px rgba(0, 0, 0, .14);
+
+    box-sizing: border-box;
+}
+
+.borrower-card {
+    min-height: 69px;
+
+    padding: 10px 14px;
+}
+
+.books-card {
+    min-height: 235px;
+
+    padding: 10px 14px;
+}
+
+.card-heading {
+    display: flex;
+    align-items: center;
+
+    gap: 6px;
+
+    color: #777777;
+
+    font-size: 9px;
+    font-weight: 500;
+}
+
+.card-heading i {
+    color: #777777;
+
+    font-size: 10px;
+}
+
+.card-line {
+    width: 100%;
+    height: 1px;
+
+    margin: 6px 0 9px;
+
+    background: #c8c8c8;
+}
+
+
+/* =========================================================
+   BORROWER
+   ========================================================= */
+
+.borrower-row {
+    display: flex;
+    align-items: center;
+
+    gap: 7px;
+}
+
+.borrower-icon {
+    width: 20px;
+    height: 20px;
+
+    min-width: 20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 5px;
+
+    background: #367d5e;
+
+    color: #ffffff;
+
+    font-size: 9px;
+}
+
+.borrower-info {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 10px;
+}
+
+.borrower-info span {
+    color: #777777;
+
+    font-size: 8px;
+}
+
+.borrower-info strong {
+    color: #286e51;
+
+    font-size: 9px;
+    font-weight: 500;
+}
+
+
+/* =========================================================
+   BUKU
+   ========================================================= */
+
+.borrowed-book {
+    width: 100%;
+
+    min-height: 57px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+
+    padding: 0 2px;
+
+    box-sizing: border-box;
+}
+
+.borrowed-book-cover {
+    width: 38px;
+    height: 52px;
+
+    min-width: 38px;
+
+    position: relative;
+
+    overflow: hidden;
+
+    border-radius: 4px;
+
+    background: #eeeeee;
+}
+
+.borrowed-book-cover img {
+    display: block;
+
+    width: 38px;
+    height: 52px;
+
+    object-fit: cover;
+
+    margin: 0;
+    padding: 0;
+}
+
+.no-book-cover {
+    width: 38px;
+    height: 52px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #999999;
+
+    font-size: 15px;
+}
+
+.borrowed-book-info {
+    min-width: 0;
+
+    flex: 1;
+
+    overflow: hidden;
+}
+
+.borrowed-book-info h3 {
+    margin: 0 0 3px;
+
+    color: #286e51;
+
+    font-size: 14px;
+    font-weight: 700;
+
+    line-height: 1.2;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.borrowed-book-info strong {
+    display: block;
+
+    margin: 0 0 2px;
+
+    color: #555555;
+
+    font-size: 8px;
+    font-weight: 600;
+}
+
+.borrowed-book-info p {
+    margin: 0;
+
+    color: #888888;
+
+    font-size: 7px;
+}
+
+.borrowed-book-info p span {
+    margin: 0 3px;
+}
+
+.book-arrow {
+    width: 18px;
+    height: 25px;
+
+    min-width: 18px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #333333;
+
+    font-size: 9px;
+}
+
+.no-book-data {
+    min-height: 80px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-direction: column;
+
+    color: #999999;
+}
+
+.no-book-data i {
+    margin-bottom: 5px;
+
+    font-size: 20px;
+}
+
+.no-book-data p {
+    margin: 0;
+
+    font-size: 8px;
+}
+
+
+/* =========================================================
+   HISTORY
+   ========================================================= */
+
+.history-card {
+    width: calc(100% - 20px);
+    max-width: 870px;
+
+    margin: 0 auto;
+
+    padding: 9px 14px 10px;
+
+    background: #ffffff;
+
+    border-radius: 11px;
+
+    box-shadow:
+        0 2px 6px rgba(0, 0, 0, .14);
+
+    box-sizing: border-box;
+}
+
+.history-heading {
+    display: flex;
+    align-items: center;
+
+    gap: 6px;
+
+    margin-bottom: 7px;
+
+    color: #777777;
+
+    font-size: 9px;
+}
+
+.history-heading i {
+    color: #777777;
+
+    font-size: 10px;
+}
+
+.history-table-wrapper {
+    width: 100%;
+
+    overflow-x: auto;
+}
+
+.history-table {
+    width: 100%;
+
+    border-collapse: collapse;
+
+    table-layout: fixed;
+
+    font-size: 8px;
+}
+
+.history-table th {
+    height: 19px;
+
+    padding: 2px 8px;
+
+    border: 1px solid #888888;
+
+    background: #eeeeee;
+
+    color: #222222;
+
+    font-size: 8px;
+    font-weight: 600;
+
+    text-align: left;
+
+    box-sizing: border-box;
+}
+
+.history-table td {
+    height: 22px;
+
+    padding: 2px 8px;
+
+    border: 1px solid #999999;
+
+    color: #286e51;
+
+    font-size: 8px;
+
+    box-sizing: border-box;
+}
+
+.history-table th:nth-child(1),
+.history-table td:nth-child(1) {
+    width: 7%;
+    text-align: center;
+}
+
+.history-table th:nth-child(2),
+.history-table td:nth-child(2) {
+    width: 19%;
+}
+
+.history-table th:nth-child(3),
+.history-table td:nth-child(3) {
+    width: 17%;
+}
+
+.history-table th:nth-child(4),
+.history-table td:nth-child(4) {
+    width: 38%;
+}
+
+.history-table th:nth-child(5),
+.history-table td:nth-child(5) {
+    width: 19%;
+}
+
+.table-status {
+    min-height: 15px;
+
+    padding: 2px 5px;
+
+    display: inline-flex;
+    align-items: center;
+
+    border-radius: 4px;
+
+    background: #999999;
+
+    color: #ffffff;
+
+    font-size: 6px;
+}
+
+.table-dipinjam {
+    background: #4a9f62;
+}
+
+.table-dikembalikan {
+    background: #f4a62a;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 850px) {
+
+    .detail-peminjaman-page {
+        padding: 15px;
+    }
+
+    .loan-summary {
+        width: 100%;
+    }
+
+    .detail-main-grid {
+        width: 100%;
+
+        grid-template-columns: 1fr;
+    }
+
+    .history-card {
+        width: 100%;
+    }
+}
+
+
+@media (max-width: 650px) {
+
+    .detail-header {
+        align-items: flex-start;
+
+        gap: 15px;
+    }
+
+    .btn-kembalikan {
+        white-space: nowrap;
+    }
+
+    .loan-summary {
+        grid-template-columns: 1fr 1fr;
+
+        padding: 7px;
+    }
+
+    .summary-item {
+        border-right: none;
+
+        padding: 8px;
+    }
+
+    .summary-id {
+        border-bottom: 1px solid rgba(85, 128, 88, .25);
+    }
+
+    .summary-status {
+        border-top: 1px solid rgba(85, 128, 88, .25);
+    }
+}

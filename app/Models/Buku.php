@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Kategori;
 
 class Buku extends Model
 {
@@ -19,21 +18,7 @@ class Buku extends Model
         'nama_penerbit',
         'tahun_terbit',
         'isbn',
+        'kode_perpus',
         'gambar_sampul',
     ];
-
-    public function kategori()
-    {
-        return $this->belongsTo(Kategori::class, 'kategori_id');
-    }
-
-    public function detailPinjam()
-    {
-        return $this->hasMany(DetailPinjam::class);
-    }
-
-    public function detailKembali()
-    {
-        return $this->hasMany(DetailKembali::class);
-    }
 }

@@ -3,7 +3,57 @@
 @section('title', 'Detail Peminjaman')
 
 @section('content')
+{{-- MODAL KONFIRMASI PENGEMBALIAN --}}
+@if (strtolower($peminjaman->status) !== 'dikembalikan')
 
+    <div class="return-modal">
+
+        <label for="returnModalToggle"
+               class="return-modal-overlay"></label>
+
+        <div class="return-modal-box">
+
+            <h3>Konfirmasi Pengembalian</h3>
+
+            <div class="return-modal-divider"></div>
+
+            <p class="return-modal-question">
+                Apakah buku ini sudah dikembalikan?
+            </p>
+
+            <p class="return-modal-status">
+                Status : {{ $peminjaman->status }}
+            </p>
+
+            <div class="return-modal-actions">
+
+                {{-- BATAL --}}
+                <label for="returnModalToggle"
+                       class="btn-return-no">
+                    Batal
+                </label>
+
+                {{-- KONFIRMASI --}}
+                <form action="{{ route('peminjaman.kembalikan', $peminjaman->id) }}"
+                      method="POST">
+
+                    @csrf
+                    @method('PATCH')
+
+                    <button type="submit"
+                            class="btn-return-yes">
+                        Konfirmasi
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+@endif
 <link rel="stylesheet" href="{{ asset('css/peminjaman-detail.css') }}">
 
 <div class="detail-peminjaman-page">
@@ -33,16 +83,12 @@
         </div>
 
 
-        <a
-            href="{{ route('peminjaman.index') }}"
-            class="btn-kembalikan"
-        >
-            <i class="bi bi-check-lg"></i>
-            Kembalikan Buku
-        </a>
+    <a href="{{ route('peminjaman.konfirmasi', $peminjaman->id) }}" class="btn-kembalikan">
+    <i class="bi bi-check-lg"></i>
+    Kembalikan Buku
+</a>
 
-    </div>
-
+</div>
 
     {{-- =====================================================
          SUMMARY
@@ -406,4 +452,5 @@
 
 </div>
 
-@endsection
+</div>
+</div>

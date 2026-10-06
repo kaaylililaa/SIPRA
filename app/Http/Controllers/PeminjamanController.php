@@ -109,7 +109,7 @@ class PeminjamanController extends Controller
 }
     public function show(Peminjaman $peminjaman)
     {
-        $peminjaman = Peminjaman::with('buku')->findOrFail($id);
+          $peminjaman->load('buku');
         return view('peminjaman.show', compact('peminjaman'));
     }
 
@@ -149,4 +149,20 @@ class PeminjamanController extends Controller
             ->route('peminjaman.index')
             ->with('success', 'Data peminjaman berhasil dihapus.');
     }
+
+    public function konfirmasi(Peminjaman $peminjaman)
+{
+    return view('peminjaman.konfirmasi', compact('peminjaman'));
+}
+
+public function kembalikan(Peminjaman $peminjaman)
+{
+    $peminjaman->update([
+        'status' => 'Dikembalikan',
+    ]);
+
+    return redirect()
+        ->route('peminjaman.show', $peminjaman->id)
+        ->with('success', 'Buku berhasil dikembalikan.');
+}
 }

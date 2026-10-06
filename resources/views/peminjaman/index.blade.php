@@ -237,33 +237,37 @@
 
                             </td>
 
+{{-- STATUS --}}
+<td>
 
-                            {{-- STATUS --}}
-                            <td>
+    @php
+        $status = strtolower($peminjaman->status ?? 'Dipinjam');
+    @endphp
 
-                                @php
-                                    $status = strtolower($peminjaman->status ?? 'Dipinjam');
-                                @endphp
+    @if ($status === 'dikembalikan')
 
-                                @if ($status === 'dikembalikan')
+        <a href="{{ route('peminjaman.show', $peminjaman->id) }}"
+           class="status-badge status-dikembalikan">
+            Dikembalikan
+        </a>
 
-                                    <span class="status-badge status-dikembalikan">
-                                        Dikembalikan
-                                    </span>
+    @elseif ($status === 'terlambat')
 
-                                @elseif ($status === 'terlambat')
+        <a href="{{ route('peminjaman.show', $peminjaman->id) }}"
+           class="status-badge status-terlambat">
+            Terlambat
+        </a>
 
-                                    <span class="status-badge status-terlambat">
-                                        Terlambat
-                                    </span>
+    @else
 
-                                @else
+        <a href="{{ route('peminjaman.show', $peminjaman->id) }}"
+           class="status-badge status-dipinjam">
+            Dipinjam
+        </a>
 
-                                    <span class="status-badge status-dipinjam">
-                                        Dipinjam
-                                    </span>
+    @endif
 
-                                @endif
+</td>
 
                             </td>
 

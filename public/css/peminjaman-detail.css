@@ -1,3 +1,5 @@
+
+
 /* =========================================================
    DETAIL PEMINJAMAN
    ========================================================= */
@@ -736,4 +738,556 @@
     .summary-status {
         border-top: 1px solid rgba(85, 128, 88, .25);
     }
+
+ 
+    /* =========================================
+   MODAL KONFIRMASI PENGEMBALIAN
+========================================= */
+
+.return-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
+}
+
+.return-modal.active {
+    display: flex;
+}
+
+/* Background belakang modal */
+.return-modal-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.08);
+}
+
+/* Kotak utama */
+.return-modal-box {
+    position: relative;
+    z-index: 2;
+
+    width: 460px;
+    min-height: 250px;
+
+    padding: 20px 24px 28px;
+
+    background: #7fc77f;
+    border-radius: 15px;
+
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.18);
+
+    color: #ffffff;
+
+    animation: returnModalShow 0.2s ease;
+}
+
+/* Judul */
+.return-modal-box h3 {
+    margin: 0;
+    padding: 0 0 10px;
+
+    text-align: center;
+
+    color: #ffffff;
+    font-size: 19px;
+    font-weight: 700;
+}
+
+/* Garis di bawah judul */
+.return-modal-divider {
+    width: 80%;
+    height: 1px;
+
+    margin: 0 auto 28px;
+
+    background: rgba(255, 255, 255, 0.35);
+}
+
+/* Pertanyaan */
+.return-modal-question {
+    margin: 0 0 28px 0;
+
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+/* Status */
+.return-modal-status {
+    margin: 0;
+
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+/* Tombol */
+.return-modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    gap: 10px;
+
+    margin-top: 75px;
+}
+
+/* Hilangkan margin bawaan form */
+.return-modal-actions form {
+    margin: 0;
+}
+
+/* Tombol Batal */
+.btn-return-no {
+    min-width: 62px;
+    height: 30px;
+
+    padding: 0 14px;
+
+    border: none;
+    border-radius: 5px;
+
+    background: #f45b5b;
+    color: #ffffff;
+
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+
+    transition: 0.2s ease;
+}
+
+/* Tombol Konfirmasi */
+.btn-return-yes {
+    min-width: 108px;
+    height: 30px;
+
+    padding: 0 14px;
+
+    border: none;
+    border-radius: 5px;
+
+    background: #28694f;
+    color: #ffffff;
+
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+
+    transition: 0.2s ease;
+}
+
+.btn-return-no:hover,
+.btn-return-yes:hover {
+    transform: translateY(-1px);
+    opacity: 0.92;
+}
+
+.btn-return-no:active,
+.btn-return-yes:active {
+    transform: translateY(0);
+}
+
+/* Animasi */
+@keyframes returnModalShow {
+    from {
+        opacity: 0;
+        transform: scale(0.96);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* =========================================
+   MODAL KONFIRMASI PENGEMBALIAN
+========================================= */
+
+.return-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
+}
+
+.return-modal.active {
+    display: flex;
+}
+
+/* Background belakang modal */
+.return-modal-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.08);
+}
+
+/* Kotak utama */
+.return-modal-box {
+    position: relative;
+    z-index: 2;
+
+    width: 460px;
+    min-height: 250px;
+
+    padding: 20px 24px 28px;
+
+    background: #7fc77f;
+    border-radius: 15px;
+
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.18);
+
+    color: #ffffff;
+
+    animation: returnModalShow 0.2s ease;
+}
+
+/* Judul */
+.return-modal-box h3 {
+    margin: 0;
+    padding: 0 0 10px;
+
+    text-align: center;
+
+    color: #ffffff;
+    font-size: 19px;
+    font-weight: 700;
+}
+
+/* Garis di bawah judul */
+.return-modal-divider {
+    width: 80%;
+    height: 1px;
+
+    margin: 0 auto 28px;
+
+    background: rgba(255, 255, 255, 0.35);
+}
+
+/* Pertanyaan */
+.return-modal-question {
+    margin: 0 0 28px 0;
+
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+/* Status */
+.return-modal-status {
+    margin: 0;
+
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+/* Tombol */
+.return-modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    gap: 10px;
+
+    margin-top: 75px;
+}
+
+/* Hilangkan margin bawaan form */
+.return-modal-actions form {
+    margin: 0;
+}
+
+/* Tombol Batal */
+.btn-return-no {
+    min-width: 62px;
+    height: 30px;
+
+    padding: 0 14px;
+
+    border: none;
+    border-radius: 5px;
+
+    background: #f45b5b;
+    color: #ffffff;
+
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+
+    transition: 0.2s ease;
+}
+
+/* Tombol Konfirmasi */
+.btn-return-yes {
+    min-width: 108px;
+    height: 30px;
+
+    padding: 0 14px;
+
+    border: none;
+    border-radius: 5px;
+
+    background: #28694f;
+    color: #ffffff;
+
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+
+    transition: 0.2s ease;
+}
+
+.btn-return-no:hover,
+.btn-return-yes:hover {
+    transform: translateY(-1px);
+    opacity: 0.92;
+}
+
+.btn-return-no:active,
+.btn-return-yes:active {
+    transform: translateY(0);
+}
+
+/* Animasi */
+@keyframes returnModalShow {
+    from {
+        opacity: 0;
+        transform: scale(0.96);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* =========================================
+   MODAL KONFIRMASI PENGEMBALIAN
+========================================= */
+
+/* Checkbox untuk membuka modal */
+.return-modal-toggle {
+    display: none;
+}
+
+/* Tombol Kembalikan Buku */
+.btn-kembalikan {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 9px 16px;
+
+    border-radius: 6px;
+
+    background: #78c47c;
+    color: #ffffff;
+
+    font-size: 12px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    text-decoration: none;
+
+    transition: 0.2s ease;
+}
+
+.btn-kembalikan:hover {
+    background: #69b96e;
+}
+
+/* Modal */
+.return-modal {
+    display: none;
+
+    position: fixed;
+    inset: 0;
+
+    z-index: 99999;
+
+    align-items: center;
+    justify-content: center;
+}
+
+/* Ketika checkbox dicentang */
+.return-modal-toggle:checked ~ .return-modal {
+    display: flex;
+}
+
+/* Background */
+.return-modal-overlay {
+    position: absolute;
+
+    inset: 0;
+
+    background: rgba(0, 0, 0, 0.08);
+
+    cursor: pointer;
+}
+
+/* Kotak modal */
+.return-modal-box {
+    position: relative;
+
+    z-index: 2;
+
+    width: 460px;
+    min-height: 250px;
+
+    padding: 20px 24px 28px;
+
+    background: #7fc77f;
+
+    border-radius: 15px;
+
+    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.20);
+
+    box-sizing: border-box;
+}
+
+/* Judul */
+.return-modal-box h3 {
+    margin: 0;
+
+    padding: 0 0 10px;
+
+    text-align: center;
+
+    color: #ffffff;
+
+    font-size: 19px;
+    font-weight: 700;
+}
+
+/* Garis */
+.return-modal-divider {
+    width: 80%;
+
+    height: 1px;
+
+    margin: 0 auto 28px;
+
+    background: rgba(255, 255, 255, 0.35);
+}
+
+/* Pertanyaan */
+.return-modal-question {
+    margin: 0 0 28px;
+
+    color: #ffffff;
+
+    font-size: 18px;
+    font-weight: 500;
+}
+
+/* Status */
+.return-modal-status {
+    margin: 0;
+
+    color: #ffffff;
+
+    font-size: 18px;
+    font-weight: 500;
+}
+
+/* Area tombol */
+.return-modal-actions {
+    display: flex;
+
+    justify-content: flex-end;
+    align-items: center;
+
+    gap: 10px;
+
+    margin-top: 75px;
+}
+
+/* Form konfirmasi */
+.return-modal-actions form {
+    margin: 0;
+}
+
+/* Batal */
+.btn-return-no {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    min-width: 62px;
+    height: 30px;
+
+    padding: 0 14px;
+
+    border-radius: 5px;
+
+    background: #f45b5b;
+    color: #ffffff;
+
+    font-size: 12px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+
+    transition: 0.2s ease;
+}
+
+/* Konfirmasi */
+.btn-return-yes {
+    min-width: 108px;
+    height: 30px;
+
+    padding: 0 14px;
+
+    border: none;
+
+    border-radius: 5px;
+
+    background: #28694f;
+    color: #ffffff;
+
+    font-family: inherit;
+
+    font-size: 12px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+
+    transition: 0.2s ease;
+}
+
+.btn-return-no:hover,
+.btn-return-yes:hover {
+    opacity: 0.9;
+
+    transform: translateY(-1px);
+}
 }

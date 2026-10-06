@@ -53,3 +53,9 @@ Route::resource('buku', BukuController::class);
 Route::resource('peminjaman', PeminjamanController::class);
 
 Route::resource('profile', ProfileController::class);
+
+Route::get('/peminjaman/{peminjaman}/konfirmasi', [PeminjamanController::class, 'konfirmasi'])
+    ->name('peminjaman.konfirmasi');
+
+Route::put('/peminjaman/{peminjaman}/kembalikan', [PeminjamanController::class, 'kembalikan'])
+    ->name('peminjaman.kembalikan');

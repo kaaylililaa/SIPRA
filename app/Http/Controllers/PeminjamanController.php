@@ -23,7 +23,7 @@ class PeminjamanController extends Controller
             ->count();
 
         $query = Peminjaman::query();
-
+    
         if ($request->filled('search')) {
             $search = $request->search;
 
@@ -76,7 +76,7 @@ class PeminjamanController extends Controller
     {
          $bukus = Buku::orderBy('judul_buku', 'asc')->get();
 
-    return view('peminjaman.create', compact('buku'));
+    return view('peminjaman.create', compact('bukus'));
     }
 
     public function store(Request $request)
@@ -108,10 +108,59 @@ class PeminjamanController extends Controller
         ->with('success', 'Data peminjaman berhasil ditambahkan.');
 }
     public function show(Peminjaman $peminjaman)
-    {
-          $peminjaman->load('buku');
-        return view('peminjaman.show', compact('peminjaman'));
+{
+    $peminjaman->load('buku');
+
+    /*
+    |--------------------------------------------------------------------------
+    | CEK KETERLAMBATAN
+    |--------------------------------------------------------------------------
+    */
+
+    $isTerlambat = false;
+    $hariTerlambat = 0;
+    $denda = 0;
+    $mulaiTerlambat = null;
+
+    if (
+        $peminjaman->status !== 'Dikembalikan' &&
+        $peminjaman->tanggal_kembali
+    ) {
+        $tanggalKembali = Carbon::parse($peminjaman->tanggal_kembali);
+
+        if ($tanggalKembali->isBefore(Carbon::today())) {
+            $isTerlambat = true;
+
+            $hariTerlambat = $tanggalKembali->diffInDays(
+                Carbon::today()
+            );
+
+            $denda = $hariTerlambat * 10000;
+
+            $mulaiTerlambat = $tanggalKembali->copy()->addDay();
+        }
     }
+
+    /*
+    |--------------------------------------------------------------------------
+    | STATUS YANG DITAMPILKAN
+    |--------------------------------------------------------------------------
+    */
+
+    $statusTampilan = $isTerlambat
+        ? 'Terlambat'
+        : ($peminjaman->status ?? 'Dipinjam');
+
+
+    return view('peminjaman.show', compact(
+        'peminjaman',
+        'isTerlambat',
+        'hariTerlambat',
+        'denda',
+        'mulaiTerlambat',
+        'statusTampilan'
+    ));
+}
 
     public function edit(Peminjaman $peminjaman)
     {

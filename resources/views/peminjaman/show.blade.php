@@ -3,57 +3,7 @@
 @section('title', 'Detail Peminjaman')
 
 @section('content')
-{{-- MODAL KONFIRMASI PENGEMBALIAN --}}
-@if (strtolower($peminjaman->status) !== 'dikembalikan')
 
-    <div class="return-modal">
-
-        <label for="returnModalToggle"
-               class="return-modal-overlay"></label>
-
-        <div class="return-modal-box">
-
-            <h3>Konfirmasi Pengembalian</h3>
-
-            <div class="return-modal-divider"></div>
-
-            <p class="return-modal-question">
-                Apakah buku ini sudah dikembalikan?
-            </p>
-
-            <p class="return-modal-status">
-                Status : {{ $peminjaman->status }}
-            </p>
-
-            <div class="return-modal-actions">
-
-                {{-- BATAL --}}
-                <label for="returnModalToggle"
-                       class="btn-return-no">
-                    Batal
-                </label>
-
-                {{-- KONFIRMASI --}}
-                <form action="{{ route('peminjaman.kembalikan', $peminjaman->id) }}"
-                      method="POST">
-
-                    @csrf
-                    @method('PATCH')
-
-                    <button type="submit"
-                            class="btn-return-yes">
-                        Konfirmasi
-                    </button>
-
-                </form>
-
-            </div>
-
-        </div>
-
-    </div>
-
-@endif
 <link rel="stylesheet" href="{{ asset('css/peminjaman-detail.css') }}">
 
 <div class="detail-peminjaman-page">
@@ -83,12 +33,20 @@
         </div>
 
 
-    <a href="{{ route('peminjaman.konfirmasi', $peminjaman->id) }}" class="btn-kembalikan">
-    <i class="bi bi-check-lg"></i>
-    Kembalikan Buku
-</a>
+        @if ($statusTampilan !== 'Dikembalikan')
 
-</div>
+            <a
+                href="{{ route('peminjaman.konfirmasi', $peminjaman->id) }}"
+                class="btn-kembalikan"
+            >
+                <i class="bi bi-check-lg"></i>
+                Kembalikan Buku
+            </a>
+
+        @endif
+
+    </div>
+
 
     {{-- =====================================================
          SUMMARY
@@ -96,7 +54,7 @@
 
     <div class="loan-summary">
 
-        {{-- ID PEMINJAMAN --}}
+        {{-- ID --}}
         <div class="summary-item summary-id">
 
             <div class="summary-icon">
@@ -134,7 +92,7 @@
                     <i class="bi bi-calendar3"></i>
 
                     {{ $peminjaman->tanggal_pinjam
-                        ? $peminjaman->tanggal_pinjam->format('d M Y')
+                        ? $peminjaman->tanggal_pinjam->locale('id')->translatedFormat('d F Y')
                         : '-' }}
 
                 </strong>
@@ -158,7 +116,7 @@
                     <i class="bi bi-calendar3"></i>
 
                     {{ $peminjaman->tanggal_kembali
-                        ? $peminjaman->tanggal_kembali->format('d M Y')
+                        ? $peminjaman->tanggal_kembali->locale('id')->translatedFormat('d F Y')
                         : '-' }}
 
                 </strong>
@@ -185,14 +143,15 @@
                     Status
                 </span>
 
-                @if ($peminjaman->status === 'Dipinjam')
 
-                    <span class="status-badge status-dipinjam">
-                        <i class="bi bi-clock"></i>
-                        Dipinjam
+                @if ($statusTampilan === 'Terlambat')
+
+                    <span class="status-badge status-terlambat">
+                        <i class="bi bi-exclamation-circle"></i>
+                        Terlambat
                     </span>
 
-                @elseif ($peminjaman->status === 'Dikembalikan')
+                @elseif ($statusTampilan === 'Dikembalikan')
 
                     <span class="status-badge status-dikembalikan">
                         <i class="bi bi-check-circle"></i>
@@ -201,8 +160,9 @@
 
                 @else
 
-                    <span class="status-badge status-lainnya">
-                        {{ $peminjaman->status ?? '-' }}
+                    <span class="status-badge status-dipinjam">
+                        <i class="bi bi-clock"></i>
+                        Dipinjam
                     </span>
 
                 @endif
@@ -221,42 +181,121 @@
     <div class="detail-main-grid">
 
         {{-- =================================================
-             INFORMASI PEMINJAM
+             KOLOM KIRI
         ================================================== --}}
 
-        <div class="detail-card borrower-card">
+        <div class="detail-left-column">
 
-            <div class="card-heading">
+            {{-- DATA PEMINJAM --}}
+            <div class="detail-card borrower-card">
 
-                <i class="bi bi-person-fill"></i>
+                <div class="card-heading">
 
-                <span>Data Peminjam</span>
-
-            </div>
-
-
-            <div class="card-line"></div>
-
-
-            <div class="borrower-row">
-
-                <div class="borrower-icon">
                     <i class="bi bi-person-fill"></i>
+
+                    <span>Data Peminjam</span>
+
                 </div>
 
-                <div class="borrower-info">
+                <div class="card-line"></div>
 
-                    <span>
-                        Nama peminjam
-                    </span>
+                <div class="borrower-row">
 
-                    <strong>
-                        {{ $peminjaman->nama_peminjam }}
-                    </strong>
+                    <div class="borrower-icon">
+                        <i class="bi bi-person-fill"></i>
+                    </div>
+
+                    <div class="borrower-info">
+
+                        <span>
+                            Nama peminjam
+                        </span>
+
+                        <strong>
+                            {{ $peminjaman->nama_peminjam }}
+                        </strong>
+
+                    </div>
 
                 </div>
 
             </div>
+
+
+            {{-- =================================================
+                 CARD TERLAMBAT
+            ================================================== --}}
+
+            @if ($isTerlambat)
+
+                <div class="late-card">
+
+                    <div class="late-title">
+
+                        <i class="bi bi-exclamation-circle"></i>
+
+                        <span>
+                            Peminjaman Terlambat
+                        </span>
+
+                    </div>
+
+
+                    <div class="late-info-grid">
+
+                        {{-- TERLAMBAT --}}
+                        <div class="late-info-box">
+
+                            <span>
+                                Terlambat
+                            </span>
+
+                            <strong>
+                                {{ $hariTerlambat }} Hari
+                            </strong>
+
+                            @if ($mulaiTerlambat)
+                                <small>
+                                    Sejak {{ $mulaiTerlambat->locale('id')->translatedFormat('d F Y') }}
+                                </small>
+                            @endif
+
+                        </div>
+
+
+                        {{-- DENDA --}}
+                        <div class="late-info-box">
+
+                            <span>
+                                Denda
+                            </span>
+
+                            <strong>
+                                Rp {{ number_format($denda, 0, ',', '.') }}
+                            </strong>
+
+                            <small>
+                                Rp 10.000 / hari
+                            </small>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="late-warning">
+
+                        <i class="bi bi-info-circle"></i>
+
+                        <span>
+                            Denda dihitung berdasarkan Rp 10.000 per hari keterlambatan.
+                        </span>
+
+                    </div>
+
+                </div>
+
+            @endif
 
         </div>
 
@@ -275,7 +314,6 @@
 
             </div>
 
-
             <div class="card-line"></div>
 
 
@@ -283,7 +321,6 @@
 
                 <div class="borrowed-book">
 
-                    {{-- COVER --}}
                     <div class="borrowed-book-cover">
 
                         @if ($peminjaman->buku->gambar_sampul)
@@ -304,7 +341,6 @@
                     </div>
 
 
-                    {{-- DATA BUKU --}}
                     <div class="borrowed-book-info">
 
                         <h3>
@@ -394,19 +430,19 @@
 
                         <td>
                             {{ $peminjaman->tanggal_pinjam
-                                ? $peminjaman->tanggal_pinjam->format('d M Y')
+                                ? $peminjaman->tanggal_pinjam->locale('id')->translatedFormat('d F Y')
                                 : '-' }}
                         </td>
 
                         <td>
 
-                            @if ($peminjaman->status === 'Dipinjam')
+                            @if ($statusTampilan === 'Terlambat')
 
-                                <span class="table-status table-dipinjam">
-                                    Dipinjam
+                                <span class="table-status table-terlambat">
+                                    Terlambat
                                 </span>
 
-                            @elseif ($peminjaman->status === 'Dikembalikan')
+                            @elseif ($statusTampilan === 'Dikembalikan')
 
                                 <span class="table-status table-dikembalikan">
                                     Dikembalikan
@@ -414,8 +450,8 @@
 
                             @else
 
-                                <span class="table-status">
-                                    {{ $peminjaman->status ?? '-' }}
+                                <span class="table-status table-dipinjam">
+                                    Dipinjam
                                 </span>
 
                             @endif
@@ -424,7 +460,11 @@
 
                         <td>
 
-                            @if ($peminjaman->status === 'Dikembalikan')
+                            @if ($statusTampilan === 'Terlambat')
+
+                                Terlambat
+
+                            @elseif ($statusTampilan === 'Dikembalikan')
 
                                 Sudah Dikembalikan
 
@@ -452,5 +492,4 @@
 
 </div>
 
-</div>
-</div>
+@endsection

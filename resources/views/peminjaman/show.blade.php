@@ -33,6 +33,15 @@
         </div>
 
 
+        {{-- TOMBOL HEADER --}}
+<div class="detail-header-actions">
+
+    <a href="{{ route('peminjaman.index') }}"
+       class="btn-kembali-data">
+        <i class="bi bi-arrow-left"></i>
+        Kembali
+    </a>
+
         @if ($statusTampilan !== 'Dikembalikan')
 
             <a
@@ -44,6 +53,7 @@
             </a>
 
         @endif
+</div>
 
     </div>
 

@@ -199,17 +199,47 @@ class PeminjamanController extends Controller
             ->with('success', 'Data peminjaman berhasil dihapus.');
     }
 
-    public function konfirmasi(Peminjaman $peminjaman)
+public function konfirmasi(Peminjaman $peminjaman)
 {
-    return view('peminjaman.konfirmasi', compact('peminjaman'));
-}
+    $isTerlambat = false;
+    $hariTerlambat = 0;
+    $denda = 0;
 
+    if (
+        $peminjaman->status !== 'Dikembalikan' &&
+        $peminjaman->tanggal_kembali
+    ) {
+        $tanggalKembali = Carbon::parse($peminjaman->tanggal_kembali);
+
+        if ($tanggalKembali->isBefore(Carbon::today())) {
+            $isTerlambat = true;
+
+            $hariTerlambat = $tanggalKembali->diffInDays(
+                Carbon::today()
+            );
+
+            $denda = $hariTerlambat * 10000;
+        }
+    }
+
+    return view('peminjaman.konfirmasi', compact(
+        'peminjaman',
+        'isTerlambat',
+        'hariTerlambat',
+        'denda'
+    ));
+}
+/**
+ * Memproses konfirmasi pengembalian buku.
+ */
 public function kembalikan(Peminjaman $peminjaman)
 {
+    // Ubah status peminjaman menjadi Dikembalikan.
     $peminjaman->update([
         'status' => 'Dikembalikan',
     ]);
 
+    // Kembali ke halaman detail dengan status terbaru.
     return redirect()
         ->route('peminjaman.show', $peminjaman->id)
         ->with('success', 'Buku berhasil dikembalikan.');

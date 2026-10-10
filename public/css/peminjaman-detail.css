@@ -862,3 +862,62 @@
         grid-template-columns: 1fr;
     }
 }
+
+/* =========================================
+   TOMBOL HEADER DETAIL PEMINJAMAN
+========================================= */
+
+.detail-header-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 8px;
+    flex-shrink: 0;
+}
+
+.btn-kembali-data {
+    height: 28px;
+    padding: 0 12px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+
+    background: #ffffff;
+    color: #286e51;
+
+    border: 1px solid #78c77c;
+    border-radius: 5px;
+
+    font-size: 9px;
+    font-weight: 600;
+    text-decoration: none;
+
+    transition: 0.2s ease;
+}
+
+.btn-kembali-data:hover {
+    background: #edf8ee;
+    color: #20593f;
+}
+
+.btn-kembali-data i {
+    font-size: 11px;
+}
+
+.detail-header-actions .btn-kembalikan {
+    white-space: nowrap;
+}
+
+@media (max-width: 600px) {
+    .detail-header {
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+
+    .detail-header-actions {
+        width: 100%;
+        justify-content: flex-start;
+    }
+}

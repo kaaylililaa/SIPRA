@@ -1,0 +1,747 @@
+/* =========================================================
+   KONFIRMASI PENGEMBALIAN
+   ========================================================= */
+
+* {
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+html,
+body {
+    width: 100%;
+    min-height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: #eeeeee;
+}
+
+
+/* =========================================================
+   HALAMAN
+   ========================================================= */
+
+.konfirmasi-page {
+    width: 100%;
+    min-height: 100vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 30px;
+}
+
+
+/* =========================================================
+   CARD
+   ========================================================= */
+
+.konfirmasi-card {
+    position: relative;
+
+    width: 460px;
+    min-height: 298px;
+
+    padding: 20px 24px 28px;
+
+    border-radius: 15px;
+
+    box-shadow:
+        0 4px 9px rgba(0, 0, 0, 0.18);
+
+    color: #ffffff;
+}
+
+
+/* STATUS NORMAL */
+.konfirmasi-normal .konfirmasi-card {
+    background: #80c77f;
+}
+
+
+/* STATUS TERLAMBAT */
+.konfirmasi-terlambat .konfirmasi-card {
+    background: #f45b5b;
+}
+
+
+/* =========================================================
+   TOMBOL X
+   ========================================================= */
+
+.btn-close-konfirmasi {
+    position: absolute;
+
+    top: -18px;
+    right: -18px;
+
+    width: 24px;
+    height: 24px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 2px solid #222222;
+    border-radius: 50%;
+
+    background: #eeeeee;
+    color: #222222;
+
+    text-decoration: none;
+
+    font-family: Arial, sans-serif;
+    font-size: 22px;
+    font-weight: 400;
+
+    line-height: 1;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.btn-close-konfirmasi:hover {
+    transform: scale(1.05);
+
+    color: #111111;
+}
+
+
+/* =========================================================
+   JUDUL
+   ========================================================= */
+
+.konfirmasi-title {
+    margin: 0;
+
+    text-align: center;
+
+    color: #ffffff;
+
+    font-size: 19px;
+    font-weight: 600;
+
+    line-height: 1.4;
+}
+
+
+/* =========================================================
+   GARIS
+   ========================================================= */
+
+.konfirmasi-divider {
+    width: 80%;
+    height: 1px;
+
+    margin: 9px auto 25px;
+
+    background: rgba(255, 255, 255, 0.35);
+}
+
+
+/* =========================================================
+   PERTANYAAN
+   ========================================================= */
+
+.konfirmasi-question {
+    margin: 0 0 27px;
+
+    color: #ffffff;
+
+    font-size: 18px;
+    font-weight: 400;
+
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   STATUS NORMAL
+   ========================================================= */
+
+.konfirmasi-status {
+    margin: 0;
+
+    color: #ffffff;
+
+    font-size: 18px;
+    font-weight: 400;
+
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   ACTION NORMAL
+   ========================================================= */
+
+.konfirmasi-actions {
+    width: 100%;
+
+    display: flex;
+
+    justify-content: flex-end;
+    align-items: center;
+
+    gap: 10px;
+
+    margin-top: 70px;
+}
+
+.konfirmasi-actions form,
+.late-confirmation-action form {
+    margin: 0;
+    padding: 0;
+}
+
+
+/* =========================================================
+   TOMBOL BATAL
+   ========================================================= */
+
+.btn-batal {
+    min-width: 64px;
+    height: 29px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0 14px;
+
+    border-radius: 5px;
+
+    background: #f45b5b;
+    color: #ffffff;
+
+    text-decoration: none;
+
+    font-size: 11px;
+    font-weight: 600;
+
+    box-shadow:
+        0 2px 4px rgba(0, 0, 0, 0.15);
+
+    transition: 0.2s ease;
+}
+
+.btn-batal:hover {
+    background: #e54d4d;
+    color: #ffffff;
+
+    transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   TOMBOL KONFIRMASI
+   ========================================================= */
+
+.btn-konfirmasi {
+    min-width: 108px;
+    height: 29px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0 14px;
+
+    border: none;
+    border-radius: 5px;
+
+    background: #28694f;
+    color: #ffffff;
+
+    font-size: 11px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 2px 4px rgba(0, 0, 0, 0.15);
+
+    transition: 0.2s ease;
+}
+
+.btn-konfirmasi:hover {
+    background: #20593f;
+
+    transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   INFORMASI TERLAMBAT
+   ========================================================= */
+
+.late-confirmation {
+    width: 100%;
+
+    margin-top: 2px;
+}
+
+.late-status,
+.late-duration,
+.late-fine {
+    margin: 0;
+
+    color: #ffffff;
+
+    font-size: 18px;
+    font-weight: 400;
+
+    line-height: 1.55;
+}
+
+.late-status {
+    margin-bottom: 0;
+}
+
+.late-duration {
+    margin-bottom: 0;
+}
+
+.late-fine {
+    margin-top: 0;
+}
+
+
+/* =========================================================
+   BUTTON TERLAMBAT
+   ========================================================= */
+
+.late-confirmation-action {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-top: 27px;
+}
+
+.btn-konfirmasi-late {
+    width: 177px;
+    height: 34px;
+
+    font-size: 17px;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+    .konfirmasi-page {
+        padding: 20px;
+    }
+
+    .konfirmasi-card {
+        width: 100%;
+        max-width: 460px;
+
+        padding: 20px 20px 25px;
+    }
+
+    .btn-close-konfirmasi {
+        top: -12px;
+        right: -12px;
+    }
+
+    .konfirmasi-question,
+    .konfirmasi-status,
+    .late-status,
+    .late-duration,
+    .late-fine {
+        font-size: 16px;
+    }
+
+    .konfirmasi-actions {
+        margin-top: 50px;
+    }
+
+    .late-confirmation-action {
+        margin-top: 25px;
+    }
+}/* =========================================================
+   KONFIRMASI PENGEMBALIAN
+   ========================================================= */
+
+* {
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+html,
+body {
+    width: 100%;
+    min-height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: #eeeeee;
+}
+
+
+/* =========================================================
+   HALAMAN
+   ========================================================= */
+
+.konfirmasi-page {
+    width: 100%;
+    min-height: 100vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 30px;
+}
+
+
+/* =========================================================
+   CARD
+   ========================================================= */
+
+.konfirmasi-card {
+    position: relative;
+
+    width: 460px;
+    min-height: 298px;
+
+    padding: 20px 24px 28px;
+
+    border-radius: 15px;
+
+    box-shadow:
+        0 4px 9px rgba(0, 0, 0, 0.18);
+
+    color: #ffffff;
+}
+
+
+/* STATUS NORMAL */
+.konfirmasi-normal .konfirmasi-card {
+    background: #80c77f;
+}
+
+
+/* STATUS TERLAMBAT */
+.konfirmasi-terlambat .konfirmasi-card {
+    background: #f45b5b;
+}
+
+
+/* =========================================================
+   TOMBOL X
+   ========================================================= */
+
+.btn-close-konfirmasi {
+    position: absolute;
+
+    top: -18px;
+    right: -18px;
+
+    width: 24px;
+    height: 24px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 2px solid #222222;
+    border-radius: 50%;
+
+    background: #eeeeee;
+    color: #222222;
+
+    text-decoration: none;
+
+    font-family: Arial, sans-serif;
+    font-size: 22px;
+    font-weight: 400;
+
+    line-height: 1;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.btn-close-konfirmasi:hover {
+    transform: scale(1.05);
+
+    color: #111111;
+}
+
+
+/* =========================================================
+   JUDUL
+   ========================================================= */
+
+.konfirmasi-title {
+    margin: 0;
+
+    text-align: center;
+
+    color: #ffffff;
+
+    font-size: 19px;
+    font-weight: 600;
+
+    line-height: 1.4;
+}
+
+
+/* =========================================================
+   GARIS
+   ========================================================= */
+
+.konfirmasi-divider {
+    width: 80%;
+    height: 1px;
+
+    margin: 9px auto 25px;
+
+    background: rgba(255, 255, 255, 0.35);
+}
+
+
+/* =========================================================
+   PERTANYAAN
+   ========================================================= */
+
+.konfirmasi-question {
+    margin: 0 0 27px;
+
+    color: #ffffff;
+
+    font-size: 18px;
+    font-weight: 400;
+
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   STATUS NORMAL
+   ========================================================= */
+
+.konfirmasi-status {
+    margin: 0;
+
+    color: #ffffff;
+
+    font-size: 18px;
+    font-weight: 400;
+
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   ACTION NORMAL
+   ========================================================= */
+
+.konfirmasi-actions {
+    width: 100%;
+
+    display: flex;
+
+    justify-content: flex-end;
+    align-items: center;
+
+    gap: 10px;
+
+    margin-top: 70px;
+}
+
+.konfirmasi-actions form,
+.late-confirmation-action form {
+    margin: 0;
+    padding: 0;
+}
+
+
+/* =========================================================
+   TOMBOL BATAL
+   ========================================================= */
+
+.btn-batal {
+    min-width: 64px;
+    height: 29px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0 14px;
+
+    border-radius: 5px;
+
+    background: #f45b5b;
+    color: #ffffff;
+
+    text-decoration: none;
+
+    font-size: 11px;
+    font-weight: 600;
+
+    box-shadow:
+        0 2px 4px rgba(0, 0, 0, 0.15);
+
+    transition: 0.2s ease;
+}
+
+.btn-batal:hover {
+    background: #e54d4d;
+    color: #ffffff;
+
+    transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   TOMBOL KONFIRMASI
+   ========================================================= */
+
+.btn-konfirmasi {
+    min-width: 108px;
+    height: 29px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0 14px;
+
+    border: none;
+    border-radius: 5px;
+
+    background: #28694f;
+    color: #ffffff;
+
+    font-size: 11px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 2px 4px rgba(0, 0, 0, 0.15);
+
+    transition: 0.2s ease;
+}
+
+.btn-konfirmasi:hover {
+    background: #20593f;
+
+    transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   INFORMASI TERLAMBAT
+   ========================================================= */
+
+.late-confirmation {
+    width: 100%;
+
+    margin-top: 2px;
+}
+
+.late-status,
+.late-duration,
+.late-fine {
+    margin: 0;
+
+    color: #ffffff;
+
+    font-size: 18px;
+    font-weight: 400;
+
+    line-height: 1.55;
+}
+
+.late-status {
+    margin-bottom: 0;
+}
+
+.late-duration {
+    margin-bottom: 0;
+}
+
+.late-fine {
+    margin-top: 0;
+}
+
+
+/* =========================================================
+   BUTTON TERLAMBAT
+   ========================================================= */
+
+.late-confirmation-action {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-top: 27px;
+}
+
+.btn-konfirmasi-late {
+    width: 177px;
+    height: 34px;
+
+    font-size: 17px;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+    .konfirmasi-page {
+        padding: 20px;
+    }
+
+    .konfirmasi-card {
+        width: 100%;
+        max-width: 460px;
+
+        padding: 20px 20px 25px;
+    }
+
+    .btn-close-konfirmasi {
+        top: -12px;
+        right: -12px;
+    }
+
+    .konfirmasi-question,
+    .konfirmasi-status,
+    .late-status,
+    .late-duration,
+    .late-fine {
+        font-size: 16px;
+    }
+
+    .konfirmasi-actions {
+        margin-top: 50px;
+    }
+
+    .late-confirmation-action {
+        margin-top: 25px;
+    }
+}

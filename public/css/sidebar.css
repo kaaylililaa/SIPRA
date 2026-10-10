@@ -1,0 +1,248 @@
+.sipra-sidebar {
+    width: 175px !important;
+    min-width: 175px !important;
+    max-width: 175px !important;
+    flex: 0 0 175px !important;
+
+    min-height: 100vh;
+    padding: 20px 12px;
+
+    display: flex;
+    flex-direction: column;
+
+    box-sizing: border-box;
+
+    background: #f8f9f8;
+    border-right: 1px solid #e7e7e7;
+
+    font-family: 'Poppins', sans-serif;
+    color: #555;
+}
+
+/* LOGO */
+.sipra-sidebar .sidebar-logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    margin-bottom: 38px;
+    flex-shrink: 0;
+}
+
+.sipra-sidebar .logo-image {
+    width: 90px;
+    height: 65px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sipra-sidebar .logo-image img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/* NAMA SIPRA DAN DESKRIPSI */
+.sipra-sidebar .sidebar-brand {
+    margin-top: 5px;
+    text-align: center;
+}
+
+.sipra-sidebar .sidebar-brand > span {
+    display: block;
+    color: #287154;
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: .3px;
+}
+
+.sipra-sidebar .sidebar-subtitle {
+    max-width: 120px;
+    margin: 3px 0 0;
+    padding: 0;
+
+    color: #777;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 1.5;
+    text-align: center;
+}
+
+/* JUDUL MENU */
+.sipra-sidebar .menu-title {
+    display: block;
+
+    margin: 0 0 10px 8px;
+
+    color: #999;
+    font-size: 11px;
+    font-weight: 500;
+}
+
+/* DAFTAR MENU */
+.sipra-sidebar .sidebar-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.sipra-sidebar .sidebar-item,
+.sipra-sidebar .menu-item {
+    width: 100%;
+    height: 38px;
+    min-height: 38px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+    padding: 0 11px;
+
+    box-sizing: border-box;
+    border-radius: 9px;
+
+    color: #555;
+    background: transparent;
+
+    font-family: 'Poppins', sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+
+    text-decoration: none;
+    transition: background .2s ease, color .2s ease;
+}
+
+.sipra-sidebar .sidebar-item i,
+.sipra-sidebar .menu-item i {
+    width: 16px;
+    flex-shrink: 0;
+
+    color: inherit;
+    font-size: 14px;
+    text-align: center;
+}
+
+.sipra-sidebar .sidebar-item:hover,
+.sipra-sidebar .menu-item:hover {
+    background: #e6f3e8;
+    color: #287154;
+}
+
+.sipra-sidebar .sidebar-item.active,
+.sipra-sidebar .menu-item.active {
+    background: #78c77d;
+    color: #fff;
+    box-shadow: 0 3px 8px rgba(65, 130, 72, .18);
+}
+
+/* LOGOUT */
+.sipra-sidebar .sidebar-bottom {
+    margin-top: auto;
+    padding-top: 24px;
+}
+
+.sipra-sidebar .sidebar-bottom form {
+    width: 100%;
+    margin: 0;
+}
+
+.sipra-sidebar .logout-button {
+    width: 100%;
+    height: 36px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+
+    padding: 0 10px;
+    border: none;
+    border-radius: 9px;
+
+    background: #f45d61;
+    color: #fff;
+
+    font-family: 'Poppins', sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+
+    cursor: pointer;
+    transition: background .2s ease;
+}
+
+.sipra-sidebar .logout-button:hover {
+    background: #e94e53;
+}
+
+.sipra-sidebar .logout-button i {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 12px;
+    height: 12px;
+
+    font-size: 12px;
+    line-height: 1;
+    vertical-align: middle;
+    flex-shrink: 0;
+}
+
+/* RESPONSIVE */
+@media (max-width: 1100px) {
+    .sipra-sidebar {
+        width: 150px !important;
+        min-width: 150px !important;
+        max-width: 150px !important;
+        flex-basis: 150px !important;
+    }
+}
+
+@media (max-width: 850px) {
+    .sipra-sidebar {
+        width: 125px !important;
+        min-width: 125px !important;
+        max-width: 125px !important;
+        flex-basis: 125px !important;
+    }
+}
+
+@media (max-width: 600px) {
+    .sipra-sidebar {
+        width: 70px !important;
+        min-width: 70px !important;
+        max-width: 70px !important;
+        flex-basis: 70px !important;
+        padding: 12px 6px;
+    }
+
+    .sipra-sidebar .logo-image {
+        width: 48px;
+        height: 38px;
+    }
+
+    .sipra-sidebar .sidebar-brand > span {
+        font-size: 11px;
+    }
+
+    .sipra-sidebar .sidebar-subtitle,
+    .sipra-sidebar .menu-title,
+    .sipra-sidebar .sidebar-item span,
+    .sipra-sidebar .menu-item span,
+    .sipra-sidebar .logout-button span {
+        display: none;
+    }
+
+    .sipra-sidebar .sidebar-item,
+    .sipra-sidebar .menu-item {
+        justify-content: center;
+        padding: 0;
+    }
+
+    .sipra-sidebar .sidebar-bottom {
+        padding-top: 16px;
+    }
+}

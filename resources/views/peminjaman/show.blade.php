@@ -99,7 +99,7 @@
 
                 <strong class="summary-date">
 
-                    <i class="bi bi-calendar3"></i>
+                    <i class="bi bi-calendar2-heart"></i>
 
                     {{ $peminjaman->tanggal_pinjam
                         ? $peminjaman->tanggal_pinjam->locale('id')->translatedFormat('d F Y')
@@ -123,7 +123,7 @@
 
                 <strong class="summary-date">
 
-                    <i class="bi bi-calendar3"></i>
+                    <i class="bi bi-calendar2-heart"></i>
 
                     {{ $peminjaman->tanggal_kembali
                         ? $peminjaman->tanggal_kembali->locale('id')->translatedFormat('d F Y')

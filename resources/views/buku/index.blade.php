@@ -1,6 +1,10 @@
 @extends('layouts.app')
 
+@section('title', 'Data Buku')
+
 @section('content')
+
+<link rel="stylesheet" href="{{ asset('css/buku.css') }}">
 
 <div class="buku-page">
 
@@ -8,25 +12,20 @@
     <div class="buku-top">
 
         <div class="buku-title">
-
             <div class="buku-title-icon">
-                <i class="bi bi-book"></i>
+                <i class="bi bi-book-half"></i>
             </div>
 
-            <div>
+            <div class="buku-title-text">
                 <h1>Data Buku</h1>
                 <p>Kelola seluruh koleksi buku Perpustakaan Desa Rajeg Bersatu.</p>
             </div>
-
         </div>
-
 
         <div class="buku-top-actions">
 
-            {{-- SEARCH --}}
             <div class="buku-search">
-                <i class="bi bi-search"></i>
-
+                <i class="bi bi-search-heart"></i>
                 <input
                     type="text"
                     id="searchBuku"
@@ -35,53 +34,44 @@
                 >
             </div>
 
-
-            {{-- KATEGORI --}}
             <a href="{{ route('kategori.index') }}" class="btn-kategori">
-                <i class="bi bi-tag-fill"></i>
+                <i class="bi bi-funnel-fill"></i>
                 Kategori
             </a>
 
-
-            {{-- TAMBAH BUKU --}}
             <a href="{{ route('buku.create') }}" class="btn-tambah-buku">
                 <i class="bi bi-plus-lg"></i>
                 Tambah Buku
             </a>
 
         </div>
-
     </div>
 
 
-    {{-- JUDUL LIST --}}
+    {{-- JUDUL DAFTAR --}}
     <div class="buku-list-title">
-
         <h2>Daftar Buku</h2>
-
-        <span>
-            Total {{ $totalBuku }} buku
-        </span>
-
+        <span>Total {{ $totalBuku }} buku</span>
     </div>
 
 
-    {{-- LIST BUKU --}}
+    {{-- DAFTAR BUKU --}}
     <div class="buku-list" id="bukuList">
 
         @forelse ($bukus as $buku)
 
-            <div class="buku-card">
+            <article class="buku-card">
 
-                {{-- SAMPUL --}}
+                {{-- COVER --}}
                 <div class="buku-cover-box">
 
                     @if ($buku->gambar_sampul)
 
                         <img
                             src="{{ asset('uploads/sampul/' . $buku->gambar_sampul) }}"
-                            alt="{{ $buku->judul_buku }}"
+                            alt="Sampul {{ $buku->judul_buku }}"
                             class="buku-cover"
+                            loading="lazy"
                         >
 
                     @else
@@ -95,19 +85,21 @@
                 </div>
 
 
-                {{-- INFORMASI --}}
+                {{-- INFORMASI BUKU --}}
                 <div class="buku-info">
 
-                    <h3>
+                    <h3 title="{{ $buku->judul_buku }}">
                         {{ $buku->judul_buku }}
                     </h3>
 
                     <div class="buku-pengarang">
-                        {{ $buku->nama_pengarang }}
+                        {{ $buku->nama_pengarang ?? 'Tidak diketahui' }}
                     </div>
 
                     <div class="buku-penerbit">
-                        {{ $buku->nama_penerbit }} • {{ $buku->tahun_terbit }}
+                        {{ $buku->nama_penerbit ?? 'Tidak diketahui' }}
+                        <span class="detail-separator">•</span>
+                        {{ $buku->tahun_terbit ?? '-' }}
                     </div>
 
                     <div class="buku-detail">
@@ -128,22 +120,21 @@
                 </div>
 
 
-                {{-- BAGIAN KANAN --}}
+                {{-- AKSI DI SISI KANAN --}}
                 <div class="buku-right">
 
-                    {{-- STATUS --}}
+                    {{-- Status mengikuti tampilan yang sudah digunakan --}}
                     <span class="status tersedia">
                         Tersedia
                     </span>
 
-
-                    {{-- BUTTON --}}
                     <div class="buku-buttons">
 
                         <a
                             href="{{ route('buku.show', $buku->id) }}"
                             class="buku-btn"
-                            title="Lihat"
+                            title="Lihat detail"
+                            aria-label="Lihat detail buku"
                         >
                             <i class="bi bi-eye"></i>
                         </a>
@@ -151,149 +142,161 @@
                         <a
                             href="{{ route('buku.edit', $buku->id) }}"
                             class="buku-btn"
-                            title="Edit"
+                            title="Edit buku"
+                            aria-label="Edit buku"
                         >
                             <i class="bi bi-pencil"></i>
                         </a>
 
-                       <button
                         <button
-    type="button"
-    class="btn-action-delete"
-    onclick="openDeleteModal({{ $buku->id }}, @js($buku->judul_buku))"
-    title="Hapus"
->
-    <i class="bi bi-trash"></i>
-</button>
+                            type="button"
+                            class="buku-btn btn-action-delete"
+                            data-id="{{ $buku->id }}"
+                            data-title="{{ $buku->judul_buku }}"
+                            title="Hapus buku"
+                            aria-label="Hapus buku"
+                        >
+                            <i class="bi bi-trash"></i>
+                        </button>
 
-<!-- Modal Hapus Buku -->
-<div class="delete-modal-overlay" id="deleteModal">
-
-    <div class="delete-modal">
-
-        <div class="delete-icon">
-            <i class="bi bi-trash3"></i>
-        </div>
-
-        <h3>Hapus Buku?</h3>
-
-        <p>
-            Apakah kamu yakin ingin menghapus buku
-            <strong id="deleteBookTitle"></strong>?
-        </p>
-
-        <div class="delete-modal-buttons">
-
-            <button
-                type="button"
-                class="btn-cancel-delete"
-                onclick="closeDeleteModal()"
-            >
-                Batal
-            </button>
-
-            <form id="deleteBookForm" method="POST">
-                @csrf
-                @method('DELETE')
-
-                <button
-                    type="submit"
-                    class="btn-confirm-delete"
-                >
-                    <i class="bi bi-trash3"></i>
-                    Hapus
-                </button>
-            </form>
-
-        </div>
-
-    </div>
-
-</div>
-
-<script>
-    function openDeleteModal(id, title) {
-        const modal = document.getElementById('deleteModal');
-        const titleElement = document.getElementById('deleteBookTitle');
-        const form = document.getElementById('deleteBookForm');
-
-        titleElement.textContent = '"' + title + '"';
-
-        form.action = "{{ url('/buku') }}/" + id;
-
-        modal.classList.add('show');
-
-        document.body.style.overflow = 'hidden';
-    }
-
-    function closeDeleteModal() {
-        const modal = document.getElementById('deleteModal');
-
-        modal.classList.remove('show');
-
-        document.body.style.overflow = '';
-    }
-
-    document.getElementById('deleteModal').addEventListener('click', function(event) {
-        if (event.target === this) {
-            closeDeleteModal();
-        }
-    });
-
-    document.addEventListener('keydown', function(event) {
-        if (event.key === 'Escape') {
-            closeDeleteModal();
-        }
-    });
-</script>
                     </div>
-
                 </div>
 
-            </div>
+            </article>
 
         @empty
 
-            <div class="buku-empty">
+            <div class="buku-empty" id="bukuEmpty">
                 <i class="bi bi-book"></i>
                 <p>Belum ada data buku.</p>
             </div>
 
         @endforelse
 
+        <div class="buku-empty buku-search-empty" id="bukuSearchEmpty" hidden>
+            <i class="bi bi-search"></i>
+            <p>Buku yang dicari tidak ditemukan.</p>
+        </div>
+
+    </div>
+
+
+    {{-- MODAL HAPUS: SATU SAJA DI LUAR LOOP --}}
+    <div class="delete-modal-overlay" id="deleteModal">
+
+        <div class="delete-modal" role="dialog" aria-modal="true"
+             aria-labelledby="deleteModalTitle">
+
+            <div class="delete-icon">
+                <i class="bi bi-trash3"></i>
+            </div>
+
+            <h3 id="deleteModalTitle">Hapus Buku?</h3>
+
+            <p>
+                Apakah kamu yakin ingin menghapus buku
+                <strong id="deleteBookTitle"></strong>?
+            </p>
+
+            <div class="delete-modal-buttons">
+
+                <button
+                    type="button"
+                    class="btn-cancel-delete"
+                    id="btnCancelDelete"
+                >
+                    Batal
+                </button>
+
+                <form id="deleteBookForm" method="POST">
+                    @csrf
+                    @method('DELETE')
+
+                    <button type="submit" class="btn-confirm-delete">
+                        <i class="bi bi-trash3"></i>
+                        Hapus
+                    </button>
+                </form>
+
+            </div>
+        </div>
     </div>
 
 </div>
 
 
-{{-- SEARCH --}}
 <script>
-
 document.addEventListener('DOMContentLoaded', function () {
 
+    // PENCARIAN BUKU
     const searchInput = document.getElementById('searchBuku');
-    const cards = document.querySelectorAll('.buku-card');
+    const bookCards = document.querySelectorAll('.buku-card');
+    const searchEmpty = document.getElementById('bukuSearchEmpty');
 
     searchInput.addEventListener('input', function () {
+        const keyword = searchInput.value.toLowerCase().trim();
+        let visibleCount = 0;
 
-        const keyword = this.value.toLowerCase().trim();
+        bookCards.forEach(function (card) {
+            const text = card.textContent.toLowerCase();
+            const matched = text.includes(keyword);
 
-        cards.forEach(function (card) {
+            card.style.display = matched ? 'flex' : 'none';
 
-            const text = card.innerText.toLowerCase();
-
-            if (text.includes(keyword)) {
-                card.style.display = 'flex';
-            } else {
-                card.style.display = 'none';
+            if (matched) {
+                visibleCount++;
             }
-
         });
 
+        searchEmpty.hidden = visibleCount !== 0 || bookCards.length === 0;
+    });
+
+
+    // MODAL HAPUS BUKU
+    const deleteModal = document.getElementById('deleteModal');
+    const deleteBookTitle = document.getElementById('deleteBookTitle');
+    const deleteBookForm = document.getElementById('deleteBookForm');
+    const cancelButton = document.getElementById('btnCancelDelete');
+    const deleteButtons = document.querySelectorAll('.btn-action-delete');
+
+    function openDeleteModal(id, title) {
+        deleteBookTitle.textContent = '"' + title + '"';
+        deleteBookForm.action = "{{ url('/buku') }}/" + id;
+
+        deleteModal.classList.add('show');
+        document.body.style.overflow = 'hidden';
+        cancelButton.focus();
+    }
+
+    function closeDeleteModal() {
+        deleteModal.classList.remove('show');
+        document.body.style.overflow = '';
+    }
+
+    deleteButtons.forEach(function (button) {
+        button.addEventListener('click', function () {
+            openDeleteModal(
+                this.dataset.id,
+                this.dataset.title
+            );
+        });
+    });
+
+    cancelButton.addEventListener('click', closeDeleteModal);
+
+    deleteModal.addEventListener('click', function (event) {
+        if (event.target === deleteModal) {
+            closeDeleteModal();
+        }
+    });
+
+    document.addEventListener('keydown', function (event) {
+        if (event.key === 'Escape' && deleteModal.classList.contains('show')) {
+            closeDeleteModal();
+        }
     });
 
 });
-
 </script>
 
 @endsection

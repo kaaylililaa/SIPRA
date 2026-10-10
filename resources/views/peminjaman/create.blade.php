@@ -14,7 +14,7 @@
         <div class="create-title-wrapper">
 
             <div class="create-title-icon">
-                <i class="bi bi-plus-lg"></i>
+                <i class="bi bi-plus-circle-fill"></i>
             </div>
 
             <div>
@@ -48,7 +48,7 @@
 
                 <div class="book-search-wrapper">
 
-                    <i class="bi bi-search"></i>
+                    <i class="bi bi-search-heart"></i>
 
                     <input
                         type="text"

@@ -58,7 +58,7 @@ class BukuController extends Controller
 
         public function show($id)
 {
-    $buku = Buku::with('kategori')->findOrFail($id);
+    $buku = Buku::with('nama_kategori')->findOrFail($id);
 
     return view('buku.show', compact('buku'));
 }

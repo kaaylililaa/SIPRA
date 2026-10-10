@@ -14,7 +14,7 @@
         <div class="page-title-wrapper">
 
             <div class="page-icon">
-                <i class="bi bi-journal-arrow-up"></i>
+                <i class="bi bi-journal-bookmark-fill"></i>
             </div>
 
             <div>
@@ -45,7 +45,7 @@
         <div class="statistik-card">
 
             <div class="statistik-icon total-icon">
-                <i class="bi bi-journal-text"></i>
+                <i class="bi bi-journal-bookmark-fill"></i>
             </div>
 
             <div class="statistik-info">
@@ -75,7 +75,7 @@
         <div class="statistik-card">
 
             <div class="statistik-icon kembali-icon">
-                <i class="bi bi-check-circle"></i>
+                <i class="bi bi-check-circle-fill"></i>
             </div>
 
             <div class="statistik-info">
@@ -127,7 +127,7 @@
                     type="submit"
                     class="search-button"
                 >
-                    <i class="bi bi-search"></i>
+                    <i class="bi bi-search-heart"></i>
                 </button>
 
             </div>
@@ -175,7 +175,7 @@
             {{-- TANGGAL --}}
             <div class="filter-date-wrapper">
 
-                <i class="bi bi-calendar3"></i>
+                <i class="bi bi-calendar2-heart"></i>
 
                 <input
                     type="date"

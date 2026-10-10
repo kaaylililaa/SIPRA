@@ -12,67 +12,15 @@
 
     {{-- CSS Dashboard --}}
     <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/sidebar.css') }}">   
 </head>
 
 <body>
 
 <div class="dashboard-wrapper">
 
-    {{-- ================= SIDEBAR ================= --}}
-    <aside class="sidebar">
-
-        <div class="sidebar-logo">
-            <img src="{{ asset('images/logo.png') }}" alt="Logo Rajeg Bersatu">
-
-            <div class="sidebar-brand">
-                <span>SIPRA</span>
-            </div>
-        </div>
-
-        <div class="menu-title">
-            MENU
-        </div>
-
-        <nav class="sidebar-menu">
-
-            <a href="{{ url('/home') }}" class="menu-item active">
-                <i class="bi bi-grid-fill"></i>
-                <span>Dashboard</span>
-            </a>
-
-            <a href="{{ route('buku.index') }}" class="menu-item">
-                <i class="bi bi-book-fill"></i>
-                <span>Buku</span>
-            </a>
-
-            <a href="{{ route('peminjaman.index') }}" class="menu-item">
-                <i class="bi bi-journal-bookmark-fill"></i>
-                <span>Peminjaman</span>
-            </a>
-
-            <a href="{{ url('/profil') }}" class="menu-item">
-                <i class="bi bi-person-fill"></i>
-                <span>Profil</span>
-            </a>
-
-        </nav>
-
-        <div class="sidebar-bottom">
-
-            <form action="{{ route('logout') }}" method="POST">
-                @csrf
-
-                <button type="submit" class="logout-button">
-                    <i class="bi bi-box-arrow-right"></i>
-                    <span>Logout</span>
-                </button>
-            </form>
-
-        </div>
-
-    </aside>
-
-
+    @include('layouts.partials.sidebar')
+    
     {{-- ================= MAIN CONTENT ================= --}}
     <main class="main-content">
 
@@ -118,40 +66,12 @@
                 </div>
 
                 <div class="welcome-illustration">
-                    <div class="plant plant-left">
-                        <i class="bi bi-flower1"></i>
-                    </div>
-
-                    <div class="bookshelf">
-
-                        <div class="shelf-top"></div>
-
-                        <div class="books-row">
-                            <span class="book book-1"></span>
-                            <span class="book book-2"></span>
-                            <span class="book book-3"></span>
-                            <span class="book book-4"></span>
-                            <span class="book book-5"></span>
-                        </div>
-
-                        <div class="books-row second-row">
-                            <span class="book book-6"></span>
-                            <span class="book book-7"></span>
-                            <span class="book book-8"></span>
-                            <span class="book book-9"></span>
-                        </div>
-
-                        <div class="shelf-bottom"></div>
-
-                    </div>
-
-                    <div class="plant plant-right">
-                        <i class="bi bi-flower1"></i>
-                    </div>
-                </div>
-
-            </div>
-
+    <img
+        src="{{ asset('images/library-illustration.png') }}"
+        alt="Ilustrasi perpustakaan SIPRA"
+    >
+</div>
+</div>
 
             {{-- TITLE --}}
             <h3 class="section-title">
@@ -170,7 +90,7 @@
                     </div>
 
                     <div class="stat-info">
-                        <strong>{{ $totalBuku ?? 0 }}</strong>
+                        <strong>{{ $jumlahBuku ?? 0 }}</strong>
                         <span>Total Buku</span>
                     </div>
 
@@ -185,7 +105,7 @@
                     </div>
 
                     <div class="stat-info">
-                        <strong>{{ $bukuDipinjam ?? 0 }}</strong>
+                        <strong>{{ $jumlahDipinjam ?? 0 }}</strong>
                         <span>Dipinjam</span>
                     </div>
 
@@ -200,7 +120,7 @@
                     </div>
 
                     <div class="stat-info">
-                        <strong>{{ $totalUser ?? 0 }}</strong>
+                        <strong>{{ $jumlahUser ?? 0 }}</strong>
                         <span>Anggota</span>
                     </div>
 
@@ -215,7 +135,7 @@
                     </div>
 
                     <div class="stat-info">
-                        <strong>{{ $totalKategori ?? 0 }}</strong>
+                        <strong>{{ $jumlahKategori ?? 0 }}</strong>
                         <span>Kategori</span>
                     </div>
 
@@ -235,43 +155,44 @@
                     </div>
 
                     @if(isset($bukuTerbaru) && $bukuTerbaru->count() > 0)
+@foreach ($bukuTerbaru->take(1) as $buku)
 
-                        @foreach($bukuTerbaru->take(1) as $buku)
+    <div class="latest-book-item">
 
-                            <div class="latest-book-item">
+        <div class="book-cover">
 
-                                <div class="book-cover">
+            @if ($buku->gambar_sampul)
 
-                                    @if($buku->gambarsampul)
+                @php
+                    $gambar = ltrim($buku->gambar_sampul, '/');
 
-                                        @php
-                                            $gambar = $buku->gambarsampul;
+                    if (!str_starts_with($gambar, 'uploads/')) {
+                        $gambar = 'uploads/' . $gambar;
+                    }
+                @endphp
 
-                                            if (!str_starts_with($gambar, 'uploads/')) {
-                                                $gambar = 'uploads/' . $gambar;
-                                            }
-                                        @endphp
+                <img
+                    src="{{ asset($gambar) }}"
+                    alt="{{ $buku->judul_buku }}"
+                >
 
-                                        <img src="{{ asset($gambar) }}"
-                                             alt="{{ $buku->judulbuku }}">
+            @else
 
-                                    @else
+                <div class="no-cover">
+                    <i class="bi bi-book"></i>
+                </div>
 
-                                        <div class="no-cover">
-                                            <i class="bi bi-book"></i>
-                                        </div>
+            @endif
 
-                                    @endif
+        </div>
 
-                                </div>
+        <div class="book-title">
+            {{ $buku->judul_buku }}
+        </div>
 
-                                <div class="book-title">
-                                    {{ $buku->judulbuku }}
-                                </div>
+    </div>
 
-                            </div>
-
-                        @endforeach
+@endforeach
 
                     @else
 

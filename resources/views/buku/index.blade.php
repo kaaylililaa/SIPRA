@@ -4,12 +4,12 @@
 
 @section('content')
 
-<link rel="stylesheet" href="{{ asset('css/buku.css') }}">
-
 <div class="buku-page">
 
-    {{-- HEADER --}}
-    <div class="buku-top">
+ @include('layouts.partials.sidebar')
+
+    {{-- HEADER PUTIH --}}
+    <header class="buku-top">
 
         <div class="buku-title">
             <div class="buku-title-icon">
@@ -25,50 +25,67 @@
         <div class="buku-top-actions">
 
             <div class="buku-search">
-                <i class="bi bi-search-heart"></i>
+                <i class="bi bi-search"></i>
                 <input
                     type="text"
                     id="searchBuku"
                     placeholder="Cari Buku..."
                     autocomplete="off"
+                    aria-label="Cari buku"
                 >
             </div>
 
             <a href="{{ route('kategori.index') }}" class="btn-kategori">
                 <i class="bi bi-funnel-fill"></i>
-                Kategori
+                <span>Kategori</span>
             </a>
 
             <a href="{{ route('buku.create') }}" class="btn-tambah-buku">
                 <i class="bi bi-plus-lg"></i>
-                Tambah Buku
+                <span>Tambah Buku</span>
             </a>
 
         </div>
-    </div>
+
+    </header>
 
 
-    {{-- JUDUL DAFTAR --}}
+    {{-- JUDUL DAFTAR BUKU --}}
     <div class="buku-list-title">
         <h2>Daftar Buku</h2>
         <span>Total {{ $totalBuku }} buku</span>
     </div>
 
 
-    {{-- DAFTAR BUKU --}}
+    {{-- LIST BUKU --}}
     <div class="buku-list" id="bukuList">
 
         @forelse ($bukus as $buku)
 
             <article class="buku-card">
 
-                {{-- COVER --}}
+                {{-- SAMPUL --}}
                 <div class="buku-cover-box">
 
                     @if ($buku->gambar_sampul)
 
+                        @php
+                            $coverPath = ltrim(
+                                (string) $buku->gambar_sampul,
+                                '/'
+                            );
+
+                            if (!str_starts_with($coverPath, 'uploads/')) {
+                                if (str_starts_with($coverPath, 'sampul/')) {
+                                    $coverPath = 'uploads/' . $coverPath;
+                                } else {
+                                    $coverPath = 'uploads/sampul/' . $coverPath;
+                                }
+                            }
+                        @endphp
+
                         <img
-                            src="{{ asset('uploads/sampul/' . $buku->gambar_sampul) }}"
+                            src="{{ asset($coverPath) }}"
                             alt="Sampul {{ $buku->judul_buku }}"
                             class="buku-cover"
                             loading="lazy"
@@ -120,12 +137,24 @@
                 </div>
 
 
-                {{-- AKSI DI SISI KANAN --}}
+                {{-- STATUS DAN TOMBOL --}}
                 <div class="buku-right">
 
-                    {{-- Status mengikuti tampilan yang sudah digunakan --}}
-                    <span class="status tersedia">
-                        Tersedia
+                    @php
+                        $statusBuku = $buku->status ?? 'Tersedia';
+
+                        $statusSlug = strtolower(
+                            str_replace(' ', '-', trim((string) $statusBuku))
+                        );
+
+                        $statusClass = in_array(
+                            $statusSlug,
+                            ['tidak-tersedia', 'dipinjam', 'habis']
+                        ) ? 'tidak-tersedia' : 'tersedia';
+                    @endphp
+
+                    <span class="status {{ $statusClass }}">
+                        {{ $statusBuku }}
                     </span>
 
                     <div class="buku-buttons">
@@ -153,6 +182,7 @@
                             class="buku-btn btn-action-delete"
                             data-id="{{ $buku->id }}"
                             data-title="{{ $buku->judul_buku }}"
+                            data-delete-url="{{ route('buku.destroy', $buku->id) }}"
                             title="Hapus buku"
                             aria-label="Hapus buku"
                         >
@@ -160,13 +190,14 @@
                         </button>
 
                     </div>
+
                 </div>
 
             </article>
 
         @empty
 
-            <div class="buku-empty" id="bukuEmpty">
+            <div class="buku-empty">
                 <i class="bi bi-book"></i>
                 <p>Belum ada data buku.</p>
             </div>
@@ -181,11 +212,15 @@
     </div>
 
 
-    {{-- MODAL HAPUS: SATU SAJA DI LUAR LOOP --}}
+    {{-- MODAL HAPUS --}}
     <div class="delete-modal-overlay" id="deleteModal">
 
-        <div class="delete-modal" role="dialog" aria-modal="true"
-             aria-labelledby="deleteModalTitle">
+        <div
+            class="delete-modal"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="deleteModalTitle"
+        >
 
             <div class="delete-icon">
                 <i class="bi bi-trash3"></i>
@@ -219,7 +254,9 @@
                 </form>
 
             </div>
+
         </div>
+
     </div>
 
 </div>
@@ -234,12 +271,13 @@ document.addEventListener('DOMContentLoaded', function () {
     const searchEmpty = document.getElementById('bukuSearchEmpty');
 
     searchInput.addEventListener('input', function () {
-        const keyword = searchInput.value.toLowerCase().trim();
+        const keyword = this.value.toLowerCase().trim();
         let visibleCount = 0;
 
         bookCards.forEach(function (card) {
-            const text = card.textContent.toLowerCase();
-            const matched = text.includes(keyword);
+            const matched = card.textContent
+                .toLowerCase()
+                .includes(keyword);
 
             card.style.display = matched ? 'flex' : 'none';
 
@@ -248,23 +286,24 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
 
-        searchEmpty.hidden = visibleCount !== 0 || bookCards.length === 0;
+        searchEmpty.hidden = !(keyword && visibleCount === 0);
     });
 
 
-    // MODAL HAPUS BUKU
+    // MODAL HAPUS
     const deleteModal = document.getElementById('deleteModal');
     const deleteBookTitle = document.getElementById('deleteBookTitle');
     const deleteBookForm = document.getElementById('deleteBookForm');
     const cancelButton = document.getElementById('btnCancelDelete');
     const deleteButtons = document.querySelectorAll('.btn-action-delete');
 
-    function openDeleteModal(id, title) {
-        deleteBookTitle.textContent = '"' + title + '"';
-        deleteBookForm.action = "{{ url('/buku') }}/" + id;
+    function openDeleteModal(button) {
+        deleteBookTitle.textContent = '"' + button.dataset.title + '"';
+        deleteBookForm.action = button.dataset.deleteUrl;
 
         deleteModal.classList.add('show');
         document.body.style.overflow = 'hidden';
+
         cancelButton.focus();
     }
 
@@ -275,10 +314,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     deleteButtons.forEach(function (button) {
         button.addEventListener('click', function () {
-            openDeleteModal(
-                this.dataset.id,
-                this.dataset.title
-            );
+            openDeleteModal(this);
         });
     });
 
@@ -291,7 +327,10 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     document.addEventListener('keydown', function (event) {
-        if (event.key === 'Escape' && deleteModal.classList.contains('show')) {
+        if (
+            event.key === 'Escape' &&
+            deleteModal.classList.contains('show')
+        ) {
             closeDeleteModal();
         }
     });

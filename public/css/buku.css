@@ -1,10 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 
 /* =====================================================
-   DATA BUKU SIPRA
-   ===================================================== */
+   DASAR HALAMAN
+===================================================== */
 
-.buku-page {
+   .buku-page {
     width: 100%;
     min-width: 0;
     min-height: 100%;
@@ -22,40 +22,51 @@
 }
 
 /* =====================================================
-   HEADER
-   ===================================================== */
-    .top-header {
-    width: 100%;
-    height: 70px;
-    padding: 0 30px 0 20px;
+   HEADER PUTIH
+===================================================== */
+.buku-top {
+    width: calc(100% + 70px);
+    min-height: 80px;
 
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 15px;
 
-    background: #ffffff;
-    border-bottom: 1px solid #eeeeee;
+    margin: -20px -12px 10px;
+    padding: 11px 25px;
+
+    background: #fff;
+    border-bottom: 0px solid #e5e9e5;
+
     box-sizing: border-box;
 }
+
+/* JUDUL HEADER */
 
 .buku-title {
     display: flex;
     align-items: center;
     gap: 10px;
+
+    flex: 1 1 auto;
     min-width: 0;
 }
 
 .buku-title-icon {
-    width: 42px;
-    height: 42px;
-    flex: 0 0 42px;
+    width: 50px;
+    height: 50px;
+    flex: 0 0 px;
+
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 11px;
+
     background: #78c47c;
-    color: #ffffff;
-    font-size: 20px;
+    color: #fff;
+    border-radius: 10px;
+
+    font-size: 18px;
 }
 
 .buku-title-text {
@@ -64,277 +75,303 @@
 
 .buku-title h1 {
     margin: 0;
+
     color: #287154;
-    font-family: 'Poppins', sans-serif;
-    font-size: 20px;
+    font-size: 21px;
     font-weight: 700;
     line-height: 1.3;
 }
 
 .buku-title p {
+    max-width: 100%;
     margin: 3px 0 0;
+
     color: #818181;
-    font-family: 'Poppins', sans-serif;
-    font-size: 12   px;
-    line-height: 1.5;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 1.4;
 }
 
-/* =====================================================
-   HEADER ACTIONS
-   ===================================================== */
+/* AKSI HEADER */
 
 .buku-top-actions {
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    gap: 7px;
-    flex-shrink: 0;
+    gap: 5px;
+
+    flex: 0 0 auto;
+    margin-right: 50px;
 }
 
 /* =====================================================
-   SEARCH
-   ===================================================== */
+   PENCARIAN
+===================================================== */
 
 .buku-search {
     position: relative;
-    width: 145px;
-    height: 31px;
-    flex-shrink: 0;
+    width: 170px;
+    height: 35px;
+    flex: 0 0 170px;
 }
 
 .buku-search i {
     position: absolute;
-    left: 10px;
     top: 50%;
+    left: 8px;
     transform: translateY(-50%);
-    color: #777777;
-    font-size: 11px;
+
+    color: #777;
+    font-size: 12px;
     pointer-events: none;
 }
 
 .buku-search input {
     display: block;
+
     width: 100%;
     height: 100%;
-    padding: 0 10px 0 28px;
-    border: 1px solid #dddddd;
+    padding: 0 7px 0 23px;
+
+    border: 1px solid #ddd;
     border-radius: 7px;
     outline: none;
-    background: #ffffff;
-    color: #444444;
-    font-family: 'Poppins', sans-serif;
-    font-size: 9px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.07);
-    transition: border-color 0.2s ease;
-}
 
-.buku-search input::placeholder {
-    color: #999999;
+    background: #fff;
+    color: #444;
+    font-family: 'Poppins', sans-serif;
+    font-size: 11px;
+
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .07);
 }
 
 .buku-search input:focus {
     border-color: #78c47c;
 }
 
-/* =====================================================
-   BUTTON KATEGORI DAN TAMBAH
-   ===================================================== */
+.buku-search input::placeholder {
+    color: #999;
+}
+
+/*----- TOMBOL HEADER ------*/
 
 .btn-kategori,
 .btn-tambah-buku {
-    height: 31px;
+    height: 35px;
+    padding: 0 8px;
+
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 5px;
-    padding: 0 11px;
+    gap: 4px;
+
     border: none;
     border-radius: 6px;
+
+    color: #fff;
     font-family: 'Poppins', sans-serif;
-    font-size: 8px;
+    font-size: 10px;
     font-weight: 600;
     text-decoration: none;
     white-space: nowrap;
+
     cursor: pointer;
-    transition: background 0.2s ease;
+    transition: background .2s ease;
 }
 
 .btn-kategori {
     background: #286e51;
-    color: #ffffff;
 }
 
 .btn-kategori:hover {
     background: #20583f;
-    color: #ffffff;
+    color: #fff;
 }
 
 .btn-tambah-buku {
     background: #78c47c;
-    color: #ffffff;
 }
 
 .btn-tambah-buku:hover {
     background: #65b56a;
-    color: #ffffff;
+    color: #fff;
 }
 
 /* =====================================================
-   JUDUL DAFTAR BUKU
-   ===================================================== */
+   JUDUL DAFTAR
+===================================================== */
 
 .buku-list-title {
     width: 100%;
+    margin: 0 0 9px;
+    padding: 0 14px;
+
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 12px;
-    margin-bottom: 9px;
+    gap: 10px;
 }
 
 .buku-list-title h2 {
     margin: 0;
+
     color: #287154;
-    font-family: 'Poppins', sans-serif;
-    font-size: 14px;
-    font-weight: 700;
+    font-size: 20px;
+    font-weight: 650;
     line-height: 1.4;
 }
 
 .buku-list-title span {
-    color: #777777;
-    font-family: 'Poppins', sans-serif;
-    font-size: 9px;
-    font-weight: 500;
+    color: #777;
+    font-size: 14px;
+    font-weight: 520;
     white-space: nowrap;
 }
 
 /* =====================================================
-   LIST BUKU
-   ===================================================== */
+   DAFTAR BUKU
+===================================================== */
 
 .buku-list {
     width: 100%;
+    margin: 0;
+    padding: 0 14px;
+
     display: flex;
     flex-direction: column;
     gap: 8px;
 }
 
 /* =====================================================
-   CARD BUKU
-   ===================================================== */
+   KARTU BUKU
+===================================================== */
 
 .buku-card {
-    position: relative;
     width: 100%;
-    min-height: 66px;
+    min-height: 95px;
+    padding: 5px 10px;
+
     display: flex;
     align-items: center;
     gap: 0;
-    padding: 7px 12px;
+
+    position: relative;
+    overflow: hidden;
+
+    background: #fff;
     border: 1px solid #e8e8e8;
     border-radius: 9px;
-    background: #ffffff;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.10);
-    overflow: hidden;
-    transition: box-shadow 0.2s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, .12);
+
+    transition: box-shadow .2s ease;
 }
 
 .buku-card:hover {
-    box-shadow: 0 4px 9px rgba(0, 0, 0, 0.13);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, .14);
 }
 
 /* =====================================================
-   COVER
-   ===================================================== */
+   SAMPUL
+===================================================== */
 
 .buku-cover-box {
-    width: 42px;
-    height: 52px;
-    flex: 0 0 42px;
+    width: 49px;
+    height: 70px;
+    flex: 0 0 49px;
+
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-right: 12px;
-    border-radius: 4px;
+
+    margin-right: 10px;
     overflow: hidden;
-    background: #f0f2f0;
+
+    background: #eef3ee;
+    border-radius: 4px;
 }
 
 .buku-cover {
     display: block;
+
     width: 100%;
     height: 100%;
+
     object-fit: cover;
     object-position: center;
-    margin: 0;
-    padding: 0;
 }
 
 .buku-no-cover {
     width: 100%;
     height: 100%;
+
     display: flex;
     align-items: center;
     justify-content: center;
+
     background: #eef4ee;
-    color: #77b97c;
-    font-size: 18px;
+    color: #78b97c;
+
+    font-size: 17px;
 }
 
 /* =====================================================
    INFORMASI BUKU
-   ===================================================== */
+===================================================== */
 
 .buku-info {
     flex: 1 1 auto;
     min-width: 0;
+
     display: flex;
     flex-direction: column;
     justify-content: center;
+
     overflow: hidden;
 }
 
 .buku-info h3 {
     width: 100%;
-    margin: 0 0 2px;
+    margin: 0 0 1px;
+
     overflow: hidden;
+
     color: #287154;
-    font-family: 'Poppins', sans-serif;
-    font-size: 11px;
+    font-size: 17px;
     font-weight: 700;
     line-height: 1.4;
-    text-overflow: ellipsis;
+
     white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 .buku-pengarang {
     margin: 0;
     overflow: hidden;
-    color: #555555;
-    font-family: 'Poppins', sans-serif;
-    font-size: 9px;
+
+    color: #555;
+    font-size: 12px;
     font-weight: 500;
-    line-height: 1.4;
-    text-overflow: ellipsis;
+    line-height: 1.35;
+
     white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 .buku-penerbit {
     margin: 1px 0 0;
     overflow: hidden;
-    color: #777777;
-    font-family: 'Poppins', sans-serif;
-    font-size: 8px;
-    font-weight: 400;
-    line-height: 1.4;
-    text-overflow: ellipsis;
+
+    color: #777;
+    font-size: 12px;
+    line-height: 1.35;
+
     white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 .detail-separator {
-    margin: 0 3px;
-    color: #999999;
+    margin: 0 2px;
+    color: #999;
 }
 
 .buku-detail {
@@ -342,13 +379,13 @@
     align-items: center;
     flex-wrap: wrap;
     gap: 2px;
-    margin-top: 2px;
+
+    margin-top: 1px;
     overflow: hidden;
+
     color: #858585;
-    font-family: 'Poppins', sans-serif;
-    font-size: 7px;
-    font-weight: 400;
-    line-height: 1.4;
+    font-size: 10px;
+    line-height: 1.35;
 }
 
 .buku-detail span {
@@ -357,36 +394,36 @@
 
 .buku-detail i {
     margin-right: 2px;
-    font-size: 8px;
+    font-size: 7px;
 }
 
 /* =====================================================
-   BAGIAN KANAN
-   ===================================================== */
+   STATUS DAN AKSI KANAN
+===================================================== */
 
 .buku-right {
     flex: 0 0 auto;
+
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    gap: 10px;
-    margin-left: 14px;
+    gap: 8px;
+
+    margin-left: 10px;
 }
 
-/* =====================================================
-   STATUS
-   ===================================================== */
-
 .status {
-    min-width: 53px;
-    min-height: 21px;
+    min-width: 50px;
+    min-height: 20px;
+    padding: 5px 7px;
+
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 3px 8px;
-    border-radius: 12px;
-    font-family: 'Poppins', sans-serif;
-    font-size: 7px;
+
+    border-radius: 15px;
+
+    font-size: 11px;
     font-weight: 600;
     line-height: 1.3;
     text-align: center;
@@ -399,13 +436,9 @@
 }
 
 .status.tidak-tersedia {
-    background: #ffe1e1;
+    background: #ffdddd;
     color: #e84b4b;
 }
-
-/* =====================================================
-   TOMBOL AKSI
-   ===================================================== */
 
 .buku-buttons {
     display: flex;
@@ -414,32 +447,32 @@
 }
 
 .buku-btn {
-    width: 25px;
-    height: 25px;
-    flex: 0 0 25px;
+    width: 30px;
+    height: 30px;
+    flex: 0 0 30px;
+    padding: 0;
+
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 0;
+
     border: none;
     border-radius: 6px;
-    background: #e2e2e2;
-    color: #777777;
+
+    background: #e1e1e1;
+    color: #777;
+
     font-family: 'Poppins', sans-serif;
-    font-size: 10px;
+    font-size: 12px;
     text-decoration: none;
+
     cursor: pointer;
-    transition: background 0.2s ease, color 0.2s ease;
+    transition: background .2s ease, color .2s ease;
 }
 
 .buku-btn:hover {
     background: #d1d1d1;
     color: #286e51;
-}
-
-.btn-action-delete {
-    background: #e2e2e2;
-    color: #777777;
 }
 
 .btn-action-delete:hover {
@@ -448,21 +481,23 @@
 }
 
 /* =====================================================
-   EMPTY STATE
-   ===================================================== */
+   KONDISI KOSONG
+===================================================== */
 
 .buku-empty {
     width: 100%;
-    min-height: 105px;
+    min-height: 100px;
+
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    border: 1px solid #eeeeee;
+
+    background: #fff;
+    border: 1px solid #eee;
     border-radius: 9px;
-    background: #ffffff;
-    color: #999999;
-    font-family: 'Poppins', sans-serif;
+
+    color: #999;
     font-size: 10px;
 }
 
@@ -482,17 +517,19 @@
 
 /* =====================================================
    MODAL HAPUS
-   ===================================================== */
+===================================================== */
 
 .delete-modal-overlay {
     position: fixed;
     inset: 0;
     z-index: 9999;
+
     display: none;
     align-items: center;
     justify-content: center;
+
     padding: 20px;
-    background: rgba(34, 48, 42, 0.45);
+    background: rgba(34, 48, 42, .45);
 }
 
 .delete-modal-overlay.show {
@@ -500,63 +537,50 @@
 }
 
 .delete-modal {
-    width: 380px;
+    width: 350px;
     max-width: 100%;
-    padding: 28px 30px 25px;
-    border-radius: 16px;
-    background: #ffffff;
+    padding: 25px 26px 22px;
+
+    border-radius: 14px;
+    background: #fff;
     text-align: center;
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.18);
-    animation: deleteModalShow 0.2s ease;
-}
-
-@keyframes deleteModalShow {
-    from {
-        opacity: 0;
-        transform: scale(0.95) translateY(6px);
-    }
-
-    to {
-        opacity: 1;
-        transform: scale(1) translateY(0);
-    }
+    box-shadow: 0 15px 40px rgba(0, 0, 0, .18);
 }
 
 .delete-icon {
-    width: 50px;
-    height: 50px;
+    width: 48px;
+    height: 48px;
+    margin: 0 auto 12px;
+
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0 auto 13px;
+
     border-radius: 50%;
     background: #ffe9e9;
     color: #f15b5b;
 }
 
 .delete-icon i {
-    font-size: 22px;
+    font-size: 21px;
 }
 
 .delete-modal h3 {
     margin: 0;
-    color: #333333;
-    font-family: 'Poppins', sans-serif;
-    font-size: 18px;
+    color: #333;
+    font-size: 17px;
     font-weight: 700;
 }
 
 .delete-modal p {
-    margin: 10px 0 22px;
-    color: #888888;
-    font-family: 'Poppins', sans-serif;
-    font-size: 11px;
+    margin: 10px 0 20px;
+    color: #888;
+    font-size: 10px;
     line-height: 1.7;
 }
 
 .delete-modal p strong {
-    color: #555555;
-    font-weight: 600;
+    color: #555;
 }
 
 .delete-modal-buttons {
@@ -573,25 +597,27 @@
 
 .btn-cancel-delete,
 .btn-confirm-delete {
-    min-width: 88px;
-    height: 34px;
+    min-width: 82px;
+    height: 33px;
+    padding: 0 13px;
+
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 5px;
-    padding: 0 15px;
-    border: none;
+
+    border: 0;
     border-radius: 7px;
+
     font-family: 'Poppins', sans-serif;
     font-size: 10px;
     font-weight: 600;
     cursor: pointer;
-    transition: background 0.2s ease;
 }
 
 .btn-cancel-delete {
-    background: #eeeeee;
-    color: #666666;
+    background: #eee;
+    color: #666;
 }
 
 .btn-cancel-delete:hover {
@@ -600,7 +626,7 @@
 
 .btn-confirm-delete {
     background: #f15b5b;
-    color: #ffffff;
+    color: #fff;
 }
 
 .btn-confirm-delete:hover {
@@ -609,72 +635,75 @@
 
 /* =====================================================
    RESPONSIVE
-   ===================================================== */
+===================================================== */
 
-@media (max-width: 1100px) {
-    .buku-page {
-        padding-right: 10px;
-        padding-left: 10px;
-    }
-
+@media (max-width: 900px) {
     .buku-top {
-        flex-wrap: wrap;
-        gap: 12px;
-    }
-
-    .buku-top-actions {
-        flex-wrap: wrap;
-    }
-
-    .buku-search {
-        width: 150px;
-    }
-
-    .buku-right {
         gap: 7px;
-        margin-left: 10px;
+        padding: 0 10px;
     }
-}
 
-@media (max-width: 800px) {
-    .buku-top {
-        align-items: flex-start;
+    .buku-title {
+        gap: 7px;
+    }
+
+    .buku-title-icon {
+        width: 34px;
+        height: 34px;
+        flex-basis: 34px;
+        font-size: 17px;
+    }
+
+    .buku-title h1 {
+        font-size: 15px;
     }
 
     .buku-title p {
-        max-width: 280px;
+        font-size: 7px;
+    }
+
+    .buku-search {
+        width: 105px;
+        flex-basis: 105px;
+    }
+
+    .btn-kategori,
+    .btn-tambah-buku {
+        padding: 0 7px;
+        font-size: 6px;
     }
 
     .buku-top-actions {
-        justify-content: flex-start;
-    }
-
-    .buku-card {
-        padding: 8px;
-    }
-
-    .buku-cover-box {
-        margin-right: 9px;
-    }
-
-    .buku-right {
-        flex-direction: column;
-        align-items: flex-end;
-        gap: 6px;
+        gap: 4px;
     }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 540px) {
     .buku-top {
-        flex-direction: column;
-        align-items: stretch;
+        height: auto;
+        min-height: 80px;
+        padding: 12px 10px;
+
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .buku-title {
+        flex: 1 1 100%;
+    }
+
+    .buku-title h1 {
+        font-size: 16px;
+    }
+
+    .buku-title p {
+        font-size: 8px;
     }
 
     .buku-top-actions {
         width: 100%;
         display: grid;
         grid-template-columns: minmax(0, 1fr) auto auto;
-        gap: 6px;
     }
 
     .buku-search {
@@ -682,31 +711,46 @@
         min-width: 0;
     }
 
-    .btn-kategori,
-    .btn-tambah-buku {
-        padding: 0 8px;
-        font-size: 8px;
+    .buku-list-title,
+    .buku-list {
+        padding-left: 10px;
+        padding-right: 10px;
     }
 
     .buku-card {
-        min-height: 76px;
-        align-items: center;
-        padding: 8px;
+        padding: 6px;
     }
 
     .buku-cover-box {
-        width: 38px;
-        height: 49px;
-        flex-basis: 38px;
+        width: 34px;
+        height: 46px;
+        flex-basis: 34px;
+        margin-right: 7px;
+    }
+
+    .buku-info h3 {
+        font-size: 9px;
+    }
+
+    .buku-pengarang {
+        font-size: 7px;
+    }
+
+    .buku-penerbit,
+    .buku-detail {
+        font-size: 6px;
     }
 
     .buku-right {
-        margin-left: 6px;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 4px;
+        margin-left: 5px;
     }
 
     .status {
         min-width: 0;
-        padding: 3px 6px;
+        padding: 3px 5px;
         font-size: 6px;
     }
 
@@ -715,16 +759,9 @@
     }
 
     .buku-btn {
-        width: 23px;
-        height: 23px;
-        flex-basis: 23px;
-    }
-
-    .buku-detail {
-        font-size: 6px;
-    }
-
-    .buku-title h1 {
-        font-size: 17px;
+        width: 21px;
+        height: 21px;
+        flex-basis: 21px;
+        font-size: 8px;
     }
 }

@@ -7,17 +7,15 @@ use Illuminate\Http\Request;
 
 class BukuController extends Controller
 {
-    public function index()
-    {
-        $bukus = Buku::latest()->get();
+    public function index(Request $request)
+{
+     $bukus = \App\Models\Buku::all();
 
-        $totalBuku = Buku::count();
+    $totalBuku = \App\Models\Buku::count();
 
-        return view('buku.index', compact(
-            'bukus',
-            'totalBuku'
-        ));
-    }
+    return view('buku.index', compact('bukus', 'totalBuku'));
+
+}
 
     public function create()
     {

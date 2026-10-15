@@ -9,10 +9,9 @@
 <div class="peminjaman-page">
 
     {{-- HEADER --}}
+    <header class="top-header">
+        
     <div class="page-header">
-
-        <div class="page-title-wrapper">
-
             <div class="page-icon">
                 <i class="bi bi-journal-bookmark-fill"></i>
             </div>

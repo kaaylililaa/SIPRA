@@ -1,97 +1,66 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Kategori - SIPRA</title>
 
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: #f7f3ef;
-            padding: 40px;
-        }
+@extends('layouts.app')
 
-        .container {
-            max-width: 600px;
-            margin: auto;
-            background: white;
-            padding: 30px;
-            border-radius: 15px;
-        }
+@section('title', 'Edit Kategori - SIPRA')
 
-        h1 {
-            color: #5c3d2e;
-        }
+@section('content')
+<div class="kategori-page">
+    <div class="kategori-header">
+        <div>
+            <h1>EDIT KATEGORI</h1>
+            <p>Perbarui informasi kategori buku perpustakaan.</p>
+        </div>
+    </div>
 
-        label {
-            display: block;
-            margin-bottom: 8px;
-        }
+    <div class="kategori-card form-kategori-card">
+        <form action="{{ route('kategori.update', $kategori->id) }}"
+              method="POST">
+            @csrf
+            @method('PUT')
 
-        input {
-            width: 100%;
-            padding: 12px;
-            box-sizing: border-box;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            margin-bottom: 15px;
-        }
+            <div class="form-kategori-heading">
+                <div class="modal-icon">
+                    <i class="bi bi-pencil-square"></i>
+                </div>
+                <div>
+                    <h2>Informasi Kategori</h2>
+                    <p>Ubah nama kategori sesuai kebutuhan.</p>
+                </div>
+            </div>
 
-        .btn {
-            padding: 10px 16px;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            text-decoration: none;
-        }
+            @if($errors->any())
+                <div class="alert-error-kategori">
+                    @foreach($errors->all() as $error)
+                        <div>{{ $error }}</div>
+                    @endforeach
+                </div>
+            @endif
 
-        .simpan {
-            background: #6f4e37;
-            color: white;
-        }
+            <div class="field-kategori">
+                <label for="nama_kategori">Nama Kategori</label>
+                <input type="text"
+                       name="nama_kategori"
+                       id="nama_kategori"
+                       value="{{ old('nama_kategori', $kategori->nama_kategori) }}"
+                       maxlength="100"
+                       required>
+                <small>Pastikan nama kategori sudah benar.</small>
+            </div>
 
-        .kembali {
-            background: #ddd;
-            color: #333;
-        }
-    </style>
-</head>
-
-<body>
-
-<div class="container">
-
-    <h1>Edit Kategori</h1>
-
-    <form action="{{ route('kategori.update', $kategori->id) }}" method="POST">
-
-        @csrf
-        @method('PUT')
-
-        <label for="nama_kategori">
-            Nama Kategori
-        </label>
-
-        <input
-            type="text"
-            id="nama_kategori"
-            name="nama_kategori"
-            value="{{ old('nama_kategori', $kategori->nama_kategori) }}"
-            required
-        >
-
-        <button type="submit" class="btn simpan">
-            Simpan Perubahan
-        </button>
-
-        <a href="{{ route('kategori.index') }}" class="btn kembali">
-            Kembali
-        </a>
-
-    </form>
-
+            <div class="form-kategori-actions">
+                <a href="{{ route('kategori.index') }}" class="btn-batal">
+                    Batal
+                </a>
+                <button type="submit" class="btn-simpan">
+                    <i class="bi bi-check-lg"></i>
+                    Simpan Perubahan
+                </button>
+            </div>
+        </form>
+    </div>
 </div>
+@endsection
 
-</body>
-</html>
+@push('styles')
+<link rel="stylesheet" href="{{ asset('css/kategori.css') }}">
+@endpush

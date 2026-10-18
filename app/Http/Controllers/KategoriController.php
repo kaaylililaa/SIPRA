@@ -5,13 +5,14 @@ namespace App\Http\Controllers;
 use App\Models\Kategori;
 use Illuminate\Http\Request;
 
+
 class KategoriController extends Controller
 {
     public function index()
     {
-          $kategoris = Kategori::with('buku')->get();
+        $kategori = \App\Models\Kategori::latest()->get();
 
-        return view('kategori.index', compact('kategoris'));
+        return view('kategori.index', compact('kategori'));
     }
 
     public function create()

@@ -5,6 +5,8 @@
 <div class="create-book-page">
 
     {{-- HEADER --}}
+    <header class="buku-create-top">
+        
     <div class="create-book-header">
 
         <div class="create-book-title-icon">

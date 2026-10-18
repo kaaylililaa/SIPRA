@@ -1,49 +1,24 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+@extends('layouts.app')
 
-    <title>Dashboard - SIPRA</title>
+@section('title', 'Dashboard - SIPRA')
 
-    {{-- Bootstrap Icons --}}
-    <link rel="stylesheet"
-          href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+@section('content')
 
-    {{-- CSS Dashboard --}}
-    <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/sidebar.css') }}">   
-</head>
+<header class="top-header">
+    <div class="header-title">
+        <h1>DASHBOARD</h1>
+        <p>Perpustakaan Desa Rajeg Bersatu</p>
+    </div>
 
-<body>
+    <div class="header-user">
+        <strong>{{ Auth::user()->name ?? 'Kay' }}</strong>
+        <span>Administrator</span>
+    </div>
+</header>
 
-<div class="dashboard-wrapper">
+<section class="content">
 
-    @include('layouts.partials.sidebar')
-    
-    {{-- ================= MAIN CONTENT ================= --}}
-    <main class="main-content">
-
-        {{-- HEADER --}}
-        <header class="top-header">
-
-            <div class="header-title">
-                <h1>DASHBOARD</h1>
-                <p>Perpustakaan Desa Rajeg Bersatu</p>
-            </div>
-
-            <div class="header-user">
-                <strong>{{ Auth::user()->name ?? 'Kay' }}</strong>
-                <span>Administrator</span>
-            </div>
-
-        </header>
-
-
-        {{-- CONTENT --}}
-        <section class="content">
-
-            {{-- WELCOME CARD --}}
+      {{-- WELCOME CARD --}}
             <div class="welcome-card">
 
                 <div class="welcome-text">
@@ -148,62 +123,35 @@
             <div class="dashboard-bottom">
 
                 {{-- BUKU TERBARU --}}
-                <div class="latest-books card-box">
+            
+<div class="dashboard-card buku-terbaru-card">
+    <h3>Buku Terbaru</h3>
 
-                    <div class="card-header">
-                        <h3>Buku Terbaru</h3>
-                    </div>
-
-                    @if(isset($bukuTerbaru) && $bukuTerbaru->count() > 0)
-@foreach ($bukuTerbaru->take(1) as $buku)
-
-    <div class="latest-book-item">
-
-        <div class="book-cover">
-
-            @if ($buku->gambar_sampul)
-
-                @php
-                    $gambar = ltrim($buku->gambar_sampul, '/');
-
-                    if (!str_starts_with($gambar, 'uploads/')) {
-                        $gambar = 'uploads/' . $gambar;
-                    }
-                @endphp
-
-                <img
-                    src="{{ asset($gambar) }}"
-                    alt="{{ $buku->judul_buku }}"
-                >
-
-            @else
-
-                <div class="no-cover">
-                    <i class="bi bi-book"></i>
-                </div>
-
-            @endif
-
-        </div>
-
-        <div class="book-title">
-            {{ $buku->judul_buku }}
-        </div>
-
-    </div>
-
-@endforeach
-
+    <div class="buku-terbaru-list">
+        @forelse ($bukuTerbaru->take(3) as $buku)
+            <div class="buku-terbaru-item">
+                <div class="buku-terbaru-sampul">
+                    @if ($buku->gambar_sampul)
+                        <img
+                            src="{{ asset('uploads/sampul/' . basename($buku->gambar_sampul)) }}"
+                            alt="{{ $buku->judul_buku }}"
+                        >
                     @else
-
-                        <div class="empty-book">
-                            Belum ada buku terbaru.
+                        <div class="sampul-kosong">
+                            <i class="bi bi-book"></i>
                         </div>
-
                     @endif
-
                 </div>
 
+                <div class="buku-terbaru-info">
+                    <span>{{ $buku->judul_buku }}</span>
+                </div>
+            </div>
+        @empty
+            <p class="buku-kosong">Belum ada buku.</p>
+        @endforelse
+    </div>
+</div>
 
                 {{-- AKTIVITAS --}}
                 <div class="activity-card card-box">
@@ -229,17 +177,6 @@
                             <p>Buku berhasil dikembalikan</p>
                         </div>
 
-                    </div>
+</section>
 
-                </div>
-
-            </div>
-
-        </section>
-
-    </main>
-
-</div>
-
-</body>
-</html>
+@endsection

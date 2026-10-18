@@ -17,13 +17,13 @@
     display: flex;
     align-items: center;
     gap: 12px;
-    margin-bottom: 28px;
+    margin-bottom: 30px;
 }
 
 .create-book-title-icon {
-    width: 36px;
-    height: 36px;
-    border-radius: 11px;
+    width: 45px;
+    height: 45px;
+    border-radius: 15px;
     background: #78c47c;
 
     display: flex;
@@ -31,14 +31,14 @@
     justify-content: center;
 
     color: white;
-    font-size: 19px;
+    font-size: 26px;
     flex-shrink: 0;
 }
 
 .create-book-header h1 {
     margin: 0;
     color: #27795f;
-    font-size: 22px;
+    font-size: 28px;
     font-weight: 700;
     line-height: 1.1;
 }
@@ -46,7 +46,7 @@
 .create-book-header p {
     margin: 3px 0 0;
     color: #999;
-    font-size: 7px;
+    font-size: 11px;
     font-weight: 400;
 }
 
@@ -54,13 +54,13 @@
 /* ================= CARD ================= */
 
 .create-book-card {
-   width: calc(100% - 20px);
-    max-width: 1100px;
+   width: calc(100% - 9px);
+    max-width: 1150px;
     margin: 0 auto;
 
     background: #fff;
     border-radius: 20px;
-    padding: 25px 28px;
+    padding: 25px 30px;
     box-shadow: 0 3px 10px rgba(0, 0, 0, 0.14);
 }
 
@@ -70,7 +70,7 @@
 .create-book-layout {
     display: grid;
 
-    grid-template-columns: 177px minmax(0, 1fr);
+    grid-template-columns: 180px minmax(0, 1fr);
 
     column-gap: 18px;
 
@@ -91,7 +91,7 @@
 
     color: #555;
 
-    font-size: 10px;
+    font-size: 15px;
     font-weight: 600;
 }
 
@@ -141,7 +141,7 @@
 
     color: #27795f;
 
-    font-size: 25px;
+    font-size: 28px;
 
     margin-bottom: 8px;
 }
@@ -208,7 +208,7 @@
 
     color: #777;
 
-    font-size: 9px;
+    font-size: 11px;
 }
 
 .remove-preview {
@@ -289,8 +289,8 @@
 
     color: #777;
 
-    font-size: 8px;
-    font-weight: 400;
+    font-size: 30px;
+    font-weight: 900;
 }
 
 .form-group input,
@@ -313,7 +313,7 @@
 
     font-family: "Poppins", sans-serif;
 
-    font-size: 9px;
+    font-size: 15px;
 
     transition: border-color 0.2s ease;
 }
@@ -362,7 +362,7 @@
 
     color: #999;
 
-    font-size: 9px;
+    font-size: 11px;
 
     pointer-events: none;
 }
@@ -396,7 +396,7 @@
 
 .btn-cancel,
 .btn-save {
-    height: 25px;
+    height: 30px;
 
     border-radius: 5px;
 
@@ -406,7 +406,7 @@
 
     font-family: "Poppins", sans-serif;
 
-    font-size: 7px;
+    font-size: 11px;
 
     display: inline-flex;
 
@@ -422,12 +422,12 @@
 
 .btn-cancel {
     background: #d9d9d9;
-    color: #777;
+    color: #2c2c2c;
 }
 
 .btn-cancel:hover {
     background: #cecece;
-    color: #666;
+    color: #3b3b3b;
 }
 
 .btn-save {
@@ -441,7 +441,7 @@
 
 .btn-save i {
     margin-right: 3px;
-    font-size: 8px;
+    font-size: 11px;
 }
 
 

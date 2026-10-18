@@ -22,9 +22,11 @@ body {
 ========================================= */
 
 .dashboard-wrapper {
-    display: flex;
-    min-height: 100vh;
-    width: 100%;
+    display: flex !important;
+    min-height: 0 !important;
+    height: auto !important;
+    width: 100% !important;
+    align-items: stretch !important;
 }
 
 /* =========================================
@@ -44,7 +46,7 @@ body {
 .top-header {
     height: 90px;
 
-    background: #fff;
+    background: #f8f9f8;
 
     padding: 0 34px 0 18px;
 
@@ -440,19 +442,56 @@ body {
    BUKU TERBARU
 ========================================= */
 
-.latest-book-item {
-    width: 230px;
-    height: 54px;
+.buku-terbaru-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 12px;
+}
 
+.buku-terbaru-item {
     display: flex;
     align-items: center;
-
-    background: #287154;
-
-    border-radius: 6px;
-
+    width: 250px;
+    max-width: 100%;
+    height: 55px;
+    flex-shrink: 0;
     overflow: hidden;
+    background: #287658;
+    border-radius: 6px;
 }
+
+.buku-terbaru-sampul {
+    width: 46px;
+    height: 55px;
+    flex-shrink: 0;
+    padding: 4px;
+    background: #74c982;
+}
+
+.buku-terbaru-sampul img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: 3px;
+}
+
+.buku-terbaru-info {
+    flex: 1;
+    min-width: 0;
+    padding: 0 8px;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.buku-terbaru-info span {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
 
 .book-cover {
     width: 48px;
@@ -527,7 +566,7 @@ body {
 .activity-item p {
     color: #888;
 
-    font-size: 8px;
+    font-size: 11px;
 
     margin: 0;
 }
@@ -814,18 +853,41 @@ body {
 
 /* HEADER */
 .top-header {
-    height: 80px !important;
-    padding: 0 30px 0 20px !important;
+    width: calc(100% + 70px) !important;
+    min-height: 80px !important;
+
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 15px !important;
+
+    margin: -20px -12px 10px !important;
+    padding: 11px 75px !important;
+}
+
+.header-title {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    text-align: left !important;
+    position: relative !important;
+    left: -38px !important;
 }
 
 .header-title h1 {
-    font-size: 20px !important;
-    letter-spacing: .2px;
+    font-size: 23px;
+    font-weight: 700;
+    margin: 0 !important;
+    text-align: left !important;
+    line-height: 1.2 !important;
 }
 
 .header-title p {
-    margin-top: 3px !important;
-    font-size: 12px !important;
+    font-size: 13px !important;
+    font-weight: 500 !important;
+    margin-bottom: 0 !important;
+    text-align: left !important;
+    line-height: 1.2 !important;
 }
 
 .header-user strong {
@@ -1157,4 +1219,80 @@ body {
         left: 6px;
         right: 6px;
     }
+}
+
+
+/* Card putih Buku Terbaru */
+.buku-terbaru-card {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 16px;
+    min-width: 0;
+    min-height: 195px;
+    box-sizing: border-box;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.10);
+}
+
+.buku-terbaru-card h3 {
+    margin: 0;
+    color: #287658;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.buku-terbaru-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 12px;
+}
+
+/* Menghilangkan ruang kosong berlebih di dashboard */
+.dashboard-container,
+.dashboard-content {
+    height: auto;
+    min-height: 0;
+    padding-bottom: 20px;
+}
+
+/* Konten utama mengikuti tinggi isinya */
+main {
+    min-height: 0;
+}
+
+/* PERBAIKAN TINGGI DASHBOARD */
+html,
+body {
+    height: auto;
+    min-height: 100%;
+}
+
+.dashboard-wrapper {
+    min-height: 100vh;
+    height: auto;
+    align-items: stretch;
+}
+
+.main-content {
+    min-height: 0;
+    height: auto;
+    flex: 1;
+}
+
+.main-content .content {
+    height: auto;
+    min-height: 0;
+    padding-bottom: 20px !important;
+}
+
+.dashboard-bottom {
+    height: auto;
+    align-items: stretch;
+    margin-bottom: 0 !important;
+}
+
+.buku-terbaru-card,
+.activity-card {
+    height: auto;
+    min-height: 145px;
 }

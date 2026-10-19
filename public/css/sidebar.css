@@ -246,3 +246,61 @@
         padding-top: 16px;
     }
 }
+
+
+/* SIDEBAR PATEN SAAT HALAMAN DI-SCROLL */
+.sipra-sidebar {
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    height: 100vh !important;
+    min-height: 100vh !important;
+    overflow-y: auto;
+    z-index: 1000;
+}
+
+/* KONTEN TETAP DI SEBELAH SIDEBAR */
+.sipra-layout {
+    display: block;
+    min-height: 100vh;
+}
+
+.sipra-layout > .main-content {
+    margin-left: 175px;
+    width: calc(100% - 175px);
+    min-height: 100vh;
+    box-sizing: border-box;
+}
+
+
+/* LAYOUT SIDEBAR PATEN TANPA MENUTUP KONTEN */
+.sipra-layout {
+    display: flex;
+    align-items: flex-start;
+    min-height: 100vh;
+}
+
+/* SIDEBAR TETAP DI KIRI */
+.sipra-layout > .sipra-sidebar {
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    width: 175px !important;
+    min-width: 175px !important;
+    max-width: 175px !important;
+    height: 100vh !important;
+    min-height: 100vh !important;
+    flex: 0 0 175px !important;
+    overflow-y: auto;
+    z-index: 1000;
+}
+
+/* KONTEN DIMULAI SETELAH SIDEBAR */
+.sipra-layout > .main-content {
+    margin-left: 175px !important;
+    width: calc(100% - 175px) !important;
+    min-width: 0;
+    min-height: 100vh;
+    flex: 1 1 auto;
+    box-sizing: border-box;
+}

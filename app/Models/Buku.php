@@ -21,4 +21,9 @@ class Buku extends Model
         'kode_perpus',
         'gambar_sampul',
     ];
+
+     public function kategori()
+    {
+        return $this->belongsTo(Kategori::class, 'kategori_id');
+    }
 }

@@ -6,50 +6,6 @@
 
 <div class="buku-page">
 
- @include('layouts.partials.sidebar')
-
-    {{-- HEADER PUTIH --}}
-    <header class="buku-top">
-
-        <div class="buku-title">
-            <div class="buku-title-icon">
-                <i class="bi bi-book-half"></i>
-            </div>
-
-            <div class="buku-title-text">
-                <h1>Data Buku</h1>
-                <p>Kelola seluruh koleksi buku Perpustakaan Desa Rajeg Bersatu.</p>
-            </div>
-        </div>
-
-        <div class="buku-top-actions">
-
-            <div class="buku-search">
-                <i class="bi bi-search"></i>
-                <input
-                    type="text"
-                    id="searchBuku"
-                    placeholder="Cari Buku..."
-                    autocomplete="off"
-                    aria-label="Cari buku"
-                >
-            </div>
-
-            <a href="{{ route('kategori.index') }}" class="btn-kategori">
-                <i class="bi bi-funnel-fill"></i>
-                <span>Kategori</span>
-            </a>
-
-            <a href="{{ route('buku.create') }}" class="btn-tambah-buku">
-                <i class="bi bi-plus-lg"></i>
-                <span>Tambah Buku</span>
-            </a>
-
-        </div>
-
-    </header>
-
-
     {{-- JUDUL DAFTAR BUKU --}}
     <div class="buku-list-title">
         <h2>Daftar Buku</h2>
@@ -177,16 +133,14 @@
                             <i class="bi bi-pencil"></i>
                         </a>
 
+                        
                         <button
                             type="button"
-                            class="buku-btn btn-action-delete"
-                            data-id="{{ $buku->id }}"
-                            data-title="{{ $buku->judul_buku }}"
-                            data-delete-url="{{ route('buku.destroy', $buku->id) }}"
-                            title="Hapus buku"
-                            aria-label="Hapus buku"
+                            class="btn-hapus-data"
+                            onclick="bukaPopupHapusData({{ $buku->id }}, {{ Js::from($buku->judul_buku) }})"
                         >
                             <i class="bi bi-trash"></i>
+                            Hapus
                         </button>
 
                     </div>
@@ -336,6 +290,75 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
 });
+</script>
+
+
+{{-- POPUP HAPUS BUKU --}}
+<div class="popup-overlay" id="popupHapusData" aria-hidden="true">
+    <div class="popup-hapus" role="dialog" aria-modal="true">
+        <div class="popup-icon">
+            <i class="bi bi-trash3"></i>
+        </div>
+
+        <h3>Hapus Buku?</h3>
+
+        <p>
+            Kamu yakin ingin menghapus buku
+            <strong id="judulBukuHapus"></strong>?
+            Data yang dihapus tidak dapat dikembalikan.
+        </p>
+
+        <div class="popup-actions">
+            <button type="button"
+                    class="popup-btn-batal"
+                    onclick="tutupPopupHapusData()">
+                Batal
+            </button>
+
+            <form id="formHapusData" method="POST">
+                @csrf
+                @method('DELETE')
+
+                <button type="submit" class="popup-btn-hapus">
+                    Ya, Hapus
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    function bukaPopupHapusData(id, judul) {
+        document.getElementById('judulBukuHapus').textContent = judul;
+
+        document.getElementById('formHapusData').action =
+            `/buku/${id}`;
+
+        const popup = document.getElementById('popupHapusData');
+        popup.classList.add('aktif');
+        popup.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function tutupPopupHapusData() {
+        const popup = document.getElementById('popupHapusData');
+        popup.classList.remove('aktif');
+        popup.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+    }
+
+    document.getElementById('popupHapusData')
+        .addEventListener('click', function (event) {
+            if (event.target === this) {
+                tutupPopupHapusData();
+            }
+        });
+
+    document.addEventListener('keydown', function (event) {
+        if (event.key === 'Escape') {
+            tutupPopupHapusData();
+        }
+    });
 </script>
 
 @endsection

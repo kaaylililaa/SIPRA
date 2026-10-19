@@ -5,20 +5,32 @@
 <div class="create-book-page">
 
     {{-- HEADER --}}
-    <header class="buku-create-top">
-        
-    <div class="create-book-header">
+      <!-- Header -->
+        <header class="page-header">
 
-        <div class="create-book-title-icon">
-            <i class="bi bi-plus-lg"></i>
-        </div>
+            <div class="header-left">
 
-        <div>
-            <h1>Tambah Buku</h1>
-            <p>Tambahkan koleksi buku baru ke Perpustakaan Desa Rajeg Bersatu.</p>
-        </div>
+                <div class="header-icon">
+                    <i class="bi bi-book-half"></i>
+                </div>
 
-    </div>
+                <div class="header-text">
+                    <h1>Detail Buku</h1>
+
+                    <p>
+                        Informasi lengkap koleksi buku perpustakaan.
+                    </p>
+                </div>
+
+            </div>
+
+            <a href="{{ route('buku.index') }}" class="back-link">
+                <i class="bi bi-arrow-left"></i>
+                Kembali
+            </a>
+
+        </header>
+
 
 
     {{-- FORM CARD --}}
@@ -236,45 +248,39 @@
                     {{-- CATEGORY --}}
                     <div class="form-group category-group">
 
-                        <label for="kategori_id">
-                            kategori Buku
-                        </label>
+    <label for="kategori_id">Kategori Buku</label>
 
-                        <div class="select-wrapper">
+    <div class="select-wrapper">
+        <i class="bi bi-book-half category-book-icon"></i>
 
-                            <select
-                                id="kategori_id"
-                                name="kategori_id"
-                                required
-                            >
+        <select
+            id="kategori_id"
+            name="kategori_id"
+            required
+        >
+            <option value="" disabled
+                {{ old('kategori_id') ? '' : 'selected' }}>
+                Pilih kategori buku
+            </option>
 
-                                <option value="" disabled selected>
-                                </option>
+            @foreach($kategoris as $kategori)
+                <option
+                    value="{{ $kategori->id }}"
+                    {{ old('kategori_id') == $kategori->id ? 'selected' : '' }}
+                >
+                    {{ $kategori->nama_kategori }}
+                </option>
+            @endforeach
+        </select>
 
-                                @foreach($kategoris as $kategori)
+        <i class="bi bi-chevron-down select-arrow"></i>
+    </div>
 
-                                    <option
-                                        value="{{ $kategori->id }}"
-                                        {{ old('kategori_id') == $kategori->id ? 'selected' : '' }}
-                                    >
-                                        {{ $kategori->nama_kategori }}
-                                    </option>
+    @error('kategori_id')
+        <small class="form-error">{{ $message }}</small>
+    @enderror
 
-                                @endforeach
-
-                            </select>
-
-                            <i class="bi bi-chevron-down"></i>
-
-                        </div>
-
-                        @error('kategori_id')
-                            <small class="form-error">
-                                {{ $message }}
-                            </small>
-                        @enderror
-
-                    </div>
+</div>
 
                 </div>
 

@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -22,22 +23,43 @@
     <link rel="stylesheet" href="{{ asset('css/buku-create.css') }}">
     <link rel="stylesheet" href="{{ asset('css/buku.css') }}">
     <link rel="stylesheet" href="{{ asset('css/buku-edit.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/sidebar.css') }}">
 
-    {{-- SIDEBAR BERSAMA, DIMUAT TERAKHIR --}}
+    {{-- CSS SIDEBAR DAN HEADER BERSAMA --}}
     <link rel="stylesheet" href="{{ asset('css/sidebar.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/header.css') }}">
 </head>
 
 <body>
 
     <div class="sipra-layout">
 
-        {{-- SATU SIDEBAR UNTUK SEMUA HALAMAN --}}
+        {{-- SIDEBAR BERSAMA --}}
         @include('layouts.partials.sidebar')
 
-        {{-- KONTEN HALAMAN --}}
+        {{-- AREA UTAMA --}}
         <main class="main-content">
-            @yield('content')
+
+            {{-- HEADER BERSAMA --}}
+            <header class="sipra-header">
+                <div class="sipra-header-text">
+                    <h1>@yield('header-title', 'SIPRA')</h1>
+
+                    <p>
+                        @yield(
+                            'header-description',
+                            'Perpustakaan Desa Rajeg Bersatu'
+                        )
+                    </p>
+                </div>
+
+                @yield('header-actions')
+            </header>
+
+            {{-- KONTEN HALAMAN --}}
+            <div class="sipra-page-content">
+                @yield('content')
+            </div>
+
         </main>
 
     </div>

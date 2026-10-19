@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\Kategori;
 use App\Models\Buku;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 
 class BukuController extends Controller
 {
@@ -56,7 +57,7 @@ class BukuController extends Controller
 
         public function show($id)
 {
-    $buku = Buku::with('nama_kategori')->findOrFail($id);
+  $buku = Buku::with('kategori')->findOrFail($id);
 
     return view('buku.show', compact('buku'));
 }
@@ -119,12 +120,34 @@ $buku->kategori_id = $request->kategori_id;
         ->route('buku.index')
         ->with('success', 'Data buku berhasil diperbarui.');
 }
-    public function destroy(Buku $buku)
-    {
-        $buku->delete();
+    
+public function destroy(Buku $buku)
+{
+    // Periksa apakah buku masih digunakan dalam data peminjaman
+    $masihDipinjam = \Illuminate\Support\Facades\DB::table('peminjaman')
+        ->where('buku_id', $buku->id)
+        ->exists();
 
+    if ($masihDipinjam) {
         return redirect()
-            ->route('buku.index')
-            ->with('success', 'Buku berhasil dihapus.');
+            ->route('buku.show', $buku->id)
+            ->with('error', 'Buku tidak dapat dihapus karena masih terhubung dengan data peminjaman.');
     }
+
+    // Hapus file sampul jika tersedia
+    if ($buku->gambar_sampul) {
+        $path = public_path('uploads/sampul/' . basename($buku->gambar_sampul));
+
+        if (file_exists($path)) {
+            unlink($path);
+        }
+    }
+
+    $buku->delete();
+
+    return redirect()
+        ->route('buku.index')
+        ->with('success', 'Buku berhasil dihapus.');
+
+        }
 }

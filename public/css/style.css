@@ -1,20 +1,10 @@
-/* =====================================================
-   SIPRA LAYOUT
-===================================================== */
-
-* {
-    box-sizing: border-box;
-}
-
 html,
 body {
     margin: 0;
     padding: 0;
-
+    width: 100%;
     min-height: 100%;
-
     font-family: "Poppins", sans-serif;
-
     background: #eeeeee;
 }
 
@@ -24,11 +14,11 @@ body {
 ===================================================== */
 
 .sipra-layout {
-    min-height: 100vh;
-
     display: flex;
-
-    background: #eeeeee;
+    align-items: stretch;
+    width: 100%;
+    min-height: 100vh;
+    gap: 0;
 }
 
 
@@ -37,21 +27,17 @@ body {
 ===================================================== */
 
 .sidebar {
-    width: 125px;
-    min-width: 125px;
-
-    min-height: 100vh;
-
+    flex: 0 0 175px;
+    width: 175px;
+    min-width: 175px;
+    max-width: 175px;
     position: relative;
-
     display: flex;
     flex-direction: column;
-
     background: #f7faf8;
-
     border-right: 1px solid #e5e5e5;
-
     padding: 12px 7px 10px;
+    margin: 0;
 }
 
 
@@ -238,13 +224,13 @@ body {
 ===================================================== */
 
 .main-content {
-    flex: 1;
-
+    flex: 1 1 0;
+    width: 0;
     min-width: 0;
     min-height: 100vh;
-
+    margin: 0;
+    padding: 0;
     overflow-x: hidden;
-
     background: #eeeeee;
 }
 

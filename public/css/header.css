@@ -1,0 +1,147 @@
+/* HEADER PUTIH BERSAMBUNG DENGAN SIDEBAR */
+
+.sipra-layout {
+    display: flex;
+    width: 100%;
+    min-height: 100vh;
+    gap: 0;
+}
+
+.sipra-sidebar {
+    flex: 0 0 175px;
+}
+
+.main-content {
+    flex: 1 1 0;
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+}
+
+/* HEADER UTAMA */
+.sipra-header {
+    width: 100%;
+    min-height: 100px;
+    margin: 0;
+    border-radius: 0;
+    box-sizing: border-box;
+    background: #ffffff;
+}
+
+.sipra-header-text {
+    min-width: 0;
+}
+
+.sipra-header-text h1 {
+    margin: 0;
+    color: #28785b;
+    font-family: 'Poppins', sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1.4;
+}
+
+.sipra-header-text p {
+    margin: 4px 0 0;
+    color: #777777;
+    font-family: 'Poppins', sans-serif;
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+.sipra-page-content {
+    width: 100%;
+    min-width: 0;
+    padding: 28px 32px;
+    box-sizing: border-box;
+}
+
+@media (max-width: 700px) {
+    .sipra-header {
+        min-height: 84px;
+        padding: 18px 16px;
+    }
+
+    .sipra-header-text h1 {
+        font-size: 18px;
+    }
+
+    .sipra-page-content {
+        padding: 20px 16px;
+    }
+}
+
+
+/* PERBAIKAN HEADER SIPRA */
+
+.sipra-layout {
+    display: flex;
+    align-items: stretch;
+    gap: 0;
+    width: 100%;
+    min-height: 100vh;
+}
+
+.sipra-layout > .sipra-sidebar {
+    position: relative;
+    flex: 0 0 175px;
+    width: 175px;
+}
+
+.sipra-layout > .main-content {
+    position: relative;
+    flex: 1 1 0;
+    width: 0;
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+.sipra-header {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    width: 100%;
+    min-height: 100px;
+    margin: 0;
+    padding: 20px 32px;
+
+    background: #fff;
+    border: none;
+    border-bottom: 1px solid #eee;
+    border-radius: 0;
+    box-sizing: border-box;
+}
+
+.sipra-header-text {
+    display: block;
+    flex: 1;
+    min-width: 0;
+}
+
+.sipra-header-text h1 {
+    display: block;
+    margin: 0;
+    color: #28785b;
+    font-family: 'Poppins', sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+}
+
+.sipra-header-text p {
+    display: block;
+    margin: 4px 0 0;
+    color: #777;
+    font-family: 'Poppins', sans-serif;
+    font-size: 12px;
+}
+
+.sipra-page-content {
+    width: 100%;
+    min-width: 0;
+    padding: 28px 32px;
+    box-sizing: border-box;
+}

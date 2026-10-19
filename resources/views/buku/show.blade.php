@@ -1,34 +1,133 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+@extends('layouts.app')
 
-    <title>Detail Buku | SIPRA</title>
+@section('title', 'Detail Buku - SIPRA')
 
-    <!-- Bootstrap Icons -->
-    <link
-        rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
-    >
+@section('content')
+<div class="buku-detail-page">
 
-    <!-- Poppins -->
-    <link
-        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
-        rel="stylesheet"
-    >
+    {{-- NOTIFIKASI --}}
+    @if(session('success'))
+        <div class="detail-alert-success">
+            <i class="bi bi-check-circle"></i>
+            {{ session('success') }}
+        </div>
+    @endif
 
-    <link rel="stylesheet" href="{{ asset('css/buku-detail.css') }}">
-</head>
+    {{-- KONTEN --}}
+    <section class="detail-content">
 
-<body>
+        {{-- TOMBOL AKSI --}}
+        <div class="detail-actions">
+            <a href="{{ route('buku.edit', $buku->id) }}"
+               class="detail-btn-edit">
+                <i class="bi bi-pencil-square"></i>
+                Edit Buku
+            </a>
 
-<!-- ================= DELETE MODAL ================= -->
-<div class="delete-modal-overlay" id="deleteModal">
+<button type="button"
+        class="detail-btn-delete"
+        onclick="bukaPopupHapus()">
+    <i class="bi bi-trash3"></i>
+    Hapus Buku
+</button>
 
-    <div class="delete-modal">
+        </div>
 
-        <div class="delete-icon">
+        {{-- INFORMASI UTAMA --}}
+        <div class="detail-book-card">
+
+            <div class="detail-cover-wrapper">
+                @if($buku->gambar_sampul)
+                    <img
+                        src="{{ asset('uploads/sampul/' . $buku->gambar_sampul) }}"
+                        alt="Sampul {{ $buku->judul_buku }}"
+                        class="detail-book-cover"
+                    >
+                @else
+                    <div class="detail-cover-empty">
+                        <i class="bi bi-book"></i>
+                        <span>Tidak ada sampul</span>
+                    </div>
+                @endif
+            </div>
+
+            <div class="detail-book-information">
+                <span class="detail-section-label">INFORMASI BUKU</span>
+
+                <h2>{{ $buku->judul_buku }}</h2>
+
+                <p class="detail-author">
+                    <i class="bi bi-person"></i>
+                    {{ $buku->nama_pengarang ?: 'Pengarang belum diisi' }}
+                </p>
+
+                <p class="detail-publisher">
+                    <i class="bi bi-building"></i>
+                    {{ $buku->nama_penerbit ?: 'Penerbit belum diisi' }}
+                    @if($buku->tahun_terbit)
+                        ({{ $buku->tahun_terbit }})
+                    @endif
+                </p>
+
+                <div class="detail-badges">
+                    <span class="detail-category-badge">
+                        <i class="bi bi-bookmark"></i>
+                        {{ $buku->kategori->nama_kategori ?? 'Belum berkategori' }}
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        {{-- INFORMASI TAMBAHAN --}}
+        <div class="detail-information-card">
+            <div class="detail-information-heading">
+                <i class="bi bi-info-circle"></i>
+                <h3>Informasi Tambahan</h3>
+            </div>
+
+            <div class="detail-information-grid">
+                <div class="detail-information-item">
+                    <span>ISBN</span>
+                    <strong>{{ $buku->isbn ?: '-' }}</strong>
+                </div>
+
+                <div class="detail-information-item">
+                    <span>Kode Perpustakaan</span>
+                    <strong>{{ $buku->kode_perpus ?: '-' }}</strong>
+                </div>
+
+                <div class="detail-information-item">
+                    <span>Tahun Terbit</span>
+                    <strong>{{ $buku->tahun_terbit ?: '-' }}</strong>
+                </div>
+
+                <div class="detail-information-item">
+                    <span>Kategori</span>
+                    <strong>
+                        {{ $buku->kategori->nama_kategori ?? '-' }}
+                    </strong>
+                </div>
+
+                <div class="detail-information-item">
+                    <span>Nama Pengarang</span>
+                    <strong>{{ $buku->nama_pengarang ?: '-' }}</strong>
+                </div>
+
+                <div class="detail-information-item">
+                    <span>Nama Penerbit</span>
+                    <strong>{{ $buku->nama_penerbit ?: '-' }}</strong>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+
+{{-- POP-UP KONFIRMASI HAPUS BUKU --}}
+<div class="popup-overlay" id="popupHapusBuku">
+    <div class="popup-hapus">
+
+        <div class="popup-icon">
             <i class="bi bi-trash3"></i>
         </div>
 
@@ -36,294 +135,94 @@
 
         <p>
             Apakah kamu yakin ingin menghapus buku
-            <strong>"{{ $buku->judul_buku }}"</strong>?
+            <strong>{{ $buku->judul_buku }}</strong>?
+            Data buku yang dihapus tidak dapat dikembalikan.
         </p>
 
-        <div class="delete-modal-buttons">
-
+        <div class="popup-actions">
             <button
                 type="button"
-                class="btn-cancel-delete"
-                onclick="closeDeleteModal()"
+                class="popup-btn-batal"
+                onclick="tutupPopupHapus()"
             >
                 Batal
             </button>
 
-            <form
-                action="{{ route('buku.destroy', $buku->id) }}"
-                method="POST"
-            >
+            <form action="{{ route('buku.destroy', $buku->id) }}" method="POST">
                 @csrf
                 @method('DELETE')
 
-                <button
-                    type="submit"
-                    class="btn-confirm-delete"
-                >
-                    <i class="bi bi-trash3"></i>
-                    Hapus
+                <button type="submit" class="popup-btn-hapus">
+                    Hapus Buku
                 </button>
             </form>
-
         </div>
 
     </div>
-
 </div>
+
+
 <script>
-    function openDeleteModal() {
-        document.getElementById('deleteModal').classList.add('show');
-        document.body.style.overflow = 'hidden';
+function bukaPopupHapus() {
+    document.getElementById('popupHapusBuku').classList.add('aktif');
+}
+
+function tutupPopupHapus() {
+    document.getElementById('popupHapusBuku').classList.remove('aktif');
+}
+
+document.getElementById('popupHapusBuku').addEventListener('click', function (event) {
+    if (event.target === this) {
+        tutupPopupHapus();
     }
+});
 
-    function closeDeleteModal() {
-        document.getElementById('deleteModal').classList.remove('show');
-        document.body.style.overflow = '';
+document.addEventListener('keydown', function (event) {
+    if (event.key === 'Escape') {
+        tutupPopupHapus();
     }
-
-    document.getElementById('deleteModal').addEventListener('click', function(event) {
-        if (event.target === this) {
-            closeDeleteModal();
-        }
-    });
-
-    document.addEventListener('keydown', function(event) {
-        if (event.key === 'Escape') {
-            closeDeleteModal();
-        }
-    });
+});
 </script>
 
-<div class="sipra-wrapper">
-
-    <!-- ================= SIDEBAR ================= -->
-    <aside class="sidebar">
-
-        <div class="sidebar-top">
-
-            <!-- Logo -->
-            <div class="logo-wrapper">
-                <img
-                    src="{{ asset('images/logo.png') }}"
-                    alt="Logo Perpustakaan Desa Rajeg Bersatu"
-                    class="logo"
-                >
-            </div>
-
-            <!-- SIPRA -->
-            <div class="sipra-title">
-                SIPRA
-            </div>
-
-            <div class="sipra-description">
-                Sistem Informasi<br>
-                Perpustakaan Desa<br>
-                Rajeg Bersatu
-            </div>
-
-            <!-- Menu -->
-            <div class="menu-title">
-                MENU
-            </div>
-
-            <nav class="sidebar-menu">
-
-                <a href="{{ url('/home') }}" class="menu-item">
-                    <i class="bi bi-grid-fill"></i>
-                    <span>Dashboard</span>
-                </a>
-
-                <a href="{{ route('buku.index') }}" class="menu-item active">
-                    <i class="bi bi-book-fill"></i>
-                    <span>Buku</span>
-                </a>
-
-                <a href="{{ route('peminjaman.index') }}" class="menu-item">
-                    <i class="bi bi-journal-text"></i>
-                    <span>Peminjaman</span>
-                </a>
-
-                <a href="{{ url('/profil') }}" class="menu-item">
-                    <i class="bi bi-person-fill"></i>
-                    <span>Profil</span>
-                </a>
-
-            </nav>
-
-        </div>
-
-        <!-- Logout -->
-        <div class="sidebar-bottom">
-
-            <form action="{{ route('logout') }}" method="POST">
-                @csrf
-
-                <button type="submit" class="logout-button">
-                    <i class="bi bi-box-arrow-right"></i>
-                    <span>Logout</span>
-                </button>
-            </form>
-
-        </div>
-
-    </aside>
-
-
-    <!-- ================= MAIN CONTENT ================= -->
-    <main class="main-content">
-
-        <!-- Header -->
-        <header class="page-header">
-
-            <div class="header-left">
-
-                <div class="header-icon">
-                    <i class="bi bi-book-half"></i>
-                </div>
-
-                <div class="header-text">
-                    <h1>Detail Buku</h1>
-
-                    <p>
-                        Informasi lengkap koleksi buku perpustakaan.
-                    </p>
-                </div>
-
-            </div>
-
-            <a href="{{ route('buku.index') }}" class="back-link">
-                <i class="bi bi-arrow-left"></i>
-                Kembali
-            </a>
-
-        </header>
-
-
-        <!-- ================= CONTENT ================= -->
-        <section class="content-area">
-
-            <!-- Action Buttons -->
-            <div class="action-buttons">
-
-                <a
-                    href="{{ route('buku.edit', $buku->id) }}"
-                    class="btn-edit"
-                >
-                    <i class="bi bi-pencil"></i>
-                    Edit
-                </a>
-
-       <button
-    type="button"
-    class="btn-delete"
-    onclick="openDeleteModal()"
->
-    <i class="bi bi-trash3"></i>
-    Hapus
-</button>
-
-            </div>
-
-
-            <!-- ================= BOOK CARD ================= -->
-            <div class="book-card">
-
-                <!-- Cover -->
-                <div class="book-cover-wrapper">
-
-                    @if(!empty($buku->gambar_sampul))
-
-                        <img
-                            src="{{ asset('uploads/sampul/' . $buku->gambar_sampul) }}"
-                            alt="Sampul {{ $buku->judul_buku }}"
-                            class="book-cover"
-                        >
-
-                    @else
-
-                        <div class="book-cover-empty">
-                            <i class="bi bi-book"></i>
-                            <span>Tidak ada sampul</span>
-                        </div>
-
-                    @endif
-
-                </div>
-
-
-                <!-- Book Information -->
-                <div class="book-information">
-
-                    <h2>
-                        {{ $buku->judul_buku }}
-                    </h2>
-
-                    <p class="author">
-                        {{ $buku->nama_pengarang }}
-                    </p>
-
-                    <p class="publisher">
-                        {{ $buku->nama_penerbit }}
-                        @if(!empty($buku->tahun_terbit))
-                            {{ $buku->tahun_terbit }}
-                        @endif
-                    </p>
-
-
-                    <!-- Badges -->
-                    <div class="book-badges">
-
-                        <span class="badge-category">
-    {{ $buku->kategori->nama_kategori ?? 'Novel' }}
-</span>
-                        <span class="badge-status">
-                            Tersedia
-                        </span>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <!-- ================= INFORMATION CARDS ================= -->
-            <div class="information-grid">
-
-                <!-- ISBN -->
-                <div class="information-card">
-
-                    <div class="information-label">
-                        ISBN
-                    </div>
-
-                    <div class="information-value">
-                        {{ data_get($buku, 'isbn') ?: '978-602-5421-124' }}
-                    </div>
-
-                </div>
-
-
-                <!-- Kode Perpustakaan -->
-                <div class="information-card">
-
-                    <div class="information-label">
-                        Kode Perpustakaan
-                    </div>
-
-                    <div class="information-value">
-                        {{ data_get($buku, 'kode_perpustakaan') ?: '808.1 IND w' }}
-                    </div>
-
-                </div>
-
-            </div>
-
-        </section>
-
-    </main>
-
-</div>
-
-</body>
-</html>
+@endsection
+
+@push('styles')
+<link rel="stylesheet" href="{{ asset('css/buku-detail.css') }}">
+@endpush
+
+@push('scripts')
+<script>
+function openDeleteModal() {
+    const modal = document.getElementById('deleteModal');
+    modal.classList.add('show');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+
+    const cancelButton = modal.querySelector('.detail-cancel-delete');
+    if (cancelButton) cancelButton.focus();
+}
+
+function closeDeleteModal() {
+    const modal = document.getElementById('deleteModal');
+    modal.classList.remove('show');
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+    const modal = document.getElementById('deleteModal');
+
+    modal.addEventListener('click', function (event) {
+        if (event.target === modal) {
+            closeDeleteModal();
+        }
+    });
+
+    document.addEventListener('keydown', function (event) {
+        if (event.key === 'Escape' && modal.classList.contains('show')) {
+            closeDeleteModal();
+        }
+    });
+});
+</script>
+@endpush

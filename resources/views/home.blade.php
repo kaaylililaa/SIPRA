@@ -1,20 +1,17 @@
 @extends('layouts.app')
 
 @section('title', 'Dashboard - SIPRA')
+@section('header-title', 'DASHBOARD')
+@section('header-description', 'Perpustakaan Desa Rajeg Bersatu')
 
-@section('content')
-
-<header class="top-header">
-    <div class="header-title">
-        <h1>DASHBOARD</h1>
-        <p>Perpustakaan Desa Rajeg Bersatu</p>
-    </div>
-
+@section('header-actions')
     <div class="header-user">
         <strong>{{ Auth::user()->name ?? 'Kay' }}</strong>
         <span>Administrator</span>
     </div>
-</header>
+@endsection
+
+@section('content')
 
 <section class="content">
 

@@ -5,6 +5,8 @@
 
 @section('content')
 <div class="kategori-page">
+
+    {{-- HEADER --}}
     <div class="kategori-header">
         <div>
             <h1>TAMBAH KATEGORI</h1>
@@ -12,51 +14,73 @@
         </div>
     </div>
 
+    {{-- FORM KATEGORI --}}
     <div class="kategori-card form-kategori-card">
+
         <form action="{{ route('kategori.store') }}" method="POST">
             @csrf
 
+            {{-- JUDUL FORM --}}
             <div class="form-kategori-heading">
                 <div class="modal-icon">
                     <i class="bi bi-folder-plus"></i>
                 </div>
+
                 <div>
                     <h2>Informasi Kategori</h2>
                     <p>Lengkapi nama kategori di bawah ini.</p>
                 </div>
             </div>
 
+            {{-- PESAN ERROR --}}
             @if($errors->any())
                 <div class="alert-error-kategori">
-                    @foreach($errors->all() as $error)
-                        <div>{{ $error }}</div>
-                    @endforeach
+                    <i class="bi bi-exclamation-circle"></i>
+                    <div>
+                        @foreach($errors->all() as $error)
+                            <div>{{ $error }}</div>
+                        @endforeach
+                    </div>
                 </div>
             @endif
 
+            {{-- NAMA KATEGORI --}}
             <div class="field-kategori">
                 <label for="nama_kategori">Nama Kategori</label>
-                <input type="text"
-                       name="nama_kategori"
-                       id="nama_kategori"
-                       value="{{ old('nama_kategori') }}"
-                       placeholder="Contoh: Novel"
-                       maxlength="100"
-                       required>
-                <small>Gunakan nama yang mudah dikenali.</small>
+
+                <input
+                    type="text"
+                    name="nama_kategori"
+                    id="nama_kategori"
+                    value="{{ old('nama_kategori') }}"
+                    placeholder="Contoh: Novel"
+                    maxlength="100"
+                    autocomplete="off"
+                    required
+                    autofocus
+                >
+
+                <small>
+                    Gunakan nama yang mudah dikenali.
+                </small>
             </div>
 
+            {{-- TOMBOL AKSI --}}
             <div class="form-kategori-actions">
-                <a href="{{ route('kategori.index') }}" class="btn-batal">
+                <a href="{{ route('kategori.index') }}"
+                   class="btn-batal">
                     Batal
                 </a>
+
                 <button type="submit" class="btn-simpan">
                     <i class="bi bi-check-lg"></i>
                     Simpan Kategori
                 </button>
             </div>
+
         </form>
     </div>
+
 </div>
 @endsection
 

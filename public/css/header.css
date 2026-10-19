@@ -145,3 +145,285 @@
     padding: 28px 32px;
     box-sizing: border-box;
 }
+
+.sipra-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.sipra-header-text {
+    flex: 1;
+    min-width: 0;
+}
+
+.sipra-header-text h1,
+.sipra-header-text p {
+    overflow-wrap: break-word;
+}
+
+
+/* PERBAIKAN HEADER BERSAMA */
+.sipra-header {
+    width: 100%;
+    min-height: 100px;
+    padding: 20px 32px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+
+    box-sizing: border-box;
+    background: #fff;
+}
+
+.sipra-header .header-icon {
+    flex: 0 0 40px;
+    width: 40px;
+    height: 40px;
+}
+
+.sipra-header .sipra-header-text {
+    flex: 1 1 auto;
+    min-width: 0;
+}
+
+.sipra-header .sipra-header-text h1 {
+    margin: 0;
+    font-size: 21px;
+    line-height: 1.4;
+    white-space: normal;
+    overflow-wrap: normal;
+    word-break: normal;
+}
+
+.sipra-header .sipra-header-text p {
+    margin: 4px 0 0;
+    font-size: 12px;
+    line-height: 1.5;
+    white-space: normal;
+    overflow-wrap: normal;
+    word-break: normal;
+}
+
+/* Nama pengguna di sisi kanan */
+.sipra-header .header-actions {
+    flex: 0 0 auto;
+    width: auto;
+    min-width: 100px;
+    margin-left: auto;
+}
+
+
+/* PERBAIKAN POSISI HEADER */
+.sipra-header {
+    width: 100%;
+    min-height: 100px;
+    padding: 20px 32px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    box-sizing: border-box;
+    background: #fff;
+}
+
+.sipra-header .header-icon {
+    width: 40px;
+    height: 40px;
+    flex: 0 0 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sipra-header .sipra-header-text {
+    flex: 1 1 auto;
+    min-width: 0;
+}
+
+.sipra-header .sipra-header-text h1 {
+    margin: 0;
+    color: #287154;
+    font-size: 21px;
+    line-height: 1.4;
+    white-space: normal;
+    overflow-wrap: normal;
+    word-break: normal;
+}
+
+.sipra-header .sipra-header-text p {
+    margin: 4px 0 0;
+    color: #818181;
+    font-size: 12px;
+    line-height: 1.5;
+    white-space: normal;
+    overflow-wrap: normal;
+    word-break: normal;
+}
+
+.sipra-header .header-user {
+    flex: 0 0 110px;
+    width: 110px;
+    margin-left: auto;
+    text-align: right;
+}
+
+.sipra-header .header-user strong,
+.sipra-header .header-user span {
+    display: block;
+}
+
+.sipra-header .header-user strong {
+    color: #287154;
+    font-size: 14px;
+}
+
+.sipra-header .header-user span {
+    margin-top: 3px;
+    color: #818181;
+    font-size: 11px;
+}
+
+
+/* PERBAIKAN POSISI HEADER BERSAMA */
+.sipra-header {
+    width: 100%;
+    min-height: 100px;
+    padding: 20px 32px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    box-sizing: border-box;
+    background: #fff;
+    position: relative;
+}
+
+/* Ikon header */
+.sipra-header .header-icon {
+    flex: 0 0 40px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    background: #78c77d;
+}
+
+/* Area judul dan deskripsi */
+.sipra-header .sipra-header-text {
+    flex: 1 1 auto;
+    min-width: 0;
+}
+
+.sipra-header .sipra-header-text h1 {
+    margin: 0;
+    font-size: 21px;
+    line-height: 1.4;
+    font-weight: 700;
+    color: #287154;
+    overflow-wrap: normal;
+    word-break: normal;
+}
+
+.sipra-header .sipra-header-text p {
+    margin: 4px 0 0;
+    font-size: 12px;
+    line-height: 1.5;
+    color: #777;
+    overflow-wrap: normal;
+    word-break: normal;
+}
+
+/* Nama administrator di sisi kanan */
+.sipra-header .header-user {
+    flex: 0 0 auto;
+    margin-left: auto;
+    text-align: right;
+    white-space: nowrap;
+}
+
+.sipra-header .header-user strong {
+    display: block;
+    color: #287154;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.sipra-header .header-user span {
+    display: block;
+    color: #777;
+    font-size: 11px;
+    line-height: 1.5;
+}
+
+/* Dashboard saja: sembunyikan ikon header */
+body:has(.welcome-card) .sipra-header .header-icon {
+    display: none;
+}
+
+
+/* PERBAIKAN POSISI HEADER BERSAMA */
+.sipra-header {
+    width: 100%;
+    min-height: 100px;
+    padding: 20px 32px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    box-sizing: border-box;
+    position: relative;
+    background: #fff;
+}
+
+.sipra-header .header-icon {
+    flex: 0 0 40px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sipra-header .sipra-header-text {
+    flex: 1;
+    min-width: 0;
+}
+
+.sipra-header .sipra-header-text h1 {
+    margin: 0;
+    font-size: 21px;
+    line-height: 1.4;
+    font-weight: 700;
+    color: #287154;
+    overflow-wrap: break-word;
+}
+
+.sipra-header .sipra-header-text p {
+    margin: 4px 0 0;
+    font-size: 12px;
+    line-height: 1.5;
+    color: #777;
+}
+
+.sipra-header .header-user {
+    flex: 0 0 auto;
+    margin-left: auto;
+    text-align: right;
+    white-space: nowrap;
+}
+
+.sipra-header .header-user strong {
+    display: block;
+    color: #287154;
+    font-size: 14px;
+}
+
+.sipra-header .header-user span {
+    display: block;
+    margin-top: 3px;
+    color: #777;
+    font-size: 11px;
+}

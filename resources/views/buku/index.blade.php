@@ -1,6 +1,9 @@
 @extends('layouts.app')
 
-@section('title', 'Data Buku')
+
+@section('header-title', 'Data Buku')
+@section('header-description', 'Kelola seluruh koleksi buku Perpustakaan Desa Rajeg Bersatu.')
+@section('header-icon', 'bi bi-book-half')
 
 @section('content')
 

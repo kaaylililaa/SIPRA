@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -40,20 +39,22 @@
         <main class="main-content">
 
             {{-- HEADER BERSAMA --}}
-            <header class="sipra-header">
-                <div class="sipra-header-text">
-                    <h1>@yield('header-title', 'SIPRA')</h1>
 
-                    <p>
-                        @yield(
-                            'header-description',
-                            'Perpustakaan Desa Rajeg Bersatu'
-                        )
-                    </p>
-                </div>
+<header class="sipra-header">
 
-                @yield('header-actions')
-            </header>
+    @hasSection('header-icon')
+        <div class="header-icon">
+            <i class="@yield('header-icon')"></i>
+        </div>
+    @endif
+
+    <div class="sipra-header-text">
+        <h1>@yield('header-title', 'SIPRA')</h1>
+        <p>@yield('header-description', 'Perpustakaan Desa Rajeg Bersatu')</p>
+    </div>
+
+    @yield('header-actions')
+</header>
 
             {{-- KONTEN HALAMAN --}}
             <div class="sipra-page-content">

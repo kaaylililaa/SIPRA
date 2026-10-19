@@ -103,7 +103,7 @@
                 <div class="stat-card">
 
                     <div class="stat-icon orange">
-                        <i class="bi bi-bookmark-fill"></i>
+                        <i class="bi bi-bookmark-heart-fill"></i>
                     </div>
 
                     <div class="stat-info">

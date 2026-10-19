@@ -270,3 +270,29 @@ body {
         margin-left: 0;
     }
 }
+
+
+/* POSISI IKON DI KIRI JUDUL HEADER */
+.top-header .header-title {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+}
+
+.top-header .header-icon {
+    position: static;
+    flex: 0 0 40px;
+    width: 40px;
+    height: 40px;
+    margin: 0;
+}
+
+.top-header .header-title-text {
+    min-width: 0;
+}
+
+.top-header .header-actions {
+    margin-left: auto;
+}
+

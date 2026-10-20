@@ -1,38 +1,18 @@
 @extends('layouts.app')
 
+@section('header-title', 'Tambah Buku')
+@section('header-description', 'Tambahkan koleksi buku baru ke perpustakaan.')
+@section('header-icon', 'bi bi-plus-circle-fill')
+
+@section('header-actions')
+    <a href="{{ route('buku.index') }}" class="create-back-link">
+        <i class="bi bi-arrow-left"></i>
+        Kembali
+    </a>
+@endsection
+
 @section('content')
-
 <div class="create-book-page">
-
-    {{-- HEADER --}}
-      <!-- Header -->
-        <header class="page-header">
-
-            <div class="header-left">
-
-                <div class="header-icon">
-                    <i class="bi bi-book-half"></i>
-                </div>
-
-                <div class="header-text">
-                    <h1>Detail Buku</h1>
-
-                    <p>
-                        Informasi lengkap koleksi buku perpustakaan.
-                    </p>
-                </div>
-
-            </div>
-
-            <a href="{{ route('buku.index') }}" class="back-link">
-                <i class="bi bi-arrow-left"></i>
-                Kembali
-            </a>
-
-        </header>
-
-
-
     {{-- FORM CARD --}}
     <div class="create-book-card">
 

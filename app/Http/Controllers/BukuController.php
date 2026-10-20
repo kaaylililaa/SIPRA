@@ -33,6 +33,7 @@ class BukuController extends Controller
         'nama_pengarang' => 'required|string|max:255',
         'nama_penerbit' => 'required|string|max:255',
         'tahun_terbit' => 'required|integer',
+        'kode_perpus' => 'nullable|string|max:50',
         'isbn' => 'nullable|string|max:20',
         'gambar_sampul' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
     ]);

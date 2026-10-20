@@ -456,3 +456,884 @@
         padding: 24px 20px;
     }
 }
+
+
+/* ========================================
+   HALAMAN TAMBAH BUKU
+   Menggunakan header dan sidebar bawaan
+======================================== */
+
+.create-book-page {
+    width: 100%;
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 28px 30px 40px;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    color: #294936;
+}
+
+.create-book-card {
+    width: 100%;
+    padding: 30px;
+    box-sizing: border-box;
+    background: #ffffff;
+    border: 1px solid #edf2ed;
+    border-radius: 18px;
+    box-shadow: 0 5px 18px rgba(34, 75, 45, 0.07);
+}
+
+.create-book-layout {
+    display: grid;
+    grid-template-columns: minmax(220px, 0.75fr) minmax(0, 1.8fr);
+    align-items: start;
+    gap: 32px;
+}
+
+.book-cover-section,
+.book-form-section {
+    min-width: 0;
+}
+
+.section-label {
+    display: block;
+    margin-bottom: 12px;
+    color: #294936;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.upload-box {
+    min-height: 230px;
+    padding: 24px 18px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    box-sizing: border-box;
+    border: 2px dashed #a9d9ae;
+    border-radius: 14px;
+    background: #f7fbf7;
+    color: #496b51;
+    text-align: center;
+    cursor: pointer;
+    transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.upload-box:hover {
+    border-color: #70c47a;
+    background: #eff9f0;
+}
+
+.upload-icon {
+    width: 58px;
+    height: 58px;
+    display: grid;
+    place-items: center;
+    border-radius: 16px;
+    background: #e1f3e3;
+    color: #398b49;
+    font-size: 27px;
+}
+
+.upload-box strong {
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.upload-box span {
+    color: #738277;
+    font-size: 12px;
+    line-height: 1.8;
+}
+
+.upload-box small {
+    color: #8b978d;
+    font-size: 10px;
+}
+
+.cover-preview-box {
+    display: none;
+    margin-top: 18px;
+    padding: 14px;
+    border: 1px solid #e7eee7;
+    border-radius: 12px;
+    background: #ffffff;
+}
+
+.cover-preview-box.show {
+    display: block;
+}
+
+.preview-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    color: #31563a;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.remove-preview {
+    width: 28px;
+    height: 28px;
+    display: grid;
+    place-items: center;
+    border: none;
+    border-radius: 8px;
+    background: #fff0f0;
+    color: #d84d4d;
+    cursor: pointer;
+}
+
+.preview-image-wrapper {
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+    border-radius: 8px;
+    background: #f5f8f5;
+}
+
+.preview-image-wrapper img {
+    display: none;
+    width: auto;
+    max-width: 100%;
+    max-height: 260px;
+    object-fit: contain;
+}
+
+.preview-image-wrapper img[src]:not([src=""]) {
+    display: block;
+}
+
+.book-form-section {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-width: 0;
+}
+
+.form-group > label {
+    color: #354e3b;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    min-width: 0;
+    height: 44px;
+    padding: 0 13px;
+    box-sizing: border-box;
+    border: 1px solid #dce5dc;
+    border-radius: 9px;
+    outline: none;
+    background: #ffffff;
+    color: #344b39;
+    font-family: 'Poppins', sans-serif;
+    font-size: 12px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    border-color: #75c57d;
+    box-shadow: 0 0 0 3px rgba(117, 197, 125, 0.15);
+}
+
+.form-group input::placeholder {
+    color: #a0aaa1;
+}
+
+.select-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.select-wrapper select {
+    appearance: none;
+    padding-left: 40px;
+    padding-right: 38px;
+    cursor: pointer;
+}
+
+.category-book-icon,
+.select-arrow {
+    position: absolute;
+    top: 50%;
+    z-index: 1;
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+
+.category-book-icon {
+    left: 13px;
+    color: #55a963;
+    font-size: 15px;
+}
+
+.select-arrow {
+    right: 13px;
+    color: #718275;
+    font-size: 12px;
+}
+
+.form-error {
+    color: #d94b4b;
+    font-size: 11px;
+    line-height: 1.6;
+}
+
+.create-book-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 28px;
+    padding-top: 22px;
+    border-top: 1px solid #edf1ed;
+}
+
+.create-book-actions .btn-cancel,
+.create-book-actions .btn-save {
+    min-height: 43px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 0 20px;
+    box-sizing: border-box;
+    border: none;
+    border-radius: 9px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.create-book-actions .btn-cancel {
+    border: 1px solid #dfe8df;
+    background: #ffffff;
+    color: #536b58;
+}
+
+.create-book-actions .btn-cancel:hover {
+    background: #f3f7f3;
+}
+
+.create-book-actions .btn-save {
+    background: #70c47a;
+    color: #ffffff;
+}
+
+.create-book-actions .btn-save:hover {
+    background: #55ad61;
+    box-shadow: 0 4px 10px rgba(70, 160, 82, 0.18);
+}
+
+.create-back-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    padding: 9px 13px;
+    border: 1px solid #e3ece3;
+    border-radius: 9px;
+    background: #ffffff;
+    color: #397a45;
+    font-family: 'Poppins', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.create-back-link:hover {
+    background: #f0f8f1;
+    color: #286b35;
+}
+
+@media (max-width: 900px) {
+    .create-book-page {
+        padding: 22px 20px 32px;
+    }
+
+    .create-book-layout {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 28px;
+    }
+
+    .book-cover-section {
+        max-width: 420px;
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    .upload-box {
+        min-height: 190px;
+    }
+}
+
+@media (max-width: 560px) {
+    .create-book-page {
+        padding: 16px 12px 26px;
+    }
+
+    .create-book-card {
+        padding: 18px;
+        border-radius: 14px;
+    }
+
+    .form-row {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 18px;
+    }
+
+    .create-book-actions {
+        flex-direction: column-reverse;
+        align-items: stretch;
+    }
+
+    .create-book-actions .btn-cancel,
+    .create-book-actions .btn-save {
+        width: 100%;
+    }
+}
+
+
+/* =====================================
+   HALAMAN TAMBAH BUKU SIPRA
+===================================== */
+
+.create-book-page {
+    width: 100%;
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 28px 32px 36px;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    color: #285b43;
+}
+
+/* Kartu utama form */
+.create-book-card {
+    width: 100%;
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 30px;
+    box-sizing: border-box;
+    box-shadow: 0 4px 18px rgba(37, 75, 50, 0.07);
+}
+
+/* Header halaman */
+.create-book-page .page-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 24px;
+}
+
+.create-book-page .header-left {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.create-book-page .header-icon {
+    width: 48px;
+    height: 48px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 14px;
+    background: #79c982;
+    color: #ffffff;
+    font-size: 23px;
+}
+
+.create-book-page .header-text h1 {
+    margin: 0;
+    color: #287653;
+    font-size: 23px;
+    font-weight: 700;
+}
+
+.create-book-page .header-text p {
+    margin: 5px 0 0;
+    color: #829087;
+    font-size: 12px;
+}
+
+.create-book-page .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 10px 15px;
+    border-radius: 9px;
+    background: #edf7ee;
+    color: #32804b;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.create-book-page .back-link:hover {
+    background: #dff0e1;
+}
+
+/* Tata letak sampul dan form */
+.create-book-layout {
+    display: grid;
+    grid-template-columns: minmax(230px, 280px) minmax(0, 1fr);
+    align-items: start;
+    gap: 32px;
+}
+
+/* Kolom sampul */
+.book-cover-section,
+.book-form-section {
+    min-width: 0;
+}
+
+.section-label {
+    display: block;
+    margin-bottom: 14px;
+    color: #285b43;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+/* Area upload */
+.upload-box {
+    min-height: 205px;
+    padding: 24px 18px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    border: 2px dashed #a6dca9;
+    border-radius: 15px;
+    background: #f7fbf7;
+    text-align: center;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.upload-box:hover {
+    border-color: #65bd75;
+    background: #f0f9f0;
+}
+
+.upload-icon {
+    width: 52px;
+    height: 52px;
+    display: grid;
+    place-items: center;
+    border-radius: 15px;
+    background: #e1f3e3;
+    color: #398c4b;
+    font-size: 25px;
+}
+
+.upload-box strong {
+    color: #285b43;
+    font-size: 13px;
+}
+
+.upload-box span {
+    color: #65796b;
+    font-size: 12px;
+    line-height: 1.8;
+}
+
+.upload-box small {
+    color: #8a998e;
+    font-size: 10px;
+}
+
+/* Preview sampul */
+.cover-preview-box {
+    display: none;
+    margin-top: 18px;
+    padding: 14px;
+    border: 1px solid #e0ece1;
+    border-radius: 14px;
+    background: #ffffff;
+}
+
+.cover-preview-box.show {
+    display: block;
+}
+
+.preview-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    color: #285b43;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.remove-preview {
+    width: 30px;
+    height: 30px;
+    display: grid;
+    place-items: center;
+    border: none;
+    border-radius: 9px;
+    background: #fff0f0;
+    color: #e45b5b;
+    cursor: pointer;
+}
+
+.preview-image-wrapper {
+    width: 100%;
+    height: 260px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border-radius: 10px;
+    background: #f3f7f3;
+}
+
+.preview-image-wrapper img {
+    display: block;
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+}
+
+/* Form input */
+.book-form-section {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-width: 0;
+}
+
+.form-group > label {
+    color: #536c5a;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    min-height: 44px;
+    padding: 10px 13px;
+    box-sizing: border-box;
+    border: 1px solid #d8e1d9;
+    border-radius: 9px;
+    outline: none;
+    background: #ffffff;
+    color: #304b39;
+    font-family: 'Poppins', sans-serif;
+    font-size: 12px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    border-color: #79c982;
+    box-shadow: 0 0 0 3px rgba(121, 201, 130, 0.14);
+}
+
+.category-group {
+    margin-top: 0;
+}
+
+.select-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.select-wrapper select {
+    appearance: none;
+    padding-left: 38px;
+    padding-right: 38px;
+    cursor: pointer;
+}
+
+.category-book-icon {
+    position: absolute;
+    z-index: 1;
+    top: 50%;
+    left: 13px;
+    transform: translateY(-50%);
+    color: #65b777;
+    pointer-events: none;
+}
+
+.select-arrow {
+    position: absolute;
+    top: 50%;
+    right: 13px;
+    transform: translateY(-50%);
+    color: #718477;
+    font-size: 11px;
+    pointer-events: none;
+}
+
+.form-error {
+    color: #dc4e4e;
+    font-size: 11px;
+}
+
+/* Tombol bawah */
+.create-book-actions {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 12px;
+    margin-top: 28px;
+    padding-top: 22px;
+    border-top: 1px solid #edf1ed;
+}
+
+.create-book-actions .btn-cancel,
+.create-book-actions .btn-save {
+    min-height: 43px;
+    padding: 11px 20px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border: none;
+    border-radius: 10px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.create-book-actions .btn-cancel {
+    background: #f0f3f0;
+    color: #5d7062;
+}
+
+.create-book-actions .btn-cancel:hover {
+    background: #e4eae4;
+}
+
+.create-book-actions .btn-save {
+    background: #68bd78;
+    color: #ffffff;
+}
+
+.create-book-actions .btn-save:hover {
+    background: #4fa961;
+    box-shadow: 0 4px 10px rgba(79, 169, 97, 0.2);
+}
+
+/* Tablet */
+@media (max-width: 900px) {
+    .create-book-page {
+        padding: 22px 20px 30px;
+    }
+
+    .create-book-card {
+        padding: 22px;
+    }
+
+    .create-book-layout {
+        grid-template-columns: minmax(190px, 230px) minmax(0, 1fr);
+        gap: 22px;
+    }
+
+    .form-row {
+        gap: 14px;
+    }
+}
+
+/* HP dan layar kecil */
+@media (max-width: 650px) {
+    .create-book-page {
+        padding: 16px 12px 24px;
+    }
+
+    .create-book-card {
+        padding: 18px;
+        border-radius: 15px;
+    }
+
+    .create-book-page .page-header {
+        align-items: flex-start;
+    }
+
+    .create-book-page .header-text h1 {
+        font-size: 19px;
+    }
+
+    .create-book-page .header-text p {
+        line-height: 1.6;
+    }
+
+    .create-book-layout {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 26px;  
+    }
+
+    .upload-box {
+        min-height: 180px;
+    }
+
+    .form-row {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 18px;
+    }
+
+    .create-book-actions {
+        flex-wrap: wrap;
+    }
+
+    .create-book-actions .btn-cancel,
+    .create-book-actions .btn-save {
+        flex: 1;
+    }
+}
+
+/* Memperbesar label form tambah buku */
+.create-book-page .form-group > label {
+    font-size: 12px;
+    font-weight: 450;
+    color: #3d6049;
+    margin-bottom: 2px;
+}
+
+/* Memperbesar teks di dalam input */
+.create-book-page .form-group input,
+.create-book-page .form-group select {
+    font-size: 13px;
+    min-height: 46px;
+}
+
+/* Memperkecil area upload sampul */
+.create-book-page .create-book-layout {
+    grid-template-columns: minmax(210px, 250px) minmax(0, 1fr);
+    gap: 30px;
+}
+
+/* Sedikit memperpendek kotak upload */
+.create-book-page .upload-box {
+    min-height: 185px;
+    padding: 18px 14px;
+    gap: 8px;
+}
+
+/* Teks pada area upload */
+.create-book-page .upload-box strong {
+    font-size: 13px;
+}
+
+.create-book-page .upload-box span {
+    font-size: 11px;
+}
+
+.create-book-page .upload-box small {
+    font-size: 10px;
+}
+
+/* Preview mengikuti lebar kolom sampul */
+.create-book-page .preview-image-wrapper {
+    height: 230px;
+}
+
+/* Label tetap nyaman dibaca di layar kecil */
+@media (max-width: 650px) {
+    .create-book-page .create-book-layout {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .create-book-page .form-group > label {
+        font-size: 13px;
+    }
+}
+
+
+/* Perbaikan dropdown kategori buku */
+.category-group .select-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.category-group .select-wrapper select {
+    width: 100%;
+    height: 48px;
+    padding: 0 42px 0 42px;
+    border: 1px solid #cfd6d0;
+    border-radius: 10px;
+    background-color: #fff;
+    color: #365543;
+    font-family: 'Poppins', sans-serif;
+    font-size: 13px;
+    appearance: none;
+    -webkit-appearance: none;
+    cursor: pointer;
+}
+
+.category-group .select-wrapper select:focus {
+    outline: none;
+    border-color: #75c781;
+    box-shadow: 0 0 0 3px rgba(117, 199, 129, 0.15);
+}
+
+.category-group .category-book-icon {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #65b875;
+    font-size: 15px;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.category-group .select-wrapper .select-arrow {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #718078;
+    font-size: 12px;
+    pointer-events: none;
+}

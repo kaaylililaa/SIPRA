@@ -841,3 +841,24 @@ body {
 
     font-size: 9px;
 }
+
+.show-back-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    padding: 9px 13px;
+    border: 1px solid #e3ece3;
+    border-radius: 9px;
+    background: #ffffff;
+    color: #397a45;
+    font-family: 'Poppins', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.show-back-link:hover {
+    background: #f0f8f1;
+    color: #286b35;
+}

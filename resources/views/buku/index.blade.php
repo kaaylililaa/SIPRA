@@ -1,9 +1,34 @@
 @extends('layouts.app')
 
-
 @section('header-title', 'Data Buku')
 @section('header-description', 'Kelola seluruh koleksi buku Perpustakaan Desa Rajeg Bersatu.')
 @section('header-icon', 'bi bi-book-half')
+
+@section('header-actions')
+    <div class="header-book-actions">
+
+        <div class="header-search">
+            <i class="bi bi-search"></i>
+            <input
+                type="text"
+                id="searchBuku"
+                placeholder="Cari Buku..."
+                autocomplete="off"
+            >
+        </div>
+
+        <a href="{{ route('kategori.index') }}" class="header-btn-category">
+            <i class="bi bi-funnel-fill"></i>
+            Kategori
+        </a>
+
+        <a href="{{ route('buku.create') }}" class="header-btn-add">
+            <i class="bi bi-plus-lg"></i>
+            Tambah Buku
+        </a>
+
+    </div>
+@endsection
 
 @section('content')
 
@@ -222,31 +247,35 @@
 <script>
 document.addEventListener('DOMContentLoaded', function () {
 
-    // PENCARIAN BUKU
+   // PENCARIAN BUKU
     const searchInput = document.getElementById('searchBuku');
     const bookCards = document.querySelectorAll('.buku-card');
     const searchEmpty = document.getElementById('bukuSearchEmpty');
 
-    searchInput.addEventListener('input', function () {
-        const keyword = this.value.toLowerCase().trim();
-        let visibleCount = 0;
+    if (searchInput) {
+        searchInput.addEventListener('input', function () {
+            const keyword = this.value.toLowerCase().trim();
+            let visibleCount = 0;
 
-        bookCards.forEach(function (card) {
-            const matched = card.textContent
-                .toLowerCase()
-                .includes(keyword);
+            bookCards.forEach(function (card) {
+                const matched = card.textContent
+                    .toLowerCase()
+                    .includes(keyword);
 
-            card.style.display = matched ? 'flex' : 'none';
+                card.style.display = matched ? 'flex' : 'none';
 
-            if (matched) {
-                visibleCount++;
+                if (matched) {
+                    visibleCount++;
+                }
+            });
+
+            if (searchEmpty) {
+                searchEmpty.hidden = !(
+                    keyword && visibleCount === 0
+                );
             }
         });
-
-        searchEmpty.hidden = !(keyword && visibleCount === 0);
-    });
-
-
+    }
     // MODAL HAPUS
     const deleteModal = document.getElementById('deleteModal');
     const deleteBookTitle = document.getElementById('deleteBookTitle');

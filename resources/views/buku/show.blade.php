@@ -1,6 +1,15 @@
 @extends('layouts.app')
 
-@section('title', 'Detail Buku - SIPRA')
+@section('header-title', 'Detail Buku')
+@section('header-description', 'Informasi lengkap koleksi buku perpustakaan.')
+@section('header-icon', 'bi bi-book-half')
+
+@section('header-actions')
+    <a href="{{ route('buku.index') }}" class="show-back-link">
+        <i class="bi bi-arrow-left"></i>
+        Kembali
+    </a>
+@endsection
 
 @section('content')
 <div class="buku-detail-page">

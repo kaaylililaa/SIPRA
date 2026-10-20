@@ -584,3 +584,55 @@
     }
 
 }
+
+
+/* ==============================
+   HEADER PEMINJAMAN
+============================== */
+
+/* Ikon di sebelah judul header */
+.header-icon {
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    border-radius: 12px;
+    background: #7bc783;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.header-icon i {
+    font-size: 20px;
+}
+
+/* Kotak tombol Tambah Peminjaman */
+.header-add-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    padding: 11px 16px;
+    min-height: 40px;
+    background: #78c781;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    text-decoration: none;
+    font-family: "Poppins", sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    white-space: nowrap;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.header-add-button i {
+    font-size: 13px;
+}
+
+.header-add-button:hover {
+    background: #61b96d;
+    color: #ffffff;
+    transform: translateY(-1px);
+}

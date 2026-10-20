@@ -1,30 +1,21 @@
 @extends('layouts.app')
 
-@section('title', 'Tambah Peminjaman')
+@section('header-title', 'Tambah Peminjaman')
+@section('header-description', 'Masukkan data peminjaman buku')
+@section('header-icon', 'bi bi-plus-circle-fill')
 
+@section('header-actions')
+    <a href="{{ route('peminjaman.index') }}" class="create-back-link">
+        <i class="bi bi-arrow-left"></i>
+        Kembali
+    </a>
+@endsection
 @section('content')
 
-<link rel="stylesheet" href="{{ asset('css/peminjaman-create.css') }}">
-
-<div class="peminjaman-create-page">
-
-    {{-- HEADER --}}
-    <div class="create-header">
-
-        <div class="create-title-wrapper">
-
-            <div class="create-title-icon">
-                <i class="bi bi-plus-circle-fill"></i>
-            </div>
-
-            <div>
-                <h1>Tambah Peminjaman</h1>
-                <p>Masukkan data peminjaman buku</p>
-            </div>
-
-        </div>
-
-    </div>
+    <link
+        rel="stylesheet"
+        href="{{ asset('css/peminjaman-create.css') }}"
+    >
 
 
     {{-- FORM --}}
@@ -80,10 +71,10 @@
 
             @if ($buku->gambar_sampul)
 
-                <img
-                    src="{{ asset('uploads/' . $buku->gambar_sampul) }}"
-                    alt="{{ $buku->judul_buku }}"
-                >
+            <img
+    src="{{ asset('uploads/sampul/' . $buku->gambar_sampul) }}"
+    alt="{{ $buku->judul_buku }}"
+>
 
             @else
 

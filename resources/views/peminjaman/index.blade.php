@@ -1,41 +1,22 @@
 @extends('layouts.app')
 
-@section('title', 'Data Peminjaman')
+@section('header-title', 'Data Peminjaman')
+@section('header-description', 'Kelola transaksi peminjaman buku perpustakaan.')
+@section('header-icon', 'bi bi-book-half')
 
-@section('content')
-
-<link rel="stylesheet" href="{{ asset('css/peminjaman.css') }}">
-
-<div class="peminjaman-page">
-
-    {{-- HEADER --}}
-    <header class="top-header">
-        
-    <div class="page-header">
-            <div class="page-icon">
-                <i class="bi bi-journal-bookmark-fill"></i>
-            </div>
-
-            <div>
-                <h1>Data Peminjaman</h1>
-
-                <p>
-                    Kelola transaksi peminjaman buku perpustakaan.
-                </p>
-            </div>
-
-        </div>
-
-        <a
-            href="{{ route('peminjaman.create') }}"
-            class="btn-add-peminjaman"
-        >
-            <i class="bi bi-plus"></i>
+@section('header-actions')
+    <div class="header-peminjaman-actions">
+        <a href="{{ route('peminjaman.create') }}" class="header-btn-add">
+            <i class="bi bi-plus-lg"></i>
             Tambah Peminjaman
         </a>
 
     </div>
+@endsection
 
+@section('content')
+
+<link rel="stylesheet" href="{{ asset('css/peminjaman.css') }}">
 
     {{-- STATISTIK --}}
     <div class="statistik-container">

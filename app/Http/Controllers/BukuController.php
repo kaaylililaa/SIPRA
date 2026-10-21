@@ -123,9 +123,15 @@ $buku->kategori_id = $request->kategori_id;
         ->route('buku.index')
         ->with('success', 'Data buku berhasil diperbarui.');
 }
-    
+
+
 public function destroy(Buku $buku)
 {
+    // Hanya admin yang boleh menghapus buku
+    if (!auth()->check() || auth()->user()->role !== 'admin') {
+        abort(403, 'Kamu tidak memiliki izin untuk menghapus buku.');
+    }
+
     // Periksa apakah buku masih digunakan dalam data peminjaman
     $masihDipinjam = \Illuminate\Support\Facades\DB::table('peminjaman')
         ->where('buku_id', $buku->id)
@@ -151,6 +157,6 @@ public function destroy(Buku $buku)
     return redirect()
         ->route('buku.index')
         ->with('success', 'Buku berhasil dihapus.');
+}
 
-        }
 }

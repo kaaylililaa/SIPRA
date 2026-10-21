@@ -846,19 +846,19 @@ body {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 7px;
-    padding: 9px 13px;
-    border: 1px solid #e3ece3;
-    border-radius: 9px;
-    background: #ffffff;
-    color: #397a45;
+    gap: 8px;
+    padding: 10px 14px;
+    border: 1px solid #dce9df;
+    border-radius: 10px;
+    background: #fff;
+    color: #26744f;
     font-family: 'Poppins', sans-serif;
     font-size: 12px;
-    font-weight: 500;
     text-decoration: none;
+    white-space: nowrap;
 }
 
 .show-back-link:hover {
     background: #f0f8f1;
-    color: #286b35;
+    color: #26744f;
 }

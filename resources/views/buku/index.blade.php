@@ -143,38 +143,37 @@
 
                     <div class="buku-buttons">
 
-                        <a
-                            href="{{ route('buku.show', $buku->id) }}"
-                            class="buku-btn"
-                            title="Lihat detail"
-                            aria-label="Lihat detail buku"
-                        >
-                            <i class="bi bi-eye"></i>
-                        </a>
+    <a
+        href="{{ route('buku.show', $buku->id) }}"
+        class="buku-btn"
+        title="Lihat detail"
+        aria-label="Lihat detail buku"
+    >
+        <i class="bi bi-eye"></i>
+    </a>
 
-                        <a
-                            href="{{ route('buku.edit', $buku->id) }}"
-                            class="buku-btn"
-                            title="Edit buku"
-                            aria-label="Edit buku"
-                        >
-                            <i class="bi bi-pencil"></i>
-                        </a>
+    <a
+        href="{{ route('buku.edit', $buku->id) }}"
+        class="buku-btn"
+        title="Edit buku"
+        aria-label="Edit buku"
+    >
+        <i class="bi bi-pencil"></i>
+    </a>
 
-                        
-                        <button
-                            type="button"
-                            class="btn-hapus-data"
-                            onclick="bukaPopupHapusData({{ $buku->id }}, {{ Js::from($buku->judul_buku) }})"
-                        >
-                            <i class="bi bi-trash"></i>
-                            Hapus
-                        </button>
+    @if (auth()->check() && auth()->user()->role === 'admin')
+        <button
+            type="button"
+            class="btn-hapus-data"
+            onclick="bukaPopupHapusData({{ $buku->id }}, {{ Js::from($buku->judul_buku) }})"
+        >
+            <i class="bi bi-trash"></i>
+            Hapus
+        </button>
+    @endif
 
-                    </div>
-
-                </div>
-
+</div>
+</div>
             </article>
 
         @empty
@@ -325,73 +324,76 @@ document.addEventListener('DOMContentLoaded', function () {
 </script>
 
 
+
 {{-- POPUP HAPUS BUKU --}}
-<div class="popup-overlay" id="popupHapusData" aria-hidden="true">
-    <div class="popup-hapus" role="dialog" aria-modal="true">
-        <div class="popup-icon">
-            <i class="bi bi-trash3"></i>
-        </div>
+@if (auth()->check() && auth()->user()->role === 'admin')
+    <div class="popup-overlay" id="popupHapusData" aria-hidden="true">
+        <div class="popup-hapus" role="dialog" aria-modal="true">
+            <div class="popup-icon">
+                <i class="bi bi-trash3"></i>
+            </div>
 
-        <h3>Hapus Buku?</h3>
+            <h3>Hapus Buku?</h3>
 
-        <p>
-            Kamu yakin ingin menghapus buku
-            <strong id="judulBukuHapus"></strong>?
-            Data yang dihapus tidak dapat dikembalikan.
-        </p>
+            <p>
+                Kamu yakin ingin menghapus buku
+                <strong id="judulBukuHapus"></strong>?
+                Data yang dihapus tidak dapat dikembalikan.
+            </p>
 
-        <div class="popup-actions">
-            <button type="button"
+            <div class="popup-actions">
+                <button
+                    type="button"
                     class="popup-btn-batal"
-                    onclick="tutupPopupHapusData()">
-                Batal
-            </button>
-
-            <form id="formHapusData" method="POST">
-                @csrf
-                @method('DELETE')
-
-                <button type="submit" class="popup-btn-hapus">
-                    Ya, Hapus
+                    onclick="tutupPopupHapusData()"
+                >
+                    Batal
                 </button>
-            </form>
+
+                <form id="formHapusData" method="POST">
+                    @csrf
+                    @method('DELETE')
+
+                    <button type="submit" class="popup-btn-hapus">
+                        Ya, Hapus
+                    </button>
+                </form>
+            </div>
         </div>
     </div>
-</div>
 
-<script>
-    function bukaPopupHapusData(id, judul) {
-        document.getElementById('judulBukuHapus').textContent = judul;
+    <script>
+        function bukaPopupHapusData(id, judul) {
+            document.getElementById('judulBukuHapus').textContent = judul;
+            document.getElementById('formHapusData').action = `/buku/${id}`;
 
-        document.getElementById('formHapusData').action =
-            `/buku/${id}`;
+            const popup = document.getElementById('popupHapusData');
+            popup.classList.add('aktif');
+            popup.setAttribute('aria-hidden', 'false');
+            document.body.style.overflow = 'hidden';
+        }
 
-        const popup = document.getElementById('popupHapusData');
-        popup.classList.add('aktif');
-        popup.setAttribute('aria-hidden', 'false');
-        document.body.style.overflow = 'hidden';
-    }
+        function tutupPopupHapusData() {
+            const popup = document.getElementById('popupHapusData');
+            popup.classList.remove('aktif');
+            popup.setAttribute('aria-hidden', 'true');
+            document.body.style.overflow = '';
+        }
 
-    function tutupPopupHapusData() {
-        const popup = document.getElementById('popupHapusData');
-        popup.classList.remove('aktif');
-        popup.setAttribute('aria-hidden', 'true');
-        document.body.style.overflow = '';
-    }
+        document.getElementById('popupHapusData')
+            .addEventListener('click', function (event) {
+                if (event.target === this) {
+                    tutupPopupHapusData();
+                }
+            });
 
-    document.getElementById('popupHapusData')
-        .addEventListener('click', function (event) {
-            if (event.target === this) {
+        document.addEventListener('keydown', function (event) {
+            if (event.key === 'Escape') {
                 tutupPopupHapusData();
             }
         });
-
-    document.addEventListener('keydown', function (event) {
-        if (event.key === 'Escape') {
-            tutupPopupHapusData();
-        }
-    });
-</script>
+    </script>
+@endif
 
 <div class="pagination-container">
     {{ $bukus->links('pagination::bootstrap-5') }}

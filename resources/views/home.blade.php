@@ -79,8 +79,10 @@
 
     {{-- ANGGOTA --}}
     <div class="stat-card">
+        @if (auth()->check() && auth()->user()->role === 'admin')
         <a href="{{ route('users.index') }}"
    class="{{ request()->routeIs('users.*') ? 'active' : '' }}">
+   @endif
         <div class="stat-icon purple">
             <i class="bi bi-person-fill"></i>
         </div>

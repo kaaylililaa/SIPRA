@@ -54,8 +54,7 @@
 <div class="statistics">
 
     {{-- TOTAL BUKU --}}
-    <a href="{{ route('buku.index') }}"
-        class="stat-card stat-card-link">
+    <a href="{{ route('buku.index') }}" class="stat-card stat-card-link">
         <div class="stat-icon green">
             <i class="bi bi-book-fill"></i>
         </div>
@@ -80,9 +79,12 @@
 
     {{-- ANGGOTA --}}
     <div class="stat-card">
+        <a href="{{ route('users.index') }}"
+   class="{{ request()->routeIs('users.*') ? 'active' : '' }}">
         <div class="stat-icon purple">
             <i class="bi bi-person-fill"></i>
         </div>
+</a>
 
         <div class="stat-info">
             <strong>{{ $jumlahUser ?? 0 }}</strong>

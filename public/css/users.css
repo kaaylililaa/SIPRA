@@ -1,0 +1,358 @@
+/* ========================================
+   ATUR USER - SIPRA
+======================================== */
+
+.users-page {
+    font-family: 'Poppins', sans-serif;
+    color: #263b32;
+    padding: 28px 30px;
+}
+
+/* Header halaman */
+.users-page .users-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 26px;
+}
+
+.users-page .users-header h2 {
+    margin: 0 0 7px;
+    color: #245c43;
+    font-size: 27px;
+    font-weight: 700;
+}
+
+.users-page .users-header p {
+    margin: 0;
+    color: #7b8a81;
+    font-size: 13px;
+}
+
+/* Tombol umum */
+.users-page .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 9px;
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.users-page .btn-success {
+    color: #fff;
+    background: #287653;
+}
+
+.users-page .btn-success:hover {
+    background: #1d6041;
+    transform: translateY(-1px);
+}
+
+.users-page .btn-warning {
+    color: #76520b;
+    background: #fff0c2;
+}
+
+.users-page .btn-warning:hover {
+    background: #ffe49a;
+}
+
+.users-page .btn-danger {
+    color: #fff;
+    background: #dc6262;
+}
+
+.users-page .btn-danger:hover {
+    background: #c84848;
+}
+
+.users-page .btn-secondary {
+    color: #53645a;
+    background: #e9eeeb;
+}
+
+.users-page .btn-secondary:hover {
+    background: #dce5df;
+}
+
+/* Notifikasi */
+.users-page .alert {
+    padding: 13px 16px;
+    margin-bottom: 18px;
+    border-radius: 10px;
+    font-size: 13px;
+}
+
+.users-page .alert-success {
+    color: #216442;
+    background: #e6f5eb;
+    border: 1px solid #c7e9d2;
+}
+
+.users-page .alert-danger {
+    color: #a12e36;
+    background: #fff0f0;
+    border: 1px solid #f3cccc;
+}
+
+/* Kartu utama */
+.users-page .card {
+    overflow: hidden;
+    background: #fff;
+    border: 1px solid #e8eee9;
+    border-radius: 16px;
+    box-shadow: 0 5px 20px rgba(36, 92, 67, 0.06);
+}
+
+.users-page .card-body {
+    padding: 24px;
+}
+
+/* Form pencarian */
+.users-page .users-search {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 22px;
+}
+
+.users-page .form-control {
+    width: 100%;
+    min-width: 0;
+    padding: 11px 14px;
+    color: #34483c;
+    background: #fbfdfb;
+    border: 1px solid #dce7df;
+    border-radius: 9px;
+    outline: none;
+    font-family: inherit;
+    font-size: 12px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.users-page .form-control:focus {
+    border-color: #55a477;
+    box-shadow: 0 0 0 3px rgba(85, 164, 119, 0.12);
+}
+
+.users-page .form-control::placeholder {
+    color: #a0aca4;
+}
+
+/* Tabel */
+.users-page .table-responsive {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.users-page .table {
+    width: 100%;
+    margin: 0;
+    border-collapse: collapse;
+    font-size: 12px;
+}
+
+.users-page .table thead th {
+    padding: 15px 14px;
+    color: #46715a;
+    background: #f0f7f2;
+    border-bottom: 1px solid #e0ebe3;
+    text-align: left;
+    white-space: nowrap;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.users-page .table tbody td {
+    padding: 16px 14px;
+    color: #526258;
+    border-bottom: 1px solid #edf1ee;
+    vertical-align: middle;
+}
+
+.users-page .table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.users-page .table tbody tr {
+    transition: background 0.2s ease;
+}
+
+.users-page .table tbody tr:hover {
+    background: #f8fbf8;
+}
+
+.users-page .table tbody td:nth-child(2) {
+    color: #294b38;
+    font-weight: 600;
+}
+
+.users-page .table tbody td:nth-child(3) {
+    overflow-wrap: anywhere;
+}
+
+/* Tombol aksi */
+.users-page .table .btn-sm {
+    padding: 7px 10px;
+    border-radius: 7px;
+    font-size: 10px;
+    white-space: nowrap;
+}
+
+.users-page .table form {
+    display: inline-block;
+    margin: 0;
+}
+
+/* Pesan saat data kosong */
+.users-page .table .text-center {
+    padding: 35px 15px;
+    color: #89968d;
+}
+
+/* Pagination Laravel */
+.users-page nav[role="navigation"] {
+    margin-top: 20px;
+}
+
+.users-page nav[role="navigation"] p {
+    color: #7b8a81;
+    font-size: 12px;
+}
+
+.users-page nav[role="navigation"] a,
+.users-page nav[role="navigation"] span[aria-current="page"] span {
+    color: #287653;
+    text-decoration: none;
+}
+
+/* Responsif */
+@media (max-width: 768px) {
+    .users-page {
+        padding: 20px 14px;
+    }
+
+    .users-page .users-header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .users-page .users-header h2 {
+        font-size: 23px;
+    }
+
+    .users-page .card-body {
+        padding: 15px;
+    }
+
+    .users-page .users-search {
+        flex-wrap: wrap;
+    }
+
+    .users-page .users-search .form-control {
+        flex-basis: 100%;
+    }
+}
+
+
+/* ========================================
+   FORM TAMBAH DAN EDIT USER
+======================================== */
+
+.users-page .user-form-heading {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding-bottom: 22px;
+    margin-bottom: 25px;
+    border-bottom: 1px solid #edf1ee;
+}
+
+.users-page .user-form-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 48px;
+    height: 48px;
+    color: #287653;
+    background: #e8f5eb;
+    border-radius: 13px;
+    font-size: 23px;
+}
+
+.users-page .user-form-heading h3 {
+    margin: 0 0 5px;
+    color: #294b38;
+    font-size: 17px;
+    font-weight: 700;
+}
+
+.users-page .user-form-heading p {
+    margin: 0;
+    color: #89968d;
+    font-size: 12px;
+}
+
+.users-page .user-form-group {
+    margin-bottom: 22px;
+}
+
+.users-page .user-form-group label {
+    display: block;
+    margin-bottom: 9px;
+    color: #344d3d;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.users-page .user-form-group .form-control {
+    box-sizing: border-box;
+    min-height: 44px;
+}
+
+.users-page .user-form-help {
+    display: block;
+    margin-top: 8px;
+    color: #89968d;
+    font-size: 11px;
+    line-height: 1.6;
+}
+
+.users-page .field-error {
+    display: block;
+    margin-top: 7px;
+    color: #c84848;
+    font-size: 11px;
+}
+
+.users-page .user-form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    padding-top: 20px;
+    margin-top: 28px;
+    border-top: 1px solid #edf1ee;
+}
+
+@media (max-width: 576px) {
+    .users-page .user-form-actions {
+        flex-wrap: wrap;
+    }
+
+    .users-page .user-form-actions .btn {
+        flex: 1;
+    }
+
+    .users-page .user-form-heading h3 {
+        font-size: 15px;
+    }
+}

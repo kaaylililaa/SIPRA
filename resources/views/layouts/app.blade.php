@@ -26,6 +26,8 @@
     {{-- CSS SIDEBAR DAN HEADER BERSAMA --}}
     <link rel="stylesheet" href="{{ asset('css/sidebar.css') }}">
     <link rel="stylesheet" href="{{ asset('css/header.css') }}">
+
+    @stack('styles')
 </head>
 
 <body>

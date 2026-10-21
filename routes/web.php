@@ -6,6 +6,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\BukuController;
 use App\Http\Controllers\PeminjamanController;
+use App\Http\Controllers\UserController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -62,3 +63,7 @@ Route::get('/peminjaman/status/{status}', [
     App\Http\Controllers\PeminjamanController::class,
     'status'
 ])->name('peminjaman.status');
+
+Route::resource('users', UserController::class)
+    ->except(['show'])
+    ->middleware('auth');

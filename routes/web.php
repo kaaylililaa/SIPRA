@@ -57,3 +57,8 @@ Route::get('/peminjaman/{peminjaman}/konfirmasi', [PeminjamanController::class, 
 
 Route::put('/peminjaman/{peminjaman}/kembalikan', [PeminjamanController::class, 'kembalikan'])
     ->name('peminjaman.kembalikan');
+
+Route::get('/peminjaman/status/{status}', [
+    App\Http\Controllers\PeminjamanController::class,
+    'status'
+])->name('peminjaman.status');

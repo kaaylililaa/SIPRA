@@ -9,6 +9,44 @@ use App\Models\Buku;
 
 class PeminjamanController extends Controller
 {
+ 
+public function status($status)
+{
+    $judul = [
+        'semua' => 'Total Peminjaman',
+        'dipinjam' => 'Data Buku Dipinjam',
+        'dikembalikan' => 'Data Buku Dikembalikan',
+        'terlambat' => 'Data Peminjaman Terlambat',
+    ];
+
+    abort_unless(isset($judul[$status]), 404);
+
+    $query = \App\Models\Peminjaman::query();
+
+    if ($status === 'dipinjam') {
+    $query->whereRaw('LOWER(TRIM(status)) = ?', ['dipinjam'])
+          ->whereDate('tanggal_kembali', '>=', now()->toDateString());
+} elseif ($status === 'terlambat') {
+    $query->where(function ($q) {
+        $q->whereRaw('LOWER(TRIM(status)) = ?', ['terlambat'])
+          ->orWhere(function ($sub) {
+              $sub->whereRaw('LOWER(TRIM(status)) = ?', ['dipinjam'])
+                  ->whereDate('tanggal_kembali', '<', now()->toDateString());
+          });
+    });
+} elseif ($status === 'dikembalikan') {
+    $query->whereRaw('LOWER(TRIM(status)) = ?', ['dikembalikan']);
+}
+
+    $peminjaman = $query->orderByDesc('id')->paginate(5);
+
+    return view('peminjaman.status', [
+        'peminjaman' => $peminjaman,
+        'statusAktif' => $status,
+        'judulHalaman' => $judul[$status],
+    ]);
+}
+
     public function index(Request $request)
     {
         $totalPeminjaman = Peminjaman::count();
@@ -61,7 +99,7 @@ class PeminjamanController extends Controller
 
         $peminjamans = $query
             ->latest()
-            ->paginate(10);
+            ->paginate(5);
 
         return view('peminjaman.index', compact(
             'peminjamans',

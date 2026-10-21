@@ -32,16 +32,18 @@
                 <span>Total Peminjam</span>
                 <strong>{{ $totalPeminjaman }}</strong>
             </div>
-
         </div>
 
 
         {{-- DIPINJAM --}}
         <div class="statistik-card">
 
+          <a href="{{ route('peminjaman.status', 'dipinjam') }}"
+        class="stat-card">
             <div class="statistik-icon pinjam-icon">
                 <i class="bi bi-arrow-repeat"></i>
             </div>
+</a>
 
             <div class="statistik-info">
                 <span>Dipinjam</span>
@@ -54,9 +56,12 @@
         {{-- DIKEMBALIKAN --}}
         <div class="statistik-card">
 
+         <a href="{{ route('peminjaman.status', 'dikembalikan') }}"
+        class="stat-card">
             <div class="statistik-icon kembali-icon">
                 <i class="bi bi-check-circle-fill"></i>
             </div>
+</a>
 
             <div class="statistik-info">
                 <span>Dikembalikan</span>
@@ -69,9 +74,12 @@
         {{-- TERLAMBAT --}}
         <div class="statistik-card">
 
+         <a href="{{ route('peminjaman.status', 'terlambat') }}"
+        class="stat-card">
             <div class="statistik-icon terlambat-icon">
                 <i class="bi bi-exclamation-circle"></i>
             </div>
+</a>
 
             <div class="statistik-info">
                 <span>Terlambat</span>
@@ -347,7 +355,7 @@
         {{-- PAGINATION --}}
         @if ($peminjamans->hasPages())
 
-            <div class="pagination-wrapper">
+            <div class="pagination-container">
 
                 {{ $peminjamans->withQueryString()->links() }}
 

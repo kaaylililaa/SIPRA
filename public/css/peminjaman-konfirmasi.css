@@ -745,3 +745,95 @@ body {
         margin-top: 25px;
     }
 }
+
+
+/* OVERLAY POP-UP */
+.modal-konfirmasi {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+
+    display: none;
+    align-items: center;
+    justify-content: center;
+
+    padding: 24px;
+    background: rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(2px);
+}
+
+.modal-konfirmasi.aktif {
+    display: flex;
+    animation: modalMuncul 0.2s ease;
+}
+
+/* Pertahankan desain kartu lama */
+.modal-konfirmasi .konfirmasi-card {
+    width: 460px;
+    max-width: 100%;
+    min-height: 0;
+    flex-shrink: 0;
+    animation: kartuMuncul 0.2s ease;
+}
+
+/* Tombol X tetap berada di pojok kartu */
+.modal-konfirmasi .btn-close-konfirmasi {
+    font-family: Arial, sans-serif;
+}
+
+/* Tombol pengembalian berbentuk button */
+button.btn-kembalikan {
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: inherit;
+}
+
+/* Animasi */
+@keyframes modalMuncul {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes kartuMuncul {
+    from {
+        opacity: 0;
+        transform: translateY(10px) scale(0.98);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@media (max-width: 600px) {
+    .modal-konfirmasi {
+        padding: 20px;
+    }
+
+    .modal-konfirmasi .konfirmasi-card {
+        width: 100%;
+        max-width: 460px;
+    }
+}
+
+.modal-konfirmasi .btn-konfirmasi {
+    color: #ffffff !important;
+}
+
+
+/* Warna putih untuk teks informasi konfirmasi */
+.modal-konfirmasi .konfirmasi-question,
+.modal-konfirmasi .konfirmasi-status,
+.modal-konfirmasi .late-status,
+.modal-konfirmasi .late-duration,
+.modal-konfirmasi .late-fine {
+    color: #ffffff !important;
+    font-size: 15px !important;
+}

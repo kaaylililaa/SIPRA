@@ -5,33 +5,7 @@
 @section('content')
 
 <link rel="stylesheet" href="{{ asset('css/peminjaman-detail.css') }}">
-
-<div class="detail-peminjaman-page">
-
-    {{-- =====================================================
-         HEADER
-    ====================================================== --}}
-
-    <div class="detail-header">
-
-        <div class="detail-title-wrapper">
-
-            <div class="detail-title-icon">
-                <i class="bi bi-journal-text"></i>
-            </div>
-
-            <div class="detail-title-text">
-
-                <h1>Detail Peminjaman</h1>
-
-                <p>
-                    Informasi lengkap peminjam buku Perpustakaan Desa Rajeg Bersatu
-                </p>
-
-            </div>
-
-        </div>
-
+<link rel="stylesheet" href="{{ asset('css/peminjaman-konfirmasi.css') }}">
 
         {{-- TOMBOL HEADER --}}
 <div class="detail-header-actions">
@@ -42,17 +16,16 @@
         Kembali
     </a>
 
-        @if ($statusTampilan !== 'Dikembalikan')
-
-            <a
-                href="{{ route('peminjaman.konfirmasi', $peminjaman->id) }}"
-                class="btn-kembalikan"
-            >
-                <i class="bi bi-check-lg"></i>
-                Kembalikan Buku
-            </a>
-
-        @endif
+       @if ($statusTampilan !== 'Dikembalikan')
+    <button
+        type="button"
+        class="btn-kembalikan"
+        onclick="bukaKonfirmasi()"
+    >
+        <i class="bi bi-check-lg"></i>
+        Kembalikan Buku
+    </button>
+@endif
 </div>
 
     </div>
@@ -501,5 +474,133 @@
     </div>
 
 </div>
+
+
+{{-- POP-UP KONFIRMASI PENGEMBALIAN --}}
+@if ($statusTampilan !== 'Dikembalikan')
+<div
+    class="modal-konfirmasi {{ $isTerlambat ? 'konfirmasi-terlambat' : 'konfirmasi-normal' }}"
+    id="modalKonfirmasi"
+    aria-hidden="true"
+>
+    <div class="konfirmasi-card">
+
+        <button
+            type="button"
+            class="btn-close-konfirmasi"
+            onclick="tutupKonfirmasi()"
+            aria-label="Tutup"
+        >
+            &times;
+        </button>
+
+        <h1 class="konfirmasi-title">
+            Konfirmasi Pengembalian
+        </h1>
+
+        <div class="konfirmasi-divider"></div>
+
+        <p class="konfirmasi-question">
+            Apakah buku ini sudah dikembalikan?
+        </p>
+
+        @if (!$isTerlambat)
+
+            <p class="konfirmasi-status">
+                Status : {{ $peminjaman->status }}
+            </p>
+
+            <div class="konfirmasi-actions">
+                <button
+                    type="button"
+                    class="btn-batal"
+                    onclick="tutupKonfirmasi()"
+                >
+                    Batal
+                </button>
+
+                <form
+                    action="{{ route('peminjaman.kembalikan', $peminjaman->id) }}"
+                    method="POST"
+                >
+                    @csrf
+                    @method('PUT')
+
+                    <button type="submit" class="btn-konfirmasi">
+                        Konfirmasi
+                    </button>
+                </form>
+            </div>
+
+        @else
+
+            <div class="late-confirmation">
+                <p class="late-status">Status : Terlambat</p>
+
+                <p class="late-duration">
+                    Keterlambatan : {{ $hariTerlambat }} Hari
+                </p>
+
+                <p class="late-fine">
+                    Denda : Rp {{ number_format($denda, 0, ',', '.') }}
+                </p>
+            </div>
+
+            <div class="late-confirmation-action">
+                <form
+                    action="{{ route('peminjaman.kembalikan', $peminjaman->id) }}"
+                    method="POST"
+                >
+                    @csrf
+                    @method('PUT')
+
+                    <button
+                        type="submit"
+                        class="btn-konfirmasi btn-konfirmasi-late"
+                    >
+                        Konfirmasi
+                    </button>
+                </form>
+            </div>
+
+        @endif
+    </div>
+</div>
+@endif
+
+<script>
+function bukaKonfirmasi() {
+    const modal = document.getElementById('modalKonfirmasi');
+
+    if (modal) {
+        modal.classList.add('aktif');
+        modal.setAttribute('aria-hidden', 'false');
+    }
+}
+
+function tutupKonfirmasi() {
+    const modal = document.getElementById('modalKonfirmasi');
+
+    if (modal) {
+        modal.classList.remove('aktif');
+        modal.setAttribute('aria-hidden', 'true');
+    }
+}
+
+document.addEventListener('keydown', function (event) {
+    if (event.key === 'Escape') {
+        tutupKonfirmasi();
+    }
+});
+
+document.getElementById('modalKonfirmasi')?.addEventListener(
+    'click',
+    function (event) {
+        if (event.target === this) {
+            tutupKonfirmasi();
+        }
+    }
+);
+</script>
 
 @endsection

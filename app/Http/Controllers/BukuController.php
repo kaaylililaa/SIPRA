@@ -10,7 +10,9 @@ class BukuController extends Controller
 {
     public function index(Request $request)
 {
-     $bukus = \App\Models\Buku::all();
+      $bukus = \App\Models\Buku::with('kategori')
+        ->orderBy('created_at', 'desc')
+        ->paginate(5);
 
     $totalBuku = \App\Models\Buku::count();
 

@@ -1,32 +1,24 @@
-
 @extends('layouts.app')
 
-@section('title', 'Edit Kategori - SIPRA')
+@section('header-title', 'Edit Kategori')
+@section('header-description', 'Perbarui informasi koleksi kategori buku perpustakaan.')
+@section('header-icon', 'bi bi-pencil-square')
+
+@section('header-actions')
+    <a href="{{ route('kategori.index') }}" class="edit-back-link">
+        <i class="bi bi-arrow-left"></i>
+        Kembali
+    </a>
+@endsection
+
 
 @section('content')
-<div class="kategori-page">
-    <div class="kategori-header">
-        <div>
-            <h1>EDIT KATEGORI</h1>
-            <p>Perbarui informasi kategori buku perpustakaan.</p>
-        </div>
-    </div>
 
     <div class="kategori-card form-kategori-card">
         <form action="{{ route('kategori.update', $kategori->id) }}"
               method="POST">
             @csrf
             @method('PUT')
-
-            <div class="form-kategori-heading">
-                <div class="modal-icon">
-                    <i class="bi bi-pencil-square"></i>
-                </div>
-                <div>
-                    <h2>Informasi Kategori</h2>
-                    <p>Ubah nama kategori sesuai kebutuhan.</p>
-                </div>
-            </div>
 
             @if($errors->any())
                 <div class="alert-error-kategori">

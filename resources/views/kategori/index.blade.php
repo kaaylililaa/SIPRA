@@ -1,25 +1,21 @@
 @extends('layouts.app')
 
-@section('title', 'Kategori Buku - SIPRA')
+@section('header-title', 'Kategori Buku')
+@section('header-description', 'Kelola seluruh koleksi kategori buku Perpustakaan Desa Rajeg Bersatu.')
+@section('header-icon', 'bi bi-pencil-square')
 
-@section('content')
-<div class="kategori-page">
+@section('header-actions')
 
-    {{-- HEADER --}}
-    <div class="kategori-header">
-        <div>
-            <h1>KATEGORI BUKU</h1>
-            <p>Kelola kategori koleksi buku perpustakaan.</p>
-        </div>
-
-       
-        <a href="{{ route('kategori.create') }}" class="btn-tambah">
+    <a href="{{ route('kategori.create') }}" class="header-btn-add">
             <i class="bi bi-plus-lg"></i>
             Tambah Kategori
         </a>
 
-    </div>
+@endsection
 
+@section('content')
+
+<div class="kategori-page">
     {{-- KONTEN --}}
     <div class="kategori-card">
 

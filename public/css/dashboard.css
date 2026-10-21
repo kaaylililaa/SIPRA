@@ -1296,3 +1296,42 @@ body {
     height: auto;
     min-height: 145px;
 }
+
+
+/* Kartu ringkasan dashboard yang bisa diklik */
+.stat-card-link {
+    display: flex !important;
+    align-items: center !important;
+    text-decoration: none !important;
+    color: inherit !important;
+    cursor: pointer !important;
+    transition: transform 0.2s ease, box-shadow 0.2s ease !important;
+}
+
+.stat-card-link:hover {
+    color: inherit !important;
+    text-decoration: none !important;
+    transform: translateY(-3px) !important;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12) !important;
+}
+
+.stat-card-link:focus-visible {
+    outline: 2px solid #27805d !important;
+    outline-offset: 3px !important;
+}
+
+
+/* Menghilangkan garis bawah pada kartu ringkasan */
+.stat-card-link,
+.stat-card-link:hover,
+.stat-card-link:focus,
+.stat-card-link:active {
+    text-decoration: none !important;
+    color: inherit;
+}
+
+/* Memastikan angka dan label tidak bergaris bawah */
+.stat-card-link .stat-info strong,
+.stat-card-link .stat-info span {
+    text-decoration: none !important;
+}

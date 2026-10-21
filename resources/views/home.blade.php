@@ -50,71 +50,59 @@
                 Ringkasan Hari Ini
             </h3>
 
+{{-- STATISTICS --}}
+<div class="statistics">
 
-            {{-- STATISTICS --}}
-            <div class="statistics">
+    {{-- TOTAL BUKU --}}
+    <a href="{{ route('buku.index') }}"
+        class="stat-card stat-card-link">
+        <div class="stat-icon green">
+            <i class="bi bi-book-fill"></i>
+        </div>
 
-                {{-- TOTAL BUKU --}}
-                <div class="stat-card">
+        <div class="stat-info">
+            <strong>{{ $jumlahBuku ?? 0 }}</strong>
+            <span>Total Buku</span>
+        </div>
+    </a>
 
-                    <div class="stat-icon green">
-                        <i class="bi bi-book-fill"></i>
-                    </div>
+    {{-- DIPINJAM --}}
+    <a href="{{ route('peminjaman.index') }}" class="stat-card stat-card-link">
+        <div class="stat-icon blue">
+            <i class="bi bi-journal-bookmark-fill"></i>
+        </div>
 
-                    <div class="stat-info">
-                        <strong>{{ $jumlahBuku ?? 0 }}</strong>
-                        <span>Total Buku</span>
-                    </div>
+        <div class="stat-info">
+            <strong>{{ $jumlahDipinjam ?? 0 }}</strong>
+            <span>Dipinjam</span>
+        </div>
+    </a>
 
-                </div>
+    {{-- ANGGOTA --}}
+    <div class="stat-card">
+        <div class="stat-icon purple">
+            <i class="bi bi-person-fill"></i>
+        </div>
 
+        <div class="stat-info">
+            <strong>{{ $jumlahUser ?? 0 }}</strong>
+            <span>Anggota</span>
+        </div>
+    </div>
 
-                {{-- DIPINJAM --}}
-                <div class="stat-card">
+    {{-- KATEGORI --}}
+    <a href="{{ route('kategori.index') }}" class="stat-card stat-card-link">
+        <div class="stat-icon orange">
+            <i class="bi bi-bookmark-heart-fill"></i>
+        </div>
 
-                    <div class="stat-icon blue">
-                        <i class="bi bi-journal-bookmark-fill"></i>
-                    </div>
+        <div class="stat-info">
+            <strong>{{ $jumlahKategori ?? 0 }}</strong>
+            <span>Kategori</span>
+        </div>
+    </a>
 
-                    <div class="stat-info">
-                        <strong>{{ $jumlahDipinjam ?? 0 }}</strong>
-                        <span>Dipinjam</span>
-                    </div>
-
-                </div>
-
-
-                {{-- ANGGOTA --}}
-                <div class="stat-card">
-
-                    <div class="stat-icon purple">
-                        <i class="bi bi-person-fill"></i>
-                    </div>
-
-                    <div class="stat-info">
-                        <strong>{{ $jumlahUser ?? 0 }}</strong>
-                        <span>Anggota</span>
-                    </div>
-
-                </div>
-
-
-                {{-- KATEGORI --}}
-                <div class="stat-card">
-
-                    <div class="stat-icon orange">
-                        <i class="bi bi-bookmark-heart-fill"></i>
-                    </div>
-
-                    <div class="stat-info">
-                        <strong>{{ $jumlahKategori ?? 0 }}</strong>
-                        <span>Kategori</span>
-                    </div>
-
-                </div>
-
-            </div>
-
+</div>
 
             {{-- LOWER CONTENT --}}
             <div class="dashboard-bottom">

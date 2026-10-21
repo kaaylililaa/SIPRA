@@ -393,4 +393,8 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 </script>
 
+<div class="pagination-container">
+    {{ $bukus->links('pagination::bootstrap-5') }}
+</div>
+
 @endsection

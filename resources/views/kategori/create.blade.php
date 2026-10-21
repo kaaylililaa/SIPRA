@@ -1,36 +1,24 @@
-
 @extends('layouts.app')
 
-@section('title', 'Tambah Kategori - SIPRA')
+@section('header-title', 'Tambah Kategori')
+@section('header-description', 'Tambahkan koleksi kategori buku baru ke perpustakaan.')
+@section('header-icon', 'bi bi-plus-circle-fill')
+
+@section('header-actions')
+    <a href="{{ route('kategori.index') }}" class="create-back-link">
+        <i class="bi bi-arrow-left"></i>
+        Kembali
+    </a>
+@endsection
 
 @section('content')
 <div class="kategori-page">
-
-    {{-- HEADER --}}
-    <div class="kategori-header">
-        <div>
-            <h1>TAMBAH KATEGORI</h1>
-            <p>Tambahkan kategori baru ke koleksi buku perpustakaan.</p>
-        </div>
-    </div>
 
     {{-- FORM KATEGORI --}}
     <div class="kategori-card form-kategori-card">
 
         <form action="{{ route('kategori.store') }}" method="POST">
             @csrf
-
-            {{-- JUDUL FORM --}}
-            <div class="form-kategori-heading">
-                <div class="modal-icon">
-                    <i class="bi bi-folder-plus"></i>
-                </div>
-
-                <div>
-                    <h2>Informasi Kategori</h2>
-                    <p>Lengkapi nama kategori di bawah ini.</p>
-                </div>
-            </div>
 
             {{-- PESAN ERROR --}}
             @if($errors->any())

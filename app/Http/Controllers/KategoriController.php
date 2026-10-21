@@ -60,12 +60,18 @@ class KategoriController extends Controller
             ->with('success', 'Kategori berhasil diperbarui.');
     }
 
-    public function destroy(Kategori $kategori)
-    {
-        $kategori->delete();
-
-        return redirect()
-            ->route('kategori.index')
-            ->with('success', 'Kategori berhasil dihapus.');
+    
+public function destroy(Kategori $kategori)
+{
+    // Hanya admin yang boleh menghapus kategori
+    if (!auth()->check() || auth()->user()->role !== 'admin') {
+        abort(403, 'Kamu tidak memiliki izin untuk menghapus kategori.');
     }
+
+    $kategori->delete();
+
+    return redirect()
+        ->route('kategori.index')
+        ->with('success', 'Kategori berhasil dihapus.');
+}
 }

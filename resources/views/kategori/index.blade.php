@@ -86,13 +86,17 @@
                                     <i class="bi bi-pencil-square"></i>
                                 </a>
 
-                                <button type="button"
-                                        class="btn-hapus"
-                                        data-bs-toggle="modal"
-                                        data-bs-target="#modalHapus{{ $item->id }}"
-                                        title="Hapus kategori">
-                                    <i class="bi bi-trash3"></i>
-                                </button>
+                                
+@if (auth()->check() && auth()->user()->role === 'admin')
+    <button type="button"
+            class="btn-hapus"
+            data-bs-toggle="modal"
+            data-bs-target="#modalHapus{{ $item->id }}"
+            title="Hapus kategori">
+        <i class="bi bi-trash3"></i>
+    </button>
+@endif
+
                             </div>
                         </td>
                     </tr>
@@ -114,6 +118,7 @@
 </div>
 
 {{-- MODAL HAPUS KATEGORI --}}
+@if (auth()->check() && auth()->user()->role === 'admin')
 @foreach($kategori as $item)
 <div class="modal fade"
      id="modalHapus{{ $item->id }}"
@@ -158,7 +163,8 @@
         </div>
     </div>
 </div>
-@endforeach
+    @endforeach
+@endif
 
 @endsection
 

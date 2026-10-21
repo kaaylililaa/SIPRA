@@ -20,15 +20,20 @@ class HomeController extends Controller
         $jumlahKategori = Kategori::count();
 
         $bukuTerbaru = Buku::latest()
-        ->take(5)
-        ->get();
+            ->take(5)
+            ->get();
+
+        $peminjamTerbaru = Peminjaman::latest()
+            ->take(5)
+            ->get();
 
         return view('home', compact(
             'jumlahBuku',
             'jumlahDipinjam',
             'jumlahAnggota',
             'jumlahKategori',
-            'bukuTerbaru'
+            'bukuTerbaru',
+            'peminjamTerbaru'
         ));
     }
 }

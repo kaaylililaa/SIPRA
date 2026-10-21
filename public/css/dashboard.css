@@ -437,112 +437,6 @@ body {
     margin-bottom: 10px;
 }
 
-
-/* =========================================
-   BUKU TERBARU
-========================================= */
-
-.buku-terbaru-list {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    margin-top: 12px;
-}
-
-.buku-terbaru-item {
-    display: flex;
-    align-items: center;
-    width: 250px;
-    max-width: 100%;
-    height: 55px;
-    flex-shrink: 0;
-    overflow: hidden;
-    background: #287658;
-    border-radius: 6px;
-}
-
-.buku-terbaru-sampul {
-    width: 46px;
-    height: 55px;
-    flex-shrink: 0;
-    padding: 4px;
-    background: #74c982;
-}
-
-.buku-terbaru-sampul img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    border-radius: 3px;
-}
-
-.buku-terbaru-info {
-    flex: 1;
-    min-width: 0;
-    padding: 0 8px;
-    color: #fff;
-    font-size: 12px;
-    font-weight: 600;
-}
-
-.buku-terbaru-info span {
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-}
-
-
-.book-cover {
-    width: 48px;
-    height: 54px;
-
-    flex-shrink: 0;
-
-    background: #6cc173;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.book-cover img {
-    width: 100%;
-    height: 100%;
-
-    object-fit: cover;
-}
-
-.no-cover {
-    color: #fff;
-
-    font-size: 21px;
-}
-
-.book-title {
-    color: #fff;
-
-    font-size: 12px;
-    font-weight: 600;
-
-    padding: 0 11px;
-
-    white-space: nowrap;
-
-    overflow: hidden;
-
-    text-overflow: ellipsis;
-}
-
-.empty-book {
-    color: #999;
-
-    font-size: 9px;
-
-    padding: 15px 4px;
-}
-
-
 /* =========================================
    AKTIVITAS
 ========================================= */
@@ -999,7 +893,7 @@ body {
 /* JUDUL RINGKASAN */
 .section-title {
     margin: 17px 4px 11px !important;
-    font-size: 14px !important;
+    font-size: 20px !important;
 }
 
 
@@ -1221,32 +1115,6 @@ body {
     }
 }
 
-
-/* Card putih Buku Terbaru */
-.buku-terbaru-card {
-    background: #ffffff;
-    border-radius: 12px;
-    padding: 16px;
-    min-width: 0;
-    min-height: 195px;
-    box-sizing: border-box;
-    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.10);
-}
-
-.buku-terbaru-card h3 {
-    margin: 0;
-    color: #287658;
-    font-size: 14px;
-    font-weight: 700;
-}
-
-.buku-terbaru-list {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    margin-top: 12px;
-}
-
 /* Menghilangkan ruang kosong berlebih di dashboard */
 .dashboard-container,
 .dashboard-content {
@@ -1291,13 +1159,6 @@ body {
     margin-bottom: 0 !important;
 }
 
-.buku-terbaru-card,
-.activity-card {
-    height: auto;
-    min-height: 145px;
-}
-
-
 /* Kartu ringkasan dashboard yang bisa diklik */
 .stat-card-link {
     display: flex !important;
@@ -1334,4 +1195,280 @@ body {
 .stat-card-link .stat-info strong,
 .stat-card-link .stat-info span {
     text-decoration: none !important;
+}
+
+/* DATA TERBARU PEMINJAM */
+.peminjam-terbaru-card {
+    background: #ffffff;
+    border-radius: 14px;
+    padding: 20px;
+    min-width: 0;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.peminjam-terbaru-card .card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 18px;
+}
+
+.peminjam-terbaru-card .card-header h3 {
+    margin: 0;
+    color: #287658;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.lihat-semua-peminjam {
+    color: #287658;
+    font-size: 11px;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.lihat-semua-peminjam:hover {
+    color: #1c503c;
+    text-decoration: underline;
+}
+
+.peminjam-terbaru-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.peminjam-terbaru-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 0;
+}
+
+.peminjam-avatar {
+    width: 38px;
+    height: 38px;
+    min-width: 38px;
+    border-radius: 50%;
+    background: #e4f4e8;
+    color: #287658;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 17px;
+}
+
+.peminjam-info {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 5px;
+    min-width: 0;
+}
+
+.peminjam-info strong {
+    color: #34443a;
+    font-size: 12px;
+    font-weight: 600;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.peminjam-info span {
+    color: #89918b;
+    font-size: 10px;
+}
+
+.peminjam-info span i {
+    margin-right: 3px;
+}
+
+.peminjam-status {
+    display: inline-block;
+    padding: 5px 8px;
+    border-radius: 20px;
+    font-size: 9px;
+    font-weight: 600;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.peminjam-status-dipinjam {
+    background: #e5f4e9;
+    color: #287658;
+}
+
+.peminjam-status-kembali {
+    background: #e7efff;
+    color: #3569c8;
+}
+
+.peminjam-status-terlambat {
+    background: #fff0df;
+    color: #c66a13;
+}
+
+.peminjam-kosong {
+    min-height: 130px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #9aa39d;
+    gap: 8px;
+}
+
+.peminjam-kosong i {
+    font-size: 28px;
+}
+
+.peminjam-kosong p {
+    margin: 0;
+    font-size: 12px;
+}
+
+.buku-terbaru-card {
+    background: #ffffff;
+    border-radius: 14px;
+    padding: 20px;
+    min-width: 0;
+    box-sizing: border-box;
+}
+
+.buku-terbaru-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 16px;
+}
+
+.buku-terbaru-header h3 {
+    margin: 0;
+    color: #287658;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.lihat-semua-buku {
+    color: #287658;
+    font-size: 11px;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.lihat-semua-buku:hover {
+    color: #1c503c;
+    text-decoration: underline;
+}
+
+.buku-terbaru-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.buku-terbaru-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    min-width: 0;
+    min-height: 60px;
+    padding: 6px;
+    box-sizing: border-box;
+    background: #287658;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.buku-terbaru-item:hover {
+    background: #21664b;
+    transform: translateY(-1px);
+}
+
+.buku-terbaru-sampul {
+    width: 42px;
+    height: 50px;
+    min-width: 42px;
+    overflow: hidden;
+    border-radius: 5px;
+    background: #e5f4e9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.buku-terbaru-sampul img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.sampul-kosong {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    color: #287658;
+    font-size: 20px;
+}
+
+.buku-terbaru-info {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-width: 0;
+    gap: 4px;
+}
+
+.buku-terbaru-info span {
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1.4;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.buku-terbaru-info small {
+    color: #e0f0e6;
+    font-size: 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.buku-terbaru-arrow {
+    flex-shrink: 0;
+    color: #d7ebdf;
+    font-size: 12px;
+    margin-right: 5px;
+}
+
+.buku-kosong {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 8px;
+    min-height: 130px;
+    color: #89918b;
+}
+
+.buku-kosong i {
+    font-size: 28px;
+}
+
+.buku-kosong p {
+    margin: 0;
+    font-size: 12px;
 }

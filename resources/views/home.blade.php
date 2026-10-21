@@ -89,7 +89,7 @@
 </a>
 
         <div class="stat-info">
-            <strong>{{ $jumlahUser ?? 0 }}</strong>
+            <strong>{{ $jumlahAnggota ?? 0 }}</strong>
             <span>Anggota</span>
         </div>
     </div>
@@ -112,60 +112,126 @@
             <div class="dashboard-bottom">
 
                 {{-- BUKU TERBARU --}}
-            
-<div class="dashboard-card buku-terbaru-card">
-    <h3>Buku Terbaru</h3>
+            <div class="dashboard-card buku-terbaru-card">
+
+    <div class="buku-terbaru-header">
+        <h3>Buku Terbaru</h3>
+
+        <a href="{{ route('buku.index') }}" class="lihat-semua-buku">
+            Lihat semua
+            <i class="bi bi-arrow-right"></i>
+        </a>
+    </div>
 
     <div class="buku-terbaru-list">
+
         @forelse ($bukuTerbaru->take(3) as $buku)
-            <div class="buku-terbaru-item">
+
+            <a href="{{ route('buku.index') }}" class="buku-terbaru-item">
+
                 <div class="buku-terbaru-sampul">
+
                     @if ($buku->gambar_sampul)
                         <img
                             src="{{ asset('uploads/sampul/' . basename($buku->gambar_sampul)) }}"
-                            alt="{{ $buku->judul_buku }}"
+                            alt="Sampul {{ $buku->judul_buku }}"
+                            loading="lazy"
                         >
                     @else
                         <div class="sampul-kosong">
                             <i class="bi bi-book"></i>
                         </div>
                     @endif
+
                 </div>
 
                 <div class="buku-terbaru-info">
                     <span>{{ $buku->judul_buku }}</span>
+                    <small>{{ $buku->nama_pengarang ?? 'Pengarang tidak diketahui' }}</small>
                 </div>
-            </div>
+
+                <i class="bi bi-chevron-right buku-terbaru-arrow"></i>
+
+            </a>
+
         @empty
-            <p class="buku-kosong">Belum ada buku.</p>
+
+            <div class="buku-kosong">
+                <i class="bi bi-book"></i>
+                <p>Belum ada buku.</p>
+            </div>
+
         @endforelse
+
     </div>
 </div>
 
                 {{-- AKTIVITAS --}}
-                <div class="activity-card card-box">
+                <div class="activity-card card-box peminjam-terbaru-card">
 
-                    <div class="card-header">
-                        <h3>Aktivitas</h3>
-                    </div>
+    <div class="card-header">
+        <h3>Data Terbaru Peminjam</h3>
+        <a href="{{ route('peminjaman.index') }}" class="lihat-semua-peminjam">
+            Lihat semua
+            <i class="bi bi-arrow-right"></i>
+        </a>
+    </div>
 
-                    <div class="activity-list">
+    <div class="peminjam-terbaru-list">
 
-                        <div class="activity-item">
-                            <span class="activity-dot green-dot"></span>
-                            <p>Data buku berhasil ditambahkan</p>
-                        </div>
+        @forelse ($peminjamTerbaru as $peminjam)
 
-                        <div class="activity-item">
-                            <span class="activity-dot outline-dot"></span>
-                            <p>Peminjaman buku berlangsung</p>
-                        </div>
+            <div class="peminjam-terbaru-item">
 
-                        <div class="activity-item">
-                            <span class="activity-dot green-dot"></span>
-                            <p>Buku berhasil dikembalikan</p>
-                        </div>
+                <div class="peminjam-avatar">
+                    <i class="bi bi-person-fill"></i>
+                </div>
 
+                <div class="peminjam-info">
+                    <strong>
+                        {{ $peminjam->nama_peminjam }}
+                    </strong>
+
+                    <span>
+                        <i class="bi bi-calendar3"></i>
+                        {{ $peminjam->tanggal_pinjam
+                            ? \Carbon\Carbon::parse($peminjam->tanggal_pinjam)->format('d M Y')
+                            : '-' }}
+                    </span>
+                </div>
+
+                @php
+                    $statusPeminjam = strtolower($peminjam->status ?? 'dipinjam');
+
+                    if ($statusPeminjam === 'dikembalikan') {
+                        $statusClass = 'peminjam-status-kembali';
+                        $statusLabel = 'Dikembalikan';
+                    } elseif ($statusPeminjam === 'terlambat') {
+                        $statusClass = 'peminjam-status-terlambat';
+                        $statusLabel = 'Terlambat';
+                    } else {
+                        $statusClass = 'peminjam-status-dipinjam';
+                        $statusLabel = 'Dipinjam';
+                    }
+                @endphp
+
+                <span class="peminjam-status {{ $statusClass }}">
+                    {{ $statusLabel }}
+                </span>
+
+            </div>
+
+        @empty
+
+            <div class="peminjam-kosong">
+                <i class="bi bi-inbox"></i>
+                <p>Belum ada data peminjaman.</p>
+            </div>
+
+        @endforelse
+
+    </div>
+</div>
 </section>
 
 @endsection

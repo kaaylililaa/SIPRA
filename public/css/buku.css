@@ -209,21 +209,21 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 10px;
+    gap: 15px;
 }
 
 .buku-list-title h2 {
     margin: 0;
 
     color: #287154;
-    font-size: 20px;
+    font-size: 23px;
     font-weight: 650;
     line-height: 1.4;
 }
 
 .buku-list-title span {
     color: #777;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 520;
     white-space: nowrap;
 }
@@ -1067,4 +1067,51 @@
 .pagination-container .page-item.disabled .page-link {
     color: #aaa;
     background: #f5f5f5;
+}
+
+.status-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.status-btn {
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.status-menu {
+    display: none;
+    position: absolute;
+    top: calc(100% + 6px);
+    right: 0;
+    min-width: 155px;
+    padding: 5px;
+    background: #fff;
+    border-radius: 9px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, .15);
+    z-index: 999;
+}
+
+.status-menu.show {
+    display: block;
+}
+
+.status-option {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 6px;
+    background: white;
+    text-align: left;
+    font-family: 'Poppins', sans-serif;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.status-option:hover {
+    background: #f0f5f1;
 }

@@ -507,3 +507,17 @@ body:has(.welcome-card) .sipra-header .header-icon {
     color: #fff;
     filter: brightness(0.95);
 }
+
+/* Sedikit memperbesar kontrol di header Data Buku */
+.sipra-header input {
+    font-size: 12px;
+    min-height: 34px;
+    padding: 8px 12px;
+}
+
+.sipra-header button,
+.sipra-header a {
+    font-size: 12px;
+    min-height: 34px;
+    padding: 8px 12px;
+}

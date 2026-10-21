@@ -8,7 +8,7 @@
     <div class="header-book-actions">
 
         <div class="header-search">
-            <i class="bi bi-search"></i>
+            <i class="bi bi-search-heart"></i>
             <input
                 type="text"
                 id="searchBuku"

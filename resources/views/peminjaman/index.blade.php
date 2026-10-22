@@ -2,7 +2,7 @@
 
 @section('header-title', 'Data Peminjaman')
 @section('header-description', 'Kelola transaksi peminjaman buku perpustakaan.')
-@section('header-icon', 'bi bi-book-half')
+@section('header-icon', 'bi bi-journal-bookmark-fill')
 
 @section('header-actions')
     <div class="header-peminjaman-actions">

@@ -2,7 +2,7 @@
 
 @section('header-title', 'Edit Buku')
 @section('header-description', 'Perbarui informasi koleksi buku perpustakaan.')
-@section('header-icon', 'bi bi-pencil-square')
+@section('header-icon', 'bi bi-pencil')
 
 @section('header-actions')
     <a href="{{ route('buku.index') }}" class="edit-back-link">

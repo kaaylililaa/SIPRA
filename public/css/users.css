@@ -9,7 +9,7 @@
 }
 
 /* Header halaman */
-.users-page .users-header {
+.users-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -17,14 +17,14 @@
     margin-bottom: 26px;
 }
 
-.users-page .users-header h2 {
+.users-header h2 {
     margin: 0 0 7px;
     color: #245c43;
     font-size: 27px;
     font-weight: 700;
 }
 
-.users-page .users-header p {
+.users-header p {
     margin: 0;
     color: #7b8a81;
     font-size: 13px;
@@ -262,97 +262,3 @@
     }
 }
 
-
-/* ========================================
-   FORM TAMBAH DAN EDIT USER
-======================================== */
-
-.users-page .user-form-heading {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    padding-bottom: 22px;
-    margin-bottom: 25px;
-    border-bottom: 1px solid #edf1ee;
-}
-
-.users-page .user-form-icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    width: 48px;
-    height: 48px;
-    color: #287653;
-    background: #e8f5eb;
-    border-radius: 13px;
-    font-size: 23px;
-}
-
-.users-page .user-form-heading h3 {
-    margin: 0 0 5px;
-    color: #294b38;
-    font-size: 17px;
-    font-weight: 700;
-}
-
-.users-page .user-form-heading p {
-    margin: 0;
-    color: #89968d;
-    font-size: 12px;
-}
-
-.users-page .user-form-group {
-    margin-bottom: 22px;
-}
-
-.users-page .user-form-group label {
-    display: block;
-    margin-bottom: 9px;
-    color: #344d3d;
-    font-size: 12px;
-    font-weight: 600;
-}
-
-.users-page .user-form-group .form-control {
-    box-sizing: border-box;
-    min-height: 44px;
-}
-
-.users-page .user-form-help {
-    display: block;
-    margin-top: 8px;
-    color: #89968d;
-    font-size: 11px;
-    line-height: 1.6;
-}
-
-.users-page .field-error {
-    display: block;
-    margin-top: 7px;
-    color: #c84848;
-    font-size: 11px;
-}
-
-.users-page .user-form-actions {
-    display: flex;
-    justify-content: flex-end;
-    gap: 10px;
-    padding-top: 20px;
-    margin-top: 28px;
-    border-top: 1px solid #edf1ee;
-}
-
-@media (max-width: 576px) {
-    .users-page .user-form-actions {
-        flex-wrap: wrap;
-    }
-
-    .users-page .user-form-actions .btn {
-        flex: 1;
-    }
-
-    .users-page .user-form-heading h3 {
-        font-size: 15px;
-    }
-}

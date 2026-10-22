@@ -285,12 +285,13 @@ body {
     height: 25px;
     border-radius: 5px;
     background: #d8d8d8;
-    color: #fff;
+    color: #000000;
     display: flex;
     align-items: center;
     justify-content: center;
     text-decoration: none;
-    font-size: 7px;
+    font-size: 8px;
+    font-weight: 400 !important;
 }
 
 .btn-cancel:hover {

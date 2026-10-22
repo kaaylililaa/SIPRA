@@ -1,20 +1,17 @@
- @extends('layouts.app')
+@extends('layouts.app')
 
-@section('title', $judulHalaman . ' | SIPRA')
+@section('header-title', $judulHalaman . '')
+@section('header-icon', 'bi bi-book-half')
+
+@section('header-actions')
+    <a href="{{ route('peminjaman.index') }}" class="btn-kembali">
+        <i class="bi bi-arrow-left"></i>
+        Kembali
+    </a>
+@endsection
+
 
 @section('content')
-<div class="status-page">
-
-    <div class="status-header">
-        <div>
-            <h2>{{ $judulHalaman }}</h2>
-            <p>Perpustakaan Desa Rajeg Bersatu</p>
-        </div>
-
-        <a href="{{ route('peminjaman.index') }}" class="btn-kembali">
-            <i class="bi bi-arrow-left"></i> Kembali
-        </a>
-    </div>
 
     <div class="status-card">
         <div class="status-info">
@@ -85,7 +82,7 @@
             </table>
         </div>
 
-        <div class="pagination-wrapper">
+        <div class="pagination-container">
             {{ $peminjaman->links() }}
         </div>
     </div>
@@ -207,8 +204,64 @@
     padding: 30px !important;
 }
 
-.pagination-wrapper {
+.pagination-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin-top: 20px;
+    width: 100%;
+}
+
+.pagination-container nav {
+    display: flex;
+    justify-content: center;
+}
+
+.pagination-container nav > div:first-child {
+    display: none;
+}
+
+.pagination-container ul.pagination {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 5px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.pagination-container .page-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 38px;
+    min-height: 38px;
+    padding: 8px 12px;
+    color: #287658;
+    background: #fff;
+    border: 1px solid #dce8df;
+    border-radius: 8px !important;
+    text-decoration: none;
+    box-shadow: none;
+}
+
+.pagination-container .page-item.active .page-link {
+    color: #fff;
+    background: #287658;
+    border-color: #287658;
+}
+
+.pagination-container .page-link:hover {
+    color: #287658;
+    background: #e8f5eb;
+    border-color: #b9d9c1;
+}
+
+.pagination-container .page-item.disabled .page-link {
+    color: #aaa;
+    background: #f5f5f5;
+    border-color: #e5e5e5;
 }
 
 @media (max-width: 768px) {

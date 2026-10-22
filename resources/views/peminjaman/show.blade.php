@@ -1,16 +1,11 @@
 @extends('layouts.app')
 
-@section('title', 'Detail Peminjaman')
+@section('header-title', 'Detail Peminjam')
+@section('header-description', 'Informasi lengkap peminjam buku Perpustakaan Desa Rajeg Bersatu.')
+@section('header-icon', 'bi bi-journal-bookmark-fill')
 
-@section('content')
-
-<link rel="stylesheet" href="{{ asset('css/peminjaman-detail.css') }}">
-<link rel="stylesheet" href="{{ asset('css/peminjaman-konfirmasi.css') }}">
-
-        {{-- TOMBOL HEADER --}}
-<div class="detail-header-actions">
-
-    <a href="{{ route('peminjaman.index') }}"
+@section('header-actions')
+<a href="{{ route('peminjaman.index') }}"
        class="btn-kembali-data">
         <i class="bi bi-arrow-left"></i>
         Kembali
@@ -25,10 +20,13 @@
         <i class="bi bi-check-lg"></i>
         Kembalikan Buku
     </button>
-@endif
-</div>
+@endif    
+@endsection
 
-    </div>
+@section('content')
+
+<link rel="stylesheet" href="{{ asset('css/peminjaman-detail.css') }}">
+<link rel="stylesheet" href="{{ asset('css/peminjaman-konfirmasi.css') }}">
 
 
     {{-- =====================================================
@@ -297,76 +295,26 @@
 
             </div>
 
-            <div class="card-line"></div>
-
-
+            <div class="card-line">
             @if ($peminjaman->buku)
 
                 <div class="borrowed-book">
 
                     <div class="borrowed-book-cover">
 
-                        @if ($peminjaman->buku->gambar_sampul)
-
-                            <img
-                                src="{{ asset('uploads/' . $peminjaman->buku->gambar_sampul) }}"
-                                alt="{{ $peminjaman->buku->judul_buku }}"
-                            >
-
-                        @else
-
-                            <div class="no-book-cover">
-                                <i class="bi bi-book"></i>
-                            </div>
-
-                        @endif
-
-                    </div>
-
-
-                    <div class="borrowed-book-info">
-
-                        <h3>
-                            {{ $peminjaman->buku->judul_buku }}
-                        </h3>
-
-                        <strong>
-                            {{ $peminjaman->buku->nama_pengarang ?? 'Tidak diketahui' }}
-                        </strong>
-
-                        <p>
-                            {{ $peminjaman->buku->nama_penerbit ?? 'Tidak diketahui' }}
-                            <span>•</span>
-                            {{ $peminjaman->buku->tahun_terbit ?? '-' }}
-                        </p>
-
-                    </div>
-
-
-                    <div class="book-arrow">
-                        <i class="bi bi-chevron-right"></i>
-                    </div>
-
-                </div>
-
-            @else
-
-                <div class="no-book-data">
-
-                    <i class="bi bi-book"></i>
-
-                    <p>
-                        Data buku tidak ditemukan.
-                    </p>
-
-                </div>
-
-            @endif
-
-        </div>
-
+                       @if ($peminjaman->buku && $peminjaman->buku->gambar_sampul)
+    <img
+        src="{{ asset('uploads/sampul/' . $peminjaman->buku->gambar_sampul) }}"
+        alt="{{ $peminjaman->buku->judul_buku }}"
+        class="buku-cover"
+    >
+@else
+    <div class="buku-cover-placeholder">
+        <i class="bi bi-book"></i>
+        <span>Sampul tidak tersedia</span>
     </div>
-
+@endif
+@endif
 
     {{-- =====================================================
          RIWAYAT PEMINJAMAN

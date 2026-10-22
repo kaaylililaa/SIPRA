@@ -1,7 +1,16 @@
-
 @extends('layouts.app')
 
-@section('title', 'Tambah User | SIPRA')
+@section('header-title', 'Tambah User')
+@section('header-description', 'Masukkan data user')
+@section('header-icon', 'bi bi-plus-circle-fill')
+
+@section('header-actions')
+    <a href="{{ route('users.index') }}" class="create-back-link">
+        <i class="bi bi-arrow-left"></i>
+        Kembali
+    </a>
+@endsection
+
 
 @push('styles')
     <link rel="stylesheet" href="{{ asset('css/users.css') }}">
@@ -9,18 +18,6 @@
 
 @section('content')
 <div class="users-page">
-
-    <div class="users-header">
-        <div>
-            <h2>Tambah User</h2>
-            <p>Tambahkan akun pengguna baru ke sistem SIPRA.</p>
-        </div>
-
-        <a href="{{ route('users.index') }}" class="btn btn-secondary">
-            <i class="bi bi-arrow-left"></i>
-            Kembali
-        </a>
-    </div>
 
     @if($errors->any())
         <div class="alert alert-danger">
@@ -35,16 +32,6 @@
 
     <div class="card">
         <div class="card-body">
-
-            <div class="user-form-heading">
-                <div class="user-form-icon">
-                    <i class="bi bi-person-plus"></i>
-                </div>
-                <div>
-                    <h3>Informasi Akun</h3>
-                    <p>Lengkapi data akun yang akan didaftarkan.</p>
-                </div>
-            </div>
 
             <form action="{{ route('users.store') }}" method="POST">
                 @csrf

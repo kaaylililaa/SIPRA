@@ -2,7 +2,7 @@
 
 @section('header-title', 'Kategori Buku')
 @section('header-description', 'Kelola seluruh koleksi kategori buku Perpustakaan Desa Rajeg Bersatu.')
-@section('header-icon', 'bi bi-pencil-square')
+@section('header-icon', 'bi bi-card-list')
 
 @section('header-actions')
 

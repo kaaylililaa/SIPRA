@@ -1,7 +1,15 @@
-
 @extends('layouts.app')
 
-@section('title', 'Edit User | SIPRA')
+@section('header-title', 'Edit User')
+@section('header-description', 'Perbarui informasi User.')
+@section('header-icon', 'bi bi-pencil')
+
+@section('header-actions')
+    <a href="{{ route('users.index') }}" class="edit-back-link">
+        <i class="bi bi-arrow-left"></i>
+        Kembali
+    </a>
+@endsection
 
 @push('styles')
     <link rel="stylesheet" href="{{ asset('css/users.css') }}">
@@ -9,18 +17,6 @@
 
 @section('content')
 <div class="users-page">
-
-    <div class="users-header">
-        <div>
-            <h2>Edit User</h2>
-            <p>Perbarui informasi akun pengguna SIPRA.</p>
-        </div>
-
-        <a href="{{ route('users.index') }}" class="btn btn-secondary">
-            <i class="bi bi-arrow-left"></i>
-            Kembali
-        </a>
-    </div>
 
     @if($errors->any())
         <div class="alert alert-danger">
@@ -35,16 +31,6 @@
 
     <div class="card">
         <div class="card-body">
-
-            <div class="user-form-heading">
-                <div class="user-form-icon">
-                    <i class="bi bi-person-gear"></i>
-                </div>
-                <div>
-                    <h3>Informasi Akun</h3>
-                    <p>Ubah data akun sesuai kebutuhan.</p>
-                </div>
-            </div>
 
             <form action="{{ route('users.update', $user->id) }}"
                   method="POST">

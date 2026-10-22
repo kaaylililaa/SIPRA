@@ -1,6 +1,17 @@
 @extends('layouts.app')
 
-@section('title', 'Atur User | SIPRA')
+@section('header-title', 'Data User')
+@section('header-description', 'Kelola pengguna SIPRA.')
+
+@section('header-actions')
+    <div class="users-header">
+        <a href="{{ route('users.create') }}" class="btn btn-success">
+            <i class="bi bi-person-plus"></i>
+            Tambah User
+        </a>
+    </div>
+@endsection
+
 
 @push('styles')
     <link rel="stylesheet" href="{{ asset('css/users.css') }}">
@@ -8,19 +19,6 @@
 
 @section('content')
 <div class="users-page">
-
-    {{-- Header halaman --}}
-    <div class="users-header">
-        <div>
-            <h2>Atur User</h2>
-            <p>Kelola akun pengguna SIPRA.</p>
-        </div>
-
-        <a href="{{ route('users.create') }}" class="btn btn-success">
-            <i class="bi bi-person-plus"></i>
-            Tambah User
-        </a>
-    </div>
 
     {{-- Notifikasi berhasil --}}
     @if(session('success'))

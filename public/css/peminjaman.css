@@ -163,14 +163,14 @@
 
 .statistik-info span {
     color: #67b96d;
-    font-size: 10px;
-    font-weight: 600;
+    font-size: 15px;
+    font-weight: 620;
     margin-bottom: 1px;
 }
 
 .statistik-info strong {
     color: #3f3f3f;
-    font-size: 14px;
+    font-size: 15px;
     font-weight: 700;
 }
 
@@ -218,7 +218,8 @@
     padding: 0 34px 0 12px;
 
     color: #555555;
-    font-size: 9px;
+    font-size: 13px;
+    font-weight: 650;
 
     outline: none;
     box-sizing: border-box;
@@ -239,7 +240,7 @@
     right: 0;
     top: 0;
 
-    width: 32px;
+    width: 42px;
     height: 29px;
 
     border: none;
@@ -251,7 +252,7 @@
 }
 
 .search-button i {
-    font-size: 11px;
+    font-size: 15px;
 }
 
 
@@ -275,7 +276,8 @@
     padding: 0 7px;
 
     color: #666666;
-    font-size: 9px;
+    font-size: 12px !important;
+    font-weight: 650;
 
     outline: none;
 
@@ -307,7 +309,8 @@
 
 .filter-date-wrapper i {
     color: #777777;
-    font-size: 10px;
+    font-size: 12px;
+    font-weight: 200;
     margin-right: 5px;
 }
 
@@ -321,7 +324,8 @@
     color: #666666;
     background: transparent;
 
-    font-size: 8.5px;
+    font-size: 11px;
+    font-weight: 500;
 }
 
 

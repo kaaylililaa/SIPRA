@@ -1,0 +1,270 @@
+/* CONTAINER */
+.anggota-form-container {
+    padding: 25px;
+}
+
+/* CARD */
+.anggota-form-card {
+    background: #fff;
+    padding: 30px;
+    border-radius: 14px;
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.05);
+}
+
+/* HEADING */
+.anggota-form-heading {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #eee;
+}
+
+.anggota-form-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    background: #e8f5e9;
+    color: #4caf50;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 23px;
+}
+
+.anggota-form-heading h3 {
+    font-size: 19px;
+    font-weight: 600;
+    color: #333;
+    margin: 0 0 5px;
+}
+
+.anggota-form-heading p {
+    font-size: 13px;
+    color: #888;
+    margin: 0;
+}
+
+/* GRID FORM */
+.anggota-form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 22px;
+}
+
+.anggota-form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+}
+
+.anggota-form-group.full-width {
+    grid-column: span 2;
+}
+
+/* LABEL */
+.anggota-form-group label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #444;
+}
+
+/* INPUT DAN TEXTAREA */
+.anggota-form-group input,
+.anggota-form-group textarea {
+    width: 100%;
+    padding: 13px 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    outline: none;
+    font-family: inherit;
+    font-size: 13px;
+    color: #444;
+    background: #fff;
+    transition: 0.2s;
+    box-sizing: border-box;
+}
+
+.anggota-form-group input:focus,
+.anggota-form-group textarea:focus {
+    border-color: #81C784;
+    box-shadow: 0 0 0 3px rgba(129, 199, 132, 0.13);
+}
+
+.anggota-form-group input::placeholder,
+.anggota-form-group textarea::placeholder {
+    color: #aaa;
+}
+
+.anggota-form-group textarea {
+    resize: vertical;
+    min-height: 110px;
+}
+
+/* ERROR */
+.form-error {
+    color: #e53935;
+    font-size: 12px;
+}
+
+/* FOOTER */
+.anggota-form-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 30px;
+    padding-top: 22px;
+    border-top: 1px solid #eee;
+}
+
+/* BUTTON */
+.btn-kembali,
+.btn-simpan-anggota {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    font-family: inherit;
+    transition: 0.2s;
+}
+
+.btn-kembali {
+    background: #f3f3f3;
+    color: #666;
+    border: none;
+}
+
+.btn-kembali:hover {
+    background: #e8e8e8;
+}
+
+.btn-simpan-anggota {
+    background: #81C784;
+    color: #fff;
+    border: none;
+}
+
+.btn-simpan-anggota:hover {
+    background: #66bb6a;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .anggota-form-container {
+        padding: 12px;
+    }
+
+    .anggota-form-card {
+        padding: 20px;
+    }
+
+    .anggota-form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .anggota-form-group.full-width {
+        grid-column: span 1;
+    }
+
+    .anggota-form-footer {
+        flex-direction: column-reverse;
+    }
+
+    .anggota-form-footer a,
+    .anggota-form-footer button {
+        width: 100%;
+    }
+}
+
+/* DETAIL ANGGOTA */
+
+.anggota-detail-card {
+    background: #fff;
+    padding: 30px;
+    border-radius: 14px;
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.05);
+}
+
+.anggota-detail-heading {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    padding-bottom: 25px;
+    margin-bottom: 25px;
+    border-bottom: 1px solid #eee;
+}
+
+.anggota-detail-avatar {
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    background: #e8f5e9;
+    color: #4caf50;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+}
+
+.anggota-detail-heading h3 {
+    margin: 0 0 6px;
+    font-size: 20px;
+    color: #333;
+}
+
+.anggota-detail-heading p {
+    margin: 0;
+    font-size: 13px;
+    color: #888;
+}
+
+.anggota-detail-content {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 22px;
+}
+
+.anggota-detail-item {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 17px;
+    background: #f8faf8;
+    border-radius: 9px;
+}
+
+.anggota-detail-item.full-width {
+    grid-column: span 2;
+}
+
+.anggota-detail-item span {
+    color: #888;
+    font-size: 12px;
+}
+
+.anggota-detail-item strong {
+    color: #333;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+@media (max-width: 768px) {
+    .anggota-detail-card {
+        padding: 20px;
+    }
+
+    .anggota-detail-content {
+        grid-template-columns: 1fr;
+    }
+
+    .anggota-detail-item.full-width {
+        grid-column: span 1;
+    }
+}   

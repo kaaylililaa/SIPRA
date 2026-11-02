@@ -54,6 +54,15 @@
             <span>Peminjaman</span>
         </a>
 
+                {{-- DATA ANGGOTA --}}
+        <a
+            href="{{ route('anggota.index') }}"
+            class="menu-item sidebar-item {{ request()->is('anggota*') ? 'active' : '' }}"
+        >
+            <i class="bi bi-people-fill"></i>
+            <span>Data Anggota</span>
+        </a>
+
         <a
             href="{{ url('/profil') }}"
             class="menu-item sidebar-item {{ request()->is('profil*') ? 'active' : '' }}"

@@ -81,4 +81,11 @@ class AnggotaController extends Controller
         return redirect()->route('anggota.index')
             ->with('success', 'Data anggota berhasil dihapus!');
     }
+
+    // Menampilkan kartu anggota untuk dicetak
+public function cetakKartu(Anggota $anggota)
+{
+    return view('anggota.kartu', compact('anggota'));
+}
+
 }

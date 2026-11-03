@@ -68,6 +68,11 @@ Route::get('/peminjaman/status/{status}', [
 Route::resource('anggota', AnggotaController::class)
     ->parameters(['anggota' => 'anggota']);
 
+Route::get(
+    '/kartu-anggota/{anggota}/cetak',
+    [AnggotaController::class, 'cetakKartu']
+)->name('anggota.kartu.cetak');
+
 Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::resource('users', UserController::class);
 });

@@ -104,6 +104,14 @@
                                         <i class="bi bi-pencil-square"></i>
                                     </a>
 
+                                    <a
+                                        href="{{ route('anggota.kartu.cetak', $item->id) }}"
+                                        class="btn-cetak"
+                                        title="Cetak Kartu Anggota"
+                                    >
+                                        <i class="bi bi-printer"></i>
+                                    </a>
+
                                     <form
                                         action="{{ route('anggota.destroy', $item->id) }}"
                                         method="POST"

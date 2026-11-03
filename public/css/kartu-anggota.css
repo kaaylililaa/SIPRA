@@ -1,0 +1,273 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: 'Poppins', Arial, sans-serif;
+    background: #f3f5f3;
+    color: #333;
+}
+
+.kartu-page {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 30px 15px;
+}
+
+.kartu-toolbar {
+    width: 100%;
+    max-width: 650px;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 25px;
+}
+
+.btn-kembali-kartu,
+.btn-print-kartu {
+    padding: 11px 18px;
+    border-radius: 8px;
+    text-decoration: none;
+    border: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.btn-kembali-kartu {
+    background: #fff;
+    color: #555;
+}
+
+.btn-print-kartu {
+    background: #81C784;
+    color: #fff;
+}
+
+.kartu-anggota {
+    width: 650px;
+    max-width: 100%;
+    background: #fff;
+    border: 1px solid #dce9dc;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+}
+
+.kartu-header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 23px 28px;
+    background: #fff;
+}
+
+.kartu-header img {
+    width: 85px;
+    height: 85px;
+    object-fit: contain;
+}
+
+.kartu-identitas h2 {
+    font-size: 13px;
+    margin: 0;
+    color: #555;
+    letter-spacing: 1px;
+}
+
+.kartu-identitas h1 {
+    font-size: 23px;
+    color: #388e3c;
+    margin: 3px 0;
+    font-weight: 700;
+}
+
+.kartu-identitas p {
+    font-size: 10px;
+    color: #777;
+    margin: 5px 0 0;
+    letter-spacing: 1px;
+}
+
+.kartu-garis {
+    height: 8px;
+    background: #81C784;
+}
+
+.kartu-body {
+    display: flex;
+    gap: 25px;
+    padding: 28px;
+    min-height: 210px;
+    align-items: center;
+}
+
+.kartu-foto {
+    width: 115px;
+    height: 145px;
+    flex-shrink: 0;
+    background: #e8f5e9;
+    border: 2px solid #81C784;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #66bb6a;
+    font-size: 65px;
+}
+
+.kartu-data {
+    flex: 1;
+    min-width: 0;
+}
+
+.kartu-data h3 {
+    color: #388e3c;
+    font-size: 19px;
+    margin: 0 0 15px;
+    text-transform: uppercase;
+}
+
+.kartu-detail {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    margin-bottom: 10px;
+}
+
+.kartu-detail span {
+    font-size: 10px;
+    color: #888;
+}
+
+.kartu-detail strong {
+    font-size: 12px;
+    color: #333;
+    font-weight: 600;
+    overflow-wrap: anywhere;
+}
+
+.kartu-footer {
+    background: #388e3c;
+    color: #fff;
+    padding: 13px 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 10px;
+    letter-spacing: 1px;
+}
+
+.kartu-footer i {
+    font-size: 20px;
+}
+
+.kartu-caption {
+    font-size: 12px;
+    color: #888;
+    margin-top: 20px;
+    text-align: center;
+}
+
+@media print {
+    @page {
+        size: 90mm 60mm;
+        margin: 0;
+    }
+
+    body {
+        background: #fff;
+    }
+
+    .kartu-page {
+        min-height: auto;
+        padding: 0;
+        display: block;
+    }
+
+    .kartu-toolbar,
+    .kartu-caption {
+        display: none !important;
+    }
+
+    .kartu-anggota {
+        width: 90mm;
+        height: 60mm;
+        border-radius: 0;
+        box-shadow: none;
+        border: 1px solid #ccc;
+        print-color-adjust: exact;
+        -webkit-print-color-adjust: exact;
+    }
+
+    .kartu-header {
+        padding: 9px 12px;
+        gap: 10px;
+    }
+
+    .kartu-header img {
+        width: 48px;
+        height: 48px;
+    }
+
+    .kartu-identitas h2 {
+        font-size: 7px;
+    }
+
+    .kartu-identitas h1 {
+        font-size: 14px;
+    }
+
+    .kartu-identitas p {
+        font-size: 6px;
+    }
+
+    .kartu-garis {
+        height: 4px;
+    }
+
+    .kartu-body {
+        padding: 10px 12px;
+        gap: 12px;
+        min-height: 0;
+    }
+
+    .kartu-foto {
+        width: 65px;
+        height: 82px;
+        font-size: 38px;
+    }
+
+    .kartu-data h3 {
+        font-size: 11px;
+        margin-bottom: 7px;
+    }
+
+    .kartu-detail {
+        margin-bottom: 5px;
+        gap: 1px;
+    }
+
+    .kartu-detail span {
+        font-size: 6px;
+    }
+
+    .kartu-detail strong {
+        font-size: 7px;
+    }
+
+    .kartu-footer {
+        padding: 7px 12px;
+        font-size: 6px;
+    }
+
+    .kartu-footer i {
+        font-size: 11px;
+    }
+}

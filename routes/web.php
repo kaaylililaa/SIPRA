@@ -8,6 +8,7 @@ use App\Http\Controllers\BukuController;
 use App\Http\Controllers\PeminjamanController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AnggotaController;
+use App\Http\Controllers\LaporanController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -72,6 +73,27 @@ Route::get(
     '/kartu-anggota/{anggota}/cetak',
     [AnggotaController::class, 'cetakKartu']
 )->name('anggota.kartu.cetak');
+
+
+// LAPORAN PERPUSTAKAAN
+Route::prefix('laporan')->name('laporan.')->group(function () {
+
+    Route::get('/', [LaporanController::class, 'index'])
+        ->name('index');
+
+    Route::get('/buku', [LaporanController::class, 'buku'])
+        ->name('buku');
+
+    Route::get('/peminjaman', [LaporanController::class, 'peminjaman'])
+        ->name('peminjaman');
+
+    Route::get('/pengembalian', [LaporanController::class, 'pengembalian'])
+        ->name('pengembalian');
+
+    Route::get('/denda', [LaporanController::class, 'denda'])
+        ->name('denda');
+
+});
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::resource('users', UserController::class);

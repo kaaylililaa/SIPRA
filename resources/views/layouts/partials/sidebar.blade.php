@@ -63,6 +63,16 @@
             <span>Data Anggota</span>
         </a>
 
+
+            {{-- LAPORAN --}}
+            <a
+                href="{{ route('laporan.index') }}"
+                class="menu-item sidebar-item {{ request()->routeIs('laporan.*') ? 'active' : '' }}"
+            >
+                <i class="bi bi-printer-fill"></i>
+                <span>Laporan</span>
+            </a>
+
         <a
             href="{{ url('/profil') }}"
             class="menu-item sidebar-item {{ request()->is('profil*') ? 'active' : '' }}"

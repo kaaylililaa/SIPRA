@@ -22,6 +22,7 @@
     <link rel="stylesheet" href="{{ asset('css/buku-create.css') }}">
     <link rel="stylesheet" href="{{ asset('css/buku.css') }}">
     <link rel="stylesheet" href="{{ asset('css/buku-edit.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/laporan.css') }}">
 
     {{-- CSS SIDEBAR DAN HEADER BERSAMA --}}
     <link rel="stylesheet" href="{{ asset('css/sidebar.css') }}">

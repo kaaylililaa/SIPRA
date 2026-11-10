@@ -12,6 +12,7 @@ class Pengembalian extends Model
     protected $table = 'pengembalian';
 
     protected $fillable = [
+        'peminjaman_id',
         'nama_peminjam',
         'tanggal_pinjam',
         'tanggal_kembali',
@@ -25,8 +26,16 @@ class Pengembalian extends Model
         'denda' => 'decimal:2',
     ];
 
+    public function peminjaman()
+    {
+        return $this->belongsTo(Peminjaman::class, 'peminjaman_id');
+    }
+
     public function detailKembali()
     {
-        return $this->hasMany(DetailKembali::class);
+        return $this->hasMany(
+            DetailKembali::class,
+            'pengembalian_id'
+        );
     }
 }

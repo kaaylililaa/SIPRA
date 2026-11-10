@@ -1,0 +1,382 @@
+
+/* CONTAINER */
+.laporan-container {
+    padding: 25px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.laporan-heading {
+    margin-bottom: 25px;
+}
+
+.laporan-heading h2 {
+    font-size: 23px;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 6px;
+}
+
+.laporan-heading p {
+    color: #888;
+    font-size: 14px;
+}
+
+/* GRID HALAMAN UTAMA */
+.laporan-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.laporan-card {
+    background: white;
+    border: 1px solid #e8eee8;
+    border-radius: 14px;
+    padding: 22px;
+    display: flex;
+    align-items: center;
+    gap: 17px;
+    text-decoration: none;
+    color: #333;
+    transition: 0.2s ease;
+}
+
+.laporan-card:hover {
+    border-color: #81C784;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 18px rgba(0,0,0,0.06);
+}
+
+.laporan-icon {
+    width: 55px;
+    height: 55px;
+    min-width: 55px;
+    background: #e8f5e9;
+    color: #4caf50;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 25px;
+}
+
+.laporan-card h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+
+.laporan-card p {
+    color: #888;
+    font-size: 13px;
+    margin: 0;
+}
+
+.laporan-arrow {
+    margin-left: auto;
+    color: #81C784;
+    font-size: 20px;
+}
+
+/* TOOLBAR */
+.laporan-toolbar {
+    margin-bottom: 18px;
+}
+
+.btn-kembali {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    color: #555;
+    text-decoration: none;
+    font-size: 13px;
+}
+
+/* KONTEN LAPORAN */
+.laporan-card-content {
+    background: white;
+    border-radius: 13px;
+    padding: 28px;
+    box-shadow: 0 3px 15px rgba(0,0,0,0.04);
+}
+
+.laporan-judul {
+    text-align: center;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #81C784;
+    margin-bottom: 22px;
+}
+
+.laporan-judul h2 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.laporan-judul p {
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.laporan-judul span {
+    color: #777;
+    font-size: 13px;
+}
+
+/* FILTER */
+.filter-laporan {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 22px;
+}
+
+.filter-laporan select,
+.filter-laporan input {
+    padding: 10px 13px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    outline: none;
+    font-family: inherit;
+    font-size: 13px;
+}
+
+.filter-laporan select:focus,
+.filter-laporan input:focus {
+    border-color: #81C784;
+}
+
+.filter-laporan button {
+    border: none;
+    border-radius: 8px;
+    padding: 10px 17px;
+    background: #81C784;
+    color: white;
+    font-size: 13px;
+    cursor: pointer;
+    font-family: inherit;
+}
+
+.filter-laporan .btn-cetak {
+    background: #388e3c;
+}
+
+/* TABEL */
+.table-responsive {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.table-laporan {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+}
+
+.table-laporan th {
+    background: #e8f5e9;
+    color: #333;
+    padding: 13px 12px;
+    text-align: left;
+    white-space: nowrap;
+    font-weight: 600;
+}
+
+.table-laporan td {
+    padding: 13px 12px;
+    border-bottom: 1px solid #eee;
+    color: #555;
+}
+
+.table-laporan tbody tr:hover {
+    background: #f9fcf9;
+}
+
+.data-kosong {
+    text-align: center !important;
+    padding: 30px !important;
+    color: #999 !important;
+}
+
+.jumlah-data {
+    margin-top: 18px;
+    font-size: 13px;
+    color: #555;
+}
+
+/* TOTAL DENDA */
+.total-denda {
+    margin-top: 22px;
+    padding: 18px;
+    background: #e8f5e9;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.total-denda span {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.total-denda strong {
+    font-size: 19px;
+    color: #388e3c;
+}
+
+/* TANDA TANGAN */
+.ttd-laporan {
+    margin-top: 45px;
+    margin-left: auto;
+    width: 230px;
+    text-align: center;
+    font-size: 13px;
+}
+
+.ttd-laporan p {
+    margin-bottom: 5px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .laporan-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .laporan-container {
+        padding: 15px;
+    }
+
+    .laporan-card-content {
+        padding: 18px;
+    }
+
+    .laporan-heading h2 {
+        font-size: 25px;
+    }
+}
+
+
+/* CETAK LAPORAN */
+@media print {
+
+    @page {
+        size: A4 portrait;
+        margin: 12mm;
+    }
+
+    html,
+    body {
+        width: 100% !important;
+        height: auto !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        overflow: visible !important;
+        background: white !important;
+    }
+
+    /* Sembunyikan seluruh layout aplikasi */
+    body * {
+        visibility: hidden;
+    }
+
+    /* Tampilkan hanya bagian laporan */
+    .laporan-container,
+    .laporan-container * {
+        visibility: visible;
+    }
+
+    /* Reset posisi laporan */
+    
+.laporan-container {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: auto !important;
+    max-width: none !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+}
+
+    .laporan-card-content {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        box-shadow: none !important;
+        border: none !important;
+        box-sizing: border-box !important;
+    }
+
+    /* Hilangkan elemen yang tidak perlu dicetak */
+    .no-print,
+    .laporan-toolbar,
+    .sidebar,
+    .sipra-sidebar,
+    header,
+    nav {
+        display: none !important;
+    }
+
+    /* Judul laporan */
+    .laporan-judul {
+        text-align: center !important;
+        margin-bottom: 25px !important;
+    }
+
+    .laporan-judul h2 {
+        font-size: 19px !important;
+    }
+
+    /* Tabel */
+    .table-responsive {
+        width: 100% !important;
+        overflow: visible !important;
+    }
+
+    .table-laporan {
+        width: 100% !important;
+        table-layout: auto !important;
+        border-collapse: collapse !important;
+        font-size: 10px !important;
+    }
+
+    .table-laporan th,
+    .table-laporan td {
+        padding: 8px 5px !important;
+        overflow-wrap: anywhere;
+        color: #333 !important;
+    }
+
+    .table-laporan th {
+        background: #e8f5e9 !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+
+    .table-laporan tr {
+        break-inside: avoid;
+    }
+
+    /* Total denda */
+    .total-denda {
+        background: #e8f5e9 !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+
+    /* Tanda tangan */
+    .ttd-laporan {
+        break-inside: avoid;
+        margin-top: 35px !important;
+    }
+}

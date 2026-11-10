@@ -195,13 +195,31 @@
     box-sizing: border-box;
 }
 
+
 .filter-form {
     width: 100%;
-
     display: grid;
-    grid-template-columns: 1fr 116px 128px;
+    grid-template-columns: minmax(0, 1fr) 130px 155px;
     gap: 8px;
 }
+
+
+.search-wrapper {
+    width: 100%;
+    min-width: 0;
+}
+
+.filter-select-wrapper,
+.filter-date-wrapper {
+    width: 100%;
+}
+
+.filter-select,
+.filter-date {
+    width: 100%;
+    box-sizing: border-box;
+}
+
 
 .search-wrapper {
     position: relative;
@@ -714,4 +732,84 @@
     color: #aaa;
     background: #f5f5f5;
     border-color: #e5e5e5;
+}
+
+
+/* =====================================
+   PERBESAR UKURAN FONT PEMINJAMAN
+===================================== */
+
+/* Statistik */
+.statistik-info span {
+    font-size: 16px;
+}
+
+.statistik-info strong {
+    font-size: 17px;
+}
+
+/* Search */
+.search-input {
+    font-size: 14px;
+}
+
+/* Filter */
+.filter-select {
+    font-size: 13px !important;
+}
+
+.filter-date {
+    font-size: 13px;
+}
+
+/* Tabel */
+.table-peminjaman {
+    font-size: 13px;
+}
+
+.table-peminjaman thead th {
+    font-size: 13px;
+    height: 40px;
+}
+
+.table-peminjaman tbody td {
+    font-size: 13px;
+    height: 45px;
+}
+
+/* Nomor */
+.table-peminjaman .nomor {
+    font-size: 13px;
+}
+
+/* ID Peminjaman */
+.kode-peminjaman {
+    font-size: 13px;
+}
+
+/* Nama Peminjam */
+.nama-peminjam {
+    font-size: 13px;
+}
+
+/* Jumlah Buku */
+.jumlah-buku {
+    font-size: 13px;
+}
+
+/* Badge Status */
+.status-badge {
+    font-size: 11px;
+    min-height: 25px;
+    padding: 0 10px;
+}
+
+/* Pagination */
+.pagination-container .page-link {
+    font-size: 13px;
+}
+
+/* Empty Data */
+.empty-data p {
+    font-size: 13px;
 }

@@ -1,0 +1,212 @@
+
+.profile-container {
+    width: 100%;
+    padding: 25px 30px;
+    box-sizing: border-box;
+}
+
+.profile-layout {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 20px;
+    align-items: start;
+}
+
+/* KARTU PROFIL */
+
+.profile-card,
+.profile-form-card {
+    background: #ffffff;
+    border-radius: 14px;
+    padding: 25px;
+    box-shadow: 0 2px 7px rgba(0,0,0,0.08);
+}
+
+.profile-card {
+    text-align: center;
+}
+
+.profile-avatar {
+    width: 85px;
+    height: 85px;
+    margin: 5px auto 15px;
+    border-radius: 50%;
+    background: #81C784;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 35px;
+    font-weight: 700;
+}
+
+.profile-card h3 {
+    color: #267253;
+    font-size: 19px;
+    margin: 0 0 5px;
+}
+
+.profile-card > p {
+    color: #888;
+    font-size: 13px;
+    margin-bottom: 15px;
+    word-break: break-word;
+}
+
+.profile-role {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #e8f5e9;
+    color: #388e3c;
+    padding: 7px 14px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.profile-divider {
+    height: 1px;
+    background: #eeeeee;
+    margin: 22px 0;
+}
+
+.profile-detail {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    text-align: left;
+    margin-bottom: 15px;
+}
+
+.profile-detail span {
+    color: #999;
+    font-size: 12px;
+}
+
+.profile-detail strong {
+    color: #444;
+    font-size: 13px;
+}
+
+/* FORM */
+
+.profile-heading h3 {
+    color: #267253;
+    font-size: 19px;
+    margin: 0 0 5px;
+}
+
+.profile-heading p {
+    color: #999;
+    font-size: 13px;
+    margin-bottom: 25px;
+}
+
+.profile-section-title {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    color: #267253;
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 18px;
+}
+
+.profile-section-title i {
+    font-size: 17px;
+}
+
+.profile-hint {
+    font-size: 12px;
+    color: #999;
+    margin-top: -10px;
+    margin-bottom: 18px;
+}
+
+.profile-input-group {
+    margin-bottom: 17px;
+}
+
+.profile-input-group label {
+    display: block;
+    color: #555;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.profile-input-group input {
+    width: 100%;
+    height: 42px;
+    padding: 0 13px;
+    border: 1px solid #dddddd;
+    border-radius: 8px;
+    outline: none;
+    font-family: "Poppins", sans-serif;
+    font-size: 13px;
+    box-sizing: border-box;
+    transition: 0.2s;
+}
+
+.profile-input-group input:focus {
+    border-color: #81C784;
+    box-shadow: 0 0 0 3px rgba(129,199,132,0.12);
+}
+
+.profile-error {
+    display: block;
+    color: #e74c3c;
+    font-size: 11px;
+    margin-top: 5px;
+}
+
+.profile-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 25px;
+}
+
+.profile-save-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 11px 18px;
+    border: none;
+    border-radius: 8px;
+    background: #81C784;
+    color: white;
+    font-family: "Poppins", sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.profile-save-btn:hover {
+    background: #62b86b;
+    transform: translateY(-1px);
+}
+
+/* ALERT */
+
+.profile-alert {
+    background: #e8f5e9;
+    color: #287b43;
+    padding: 13px 16px;
+    border-radius: 9px;
+    font-size: 13px;
+    margin-bottom: 18px;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 800px) {
+    .profile-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .profile-container {
+        padding: 20px;
+    }
+}

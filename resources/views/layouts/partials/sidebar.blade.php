@@ -73,13 +73,12 @@
                 <span>Laporan</span>
             </a>
 
-        <a
-            href="{{ url('/profil') }}"
-            class="menu-item sidebar-item {{ request()->is('profil*') ? 'active' : '' }}"
+        <a href="{{ route('profile.index') }}"
+        class="menu-item sidebar-item {{ request()->routeIs('profile.*') ? 'active' : '' }}"
         >
-            <i class="bi bi-person-fill"></i>
-            <span>Profil</span>
-        </a>
+    <i class="bi bi-person-fill"></i>
+    <span>Profil</span>
+</a>
 
     </nav>
 

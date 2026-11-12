@@ -9,6 +9,7 @@ use App\Http\Controllers\PeminjamanController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AnggotaController;
 use App\Http\Controllers\LaporanController;
+use App\Http\Controllers\ProfileController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -92,6 +93,16 @@ Route::prefix('laporan')->name('laporan.')->group(function () {
 
     Route::get('/denda', [LaporanController::class, 'denda'])
         ->name('denda');
+
+});
+
+Route::middleware(['auth'])->group(function () {
+
+    Route::get('/profile', [ProfileController::class, 'index'])
+        ->name('profile.index');
+
+    Route::put('/profile', [ProfileController::class, 'update'])
+        ->name('profile.update');
 
 });
 

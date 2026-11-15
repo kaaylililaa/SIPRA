@@ -13,7 +13,6 @@ class Peminjaman extends Model
     protected $table = 'peminjaman';
 
     protected $fillable = [
-        'buku_id',
         'nama_peminjam',
         'tanggal_pinjam',
         'tanggal_kembali',
@@ -25,8 +24,13 @@ class Peminjaman extends Model
         'tanggal_kembali' => 'date',
     ];
 
-    public function buku()
+    public function bukus()
     {
-        return $this->belongsTo(Buku::class, 'buku_id');
+        return $this->belongsToMany(
+            Buku::class,
+            'detail_pinjam',
+            'peminjaman_id',
+            'buku_id'
+        )->withTimestamps();
     }
 }

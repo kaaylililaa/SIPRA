@@ -127,48 +127,28 @@
                 </div>
 
 
-                {{-- BUKU TERPILIH --}}
-                <div
-                    class="selected-book"
-                    id="selectedBook"
-                    style="display: none;"
-                >
+{{-- DAFTAR BUKU TERPILIH --}}
+<div class="selected-books" id="selectedBooks" style="display: none;">
 
-                    <div class="selected-book-info">
+    <div class="selected-books-header">
+        <strong id="selectedCount">0 buku dipilih</strong>
+        <small>Maksimal 5 buku</small>
+    </div>
 
-                        <i class="bi bi-check-circle-fill"></i>
+    <div id="selectedBookList"></div>
 
-                        <div>
-                            <strong id="selectedBookTitle"></strong>
-                            <small id="selectedBookAuthor"></small>
-                        </div>
+</div>
 
-                    </div>
+{{-- INPUT ID BUKU --}}
+<div id="selectedBookInputs"></div>
 
-                    <button
-                        type="button"
-                        id="changeBook"
-                        class="btn-change-book"
-                    >
-                        Ganti
-                    </button>
+@error('buku_ids')
+    <small class="error-message">{{ $message }}</small>
+@enderror
 
-                </div>
-
-
-                <input
-                    type="hidden"
-                    name="buku_id"
-                    id="buku_id"
-                    value="{{ old('buku_id') }}"
-                >
-
-                @error('buku_id')
-                    <small class="error-message">
-                        {{ $message }}
-                    </small>
-                @enderror
-
+@error('buku_ids.*')
+    <small class="error-message">{{ $message }}</small>
+@enderror
             </div>
 
 
@@ -284,177 +264,210 @@
 
 </div>
 
+
 <script>
 document.addEventListener('DOMContentLoaded', function () {
 
     const searchInput = document.getElementById('searchBuku');
-    const bookList = document.getElementById('bookList');
-
-    const selectedBook = document.getElementById('selectedBook');
-    const selectedBookTitle = document.getElementById('selectedBookTitle');
-    const selectedBookAuthor = document.getElementById('selectedBookAuthor');
-
-    const bukuIdInput = document.getElementById('buku_id');
-    const changeBookButton = document.getElementById('changeBook');
-
     const bookItems = document.querySelectorAll('.book-item');
 
+    const selectedBooks = document.getElementById('selectedBooks');
+    const selectedBookList = document.getElementById('selectedBookList');
+    const selectedBookInputs = document.getElementById('selectedBookInputs');
+    const selectedCount = document.getElementById('selectedCount');
 
-    /*
-    |--------------------------------------------------------------------------
-    | SEARCH BUKU
-    |--------------------------------------------------------------------------
-    */
+    const selectedBookIds = new Set(
+        (@json(old('buku_ids', []))).map(id => String(id))
+    );
 
-    searchInput.addEventListener('input', function () {
 
-        const keyword = this.value.toLowerCase().trim();
+// SEARCH BUKU
+function normalisasi(teks) {
+    return teks
+        .toLowerCase()
+        .replace(/[^a-z0-9\s]/g, '')
+        .trim();
+}
 
-        bookItems.forEach(function (item) {
+searchInput.addEventListener('input', function () {
+    const keyword = normalisasi(this.value);
 
-            const title = item.dataset.title;
-            const author = item.dataset.author;
+    bookItems.forEach(function (item) {
+        const title = normalisasi(item.dataset.title || '');
+        const author = normalisasi(item.dataset.author || '');
 
-            if (
-                title.includes(keyword) ||
-                author.includes(keyword)
-            ) {
+        const cocok =
+            title.includes(keyword) ||
+            author.includes(keyword);
 
-                item.style.display = 'flex';
+        item.style.setProperty(
+            'display',
+            cocok ? 'flex' : 'none',
+            'important'
+        );
+    });
+});
 
-            } else {
+    // UPDATE DAFTAR BUKU TERPILIH
+    function updateSelectedBooks() {
 
-                item.style.display = 'none';
+        selectedBookList.innerHTML = '';
+        selectedBookInputs.innerHTML = '';
 
-            }
+        selectedCount.textContent =
+            selectedBookIds.size + ' buku dipilih';
+
+        selectedBooks.style.display =
+            selectedBookIds.size > 0 ? 'block' : 'none';
+
+        selectedBookIds.forEach(function (id) {
+
+            const bookItem = Array.from(bookItems).find(
+                item => item.dataset.id === id
+            );
+
+            if (!bookItem) return;
+
+            const title = bookItem.querySelector(
+                '.book-information h3'
+            ).textContent.trim();
+
+            const author = bookItem.querySelector(
+                '.book-information p'
+            ).textContent.trim();
+
+            // Input tersembunyi untuk dikirim ke controller
+            const input = document.createElement('input');
+
+            input.type = 'hidden';
+            input.name = 'buku_ids[]';
+            input.value = id;
+
+            selectedBookInputs.appendChild(input);
+
+            // Tampilan buku terpilih
+            const row = document.createElement('div');
+            row.className = 'selected-book-row';
+
+            const info = document.createElement('div');
+            info.className = 'selected-book-info';
+
+            const icon = document.createElement('i');
+            icon.className = 'bi bi-check-circle-fill';
+
+            const textWrapper = document.createElement('div');
+
+            const titleElement = document.createElement('strong');
+            titleElement.textContent = title;
+
+            const authorElement = document.createElement('small');
+            authorElement.textContent = author;
+
+            textWrapper.appendChild(titleElement);
+            textWrapper.appendChild(authorElement);
+
+            info.appendChild(icon);
+            info.appendChild(textWrapper);
+
+            // Tombol hapus pilihan
+            const removeButton = document.createElement('button');
+
+            removeButton.type = 'button';
+            removeButton.className = 'btn-remove-book';
+            removeButton.innerHTML = '<i class="bi bi-x-lg"></i>';
+
+            removeButton.addEventListener('click', function () {
+                selectedBookIds.delete(id);
+                updateSelectedBooks();
+            });
+
+            row.appendChild(info);
+            row.appendChild(removeButton);
+
+            selectedBookList.appendChild(row);
 
         });
 
-    });
+        // Perbarui tombol Pilih
+        bookItems.forEach(function (item) {
 
+            const button = item.querySelector('.btn-pilih-buku');
+            const isSelected = selectedBookIds.has(item.dataset.id);
 
-    /*
-    |--------------------------------------------------------------------------
-    | PILIH BUKU
-    |--------------------------------------------------------------------------
-    */
+            button.textContent = isSelected ? 'Dipilih' : 'Pilih';
 
+            button.classList.toggle('is-selected', isSelected);
+
+        });
+
+    }
+
+    // PILIH / BATALKAN BUKU
     document.querySelectorAll('.btn-pilih-buku').forEach(function (button) {
 
         button.addEventListener('click', function () {
 
-            const id = this.dataset.id;
+            const id = String(this.dataset.id);
 
-            const bookItem = this.closest('.book-item');
+            if (selectedBookIds.has(id)) {
 
-            const title = bookItem.querySelector('.book-information h3').textContent.trim();
+                selectedBookIds.delete(id);
 
-            const author = bookItem.querySelector('.book-information p').textContent.trim();
+            } else {
 
+                if (selectedBookIds.size >= 5) {
 
-            bukuIdInput.value = id;
+                    alert('Maksimal peminjaman adalah 5 buku.');
 
-            selectedBookTitle.textContent = title;
-            selectedBookAuthor.textContent = author;
+                    return;
+                }
 
+                selectedBookIds.add(id);
 
-            bookList.style.display = 'none';
-            searchInput.parentElement.style.display = 'none';
+            }
 
-            selectedBook.style.display = 'flex';
+            updateSelectedBooks();
 
         });
 
     });
 
-
-    /*
-    |--------------------------------------------------------------------------
-    | GANTI BUKU
-    |--------------------------------------------------------------------------
-    */
-
-    changeBookButton.addEventListener('click', function () {
-
-        bukuIdInput.value = '';
-
-        selectedBook.style.display = 'none';
-
-        searchInput.parentElement.style.display = 'flex';
-        bookList.style.display = 'block';
-
-        searchInput.value = '';
-
-        bookItems.forEach(function (item) {
-            item.style.display = 'flex';
-        });
-
-    });
-
-
-    /*
-    |--------------------------------------------------------------------------
-    | SET TANGGAL KEMBALI
-    |--------------------------------------------------------------------------
-    |
-    | Sistem peminjaman SIPRA menggunakan batas peminjaman 7 hari.
-    |
-    */
-
+    // SET TANGGAL KEMBALI OTOMATIS 7 HARI
     const tanggalPinjam = document.getElementById('tanggal_pinjam');
     const tanggalKembali = document.getElementById('tanggal_kembali');
 
-
     function setTanggalKembali() {
 
-        if (!tanggalPinjam.value) {
-            return;
-        }
+        if (!tanggalPinjam.value) return;
 
-        const tanggal = new Date(tanggalPinjam.value + 'T00:00:00');
+        const tanggal = new Date(
+            tanggalPinjam.value + 'T00:00:00'
+        );
 
         tanggal.setDate(tanggal.getDate() + 7);
 
         const year = tanggal.getFullYear();
+        const month = String(tanggal.getMonth() + 1).padStart(2, '0');
+        const day = String(tanggal.getDate()).padStart(2, '0');
 
-        const month = String(
-            tanggal.getMonth() + 1
-        ).padStart(2, '0');
-
-        const day = String(
-            tanggal.getDate()
-        ).padStart(2, '0');
-
-        tanggalKembali.value =
-            year + '-' + month + '-' + day;
+        tanggalKembali.value = `${year}-${month}-${day}`;
 
     }
 
+    tanggalPinjam.addEventListener('change', setTanggalKembali);
 
-    tanggalPinjam.addEventListener(
-        'change',
-        setTanggalKembali
-    );
-
-
-    /*
-    |--------------------------------------------------------------------------
-    | VALIDASI FORM
-    |--------------------------------------------------------------------------
-    */
-
+    // VALIDASI FORM
     document.getElementById('formPeminjaman')
         .addEventListener('submit', function (event) {
 
-            if (!bukuIdInput.value) {
+            if (selectedBookIds.size === 0) {
 
                 event.preventDefault();
 
-                alert('Silakan pilih buku terlebih dahulu.');
+                alert('Silakan pilih minimal satu buku.');
 
                 return;
             }
-
 
             if (!document.getElementById('nama_peminjam').value.trim()) {
 
@@ -466,6 +479,9 @@ document.addEventListener('DOMContentLoaded', function () {
             }
 
         });
+
+    // TAMPILKAN KEMBALI PILIHAN JIKA VALIDASI GAGAL
+    updateSelectedBooks();
 
 });
 </script>

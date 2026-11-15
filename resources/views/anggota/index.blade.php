@@ -112,18 +112,63 @@
                                         <i class="bi bi-printer"></i>
                                     </a>
 
-                                    <form
-                                        action="{{ route('anggota.destroy', $item->id) }}"
-                                        method="POST"
-                                        onsubmit="return confirm('Yakin ingin menghapus anggota ini?')"
-                                    >
-                                        @csrf
-                                        @method('DELETE')
+                                    
+<button
+    type="button"
+    class="btn-delete"
+    title="Hapus"
+    onclick="bukaModalHapus('{{ $item->id }}')"
+>
+    <i class="bi bi-trash"></i>
+</button>
 
-                                        <button type="submit" class="btn-delete" title="Hapus">
-                                            <i class="bi bi-trash"></i>
-                                        </button>
-                                    </form>
+{{-- POPUP HAPUS --}}
+<div class="modal-anggota" id="modalHapus{{ $item->id }}">
+
+    <div class="modal-anggota-content">
+
+        <div class="icon-hapus">
+            <i class="bi bi-trash3-fill"></i>
+        </div>
+
+        <h3>Hapus Data Anggota?</h3>
+
+        <p>
+            Apakah kamu yakin ingin menghapus data anggota
+            <strong>{{ $item->nama }}</strong>?
+        </p>
+
+        <span class="modal-warning">
+            Data anggota yang sudah dihapus tidak dapat dikembalikan.
+        </span>
+
+        <div class="modal-footer-kategori">
+
+            <button
+                type="button"
+                class="btn-batal"
+                onclick="tutupModalHapus('{{ $item->id }}')"
+            >
+                Batal
+            </button>
+
+            <form
+                action="{{ route('anggota.destroy', $item->id) }}"
+                method="POST"
+            >
+                @csrf
+                @method('DELETE')
+
+                <button type="submit" class="btn-konfirmasi-hapus">
+                    Ya, Hapus
+                </button>
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
 
                                 </div>
                             </td>
@@ -151,6 +196,48 @@
 </div>
 
 @endsection
+
+
+<script>
+    function bukaModalHapus(id) {
+        const modal = document.getElementById('modalHapus' + id);
+
+        if (modal) {
+            modal.classList.add('active');
+            document.body.classList.add('modal-anggota-open');
+        }
+    }
+
+    function tutupModalHapus(id) {
+        const modal = document.getElementById('modalHapus' + id);
+
+        if (modal) {
+            modal.classList.remove('active');
+            document.body.classList.remove('modal-anggota-open');
+        }
+    }
+
+    // Tutup popup ketika area luar modal diklik
+    document.querySelectorAll('.modal-anggota').forEach(function(modal) {
+        modal.addEventListener('click', function(event) {
+            if (event.target === modal) {
+                modal.classList.remove('active');
+                document.body.classList.remove('modal-anggota-open');
+            }
+        });
+    });
+
+    // Tutup popup menggunakan tombol ESC
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape') {
+            document.querySelectorAll('.modal-anggota.active').forEach(function(modal) {
+                modal.classList.remove('active');
+            });
+
+            document.body.classList.remove('modal-anggota-open');
+        }
+    });
+</script>
 
 @push('styles')
     <link rel="stylesheet" href="{{ asset('css/anggota.css') }}">

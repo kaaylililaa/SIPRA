@@ -50,26 +50,41 @@ class LaporanController extends Controller
         ));
     }
 
-    // 2. LAPORAN PEMINJAMAN
-    public function peminjaman(Request $request)
-    {
-        [$bulan, $tahun, $namaBulan] = $this->periode($request);
+    
+// 2. LAPORAN PEMINJAMAN
+public function peminjaman(Request $request)
+{
+    [$bulan, $tahun, $namaBulan] = $this->periode($request);
 
-        $data = DB::table('peminjaman')
-            ->leftJoin('buku', 'peminjaman.buku_id', '=', 'buku.id')
-            ->select(
-                'peminjaman.*',
-                'buku.judul_buku'
-            )
-            ->whereMonth('tanggal_pinjam', $bulan)
-            ->whereYear('tanggal_pinjam', $tahun)
-            ->orderBy('tanggal_pinjam', 'desc')
-            ->get();
+    $data = DB::table('peminjaman')
+        ->leftJoin(
+            'detail_pinjam',
+            'peminjaman.id',
+            '=',
+            'detail_pinjam.peminjaman_id'
+        )
+        ->leftJoin(
+            'buku',
+            'detail_pinjam.buku_id',
+            '=',
+            'buku.id'
+        )
+        ->select(
+            'peminjaman.*',
+            'buku.judul_buku'
+        )
+        ->whereMonth('peminjaman.tanggal_pinjam', $bulan)
+        ->whereYear('peminjaman.tanggal_pinjam', $tahun)
+        ->orderBy('peminjaman.tanggal_pinjam', 'desc')
+        ->get();
 
-        return view('laporan.peminjaman', compact(
-            'data', 'bulan', 'tahun', 'namaBulan'
-        ));
-    }
+    return view('laporan.peminjaman', compact(
+        'data',
+        'bulan',
+        'tahun',
+        'namaBulan'
+    ));
+}
 
     // 3. LAPORAN PENGEMBALIAN
     public function pengembalian(Request $request)

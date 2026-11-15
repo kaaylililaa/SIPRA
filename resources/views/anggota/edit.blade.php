@@ -2,24 +2,14 @@
 
 @section('title', 'Edit Anggota - SIPRA')
 @section('header-title', 'EDIT ANGGOTA')
-@section('header-description', 'Perbarui informasi anggota perpustakaan.')
+@section('header-description', 'Perbarui data anggota perpustakaan.')
+@section('header-icon', 'bi bi-pencil-square')
 
 @section('content')
 
 <div class="anggota-form-container">
 
     <div class="anggota-form-card">
-
-        <div class="anggota-form-heading">
-            <div class="anggota-form-icon">
-                <i class="bi bi-pencil-square"></i>
-            </div>
-
-            <div>
-                <h3>Formulir Edit Anggota</h3>
-                <p>Perbarui data anggota berikut.</p>
-            </div>
-        </div>
 
         <form action="{{ route('anggota.update', $anggota->id) }}" method="POST">
             @csrf

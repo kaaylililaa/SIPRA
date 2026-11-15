@@ -6,6 +6,7 @@ use App\Models\Peminjaman;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use App\Models\Buku;
+use Illuminate\Support\Facades\DB;
 
 class PeminjamanController extends Controller
 {
@@ -60,7 +61,7 @@ public function status($status)
             ->whereDate('tanggal_kembali', '<', Carbon::today())
             ->count();
 
-        $query = Peminjaman::query();
+        $query = Peminjaman::withCount('bukus');
     
         if ($request->filled('search')) {
             $search = $request->search;
@@ -117,37 +118,57 @@ public function status($status)
     return view('peminjaman.create', compact('bukus'));
     }
 
-    public function store(Request $request)
+    
+public function store(Request $request)
 {
     $request->validate([
-        'buku_id' => 'required|exists:buku,id',
+        'buku_ids' => 'required|array|min:1|max:5',
+        'buku_ids.*' => 'required|exists:buku,id|distinct',
         'nama_peminjam' => 'required|string|max:255',
         'tanggal_pinjam' => 'required|date',
         'tanggal_kembali' => 'required|date|after_or_equal:tanggal_pinjam',
     ], [
-        'buku_id.required' => 'Silakan pilih buku terlebih dahulu.',
-        'buku_id.exists' => 'Buku yang dipilih tidak ditemukan.',
+        'buku_ids.required' => 'Silakan pilih buku terlebih dahulu.',
+        'buku_ids.min' => 'Pilih minimal satu buku.',
+        'buku_ids.max' => 'Maksimal peminjaman adalah 5 buku.',
+        'buku_ids.*.exists' => 'Buku yang dipilih tidak ditemukan.',
+        'buku_ids.*.distinct' => 'Buku tidak boleh dipilih lebih dari satu kali.',
         'nama_peminjam.required' => 'Nama peminjam wajib diisi.',
         'tanggal_pinjam.required' => 'Tanggal pinjam wajib diisi.',
         'tanggal_kembali.required' => 'Tanggal kembali wajib diisi.',
         'tanggal_kembali.after_or_equal' => 'Tanggal kembali tidak boleh sebelum tanggal pinjam.',
     ]);
 
-    Peminjaman::create([
-        'buku_id' => $request->buku_id,
-        'nama_peminjam' => $request->nama_peminjam,
-        'tanggal_pinjam' => $request->tanggal_pinjam,
-        'tanggal_kembali' => $request->tanggal_kembali,
-        'status' => 'Dipinjam',
-    ]);
+    DB::transaction(function () use ($request) {
+
+        // Simpan transaksi peminjaman
+        $peminjaman = Peminjaman::create([
+            'nama_peminjam' => $request->nama_peminjam,
+            'tanggal_pinjam' => $request->tanggal_pinjam,
+            'tanggal_kembali' => $request->tanggal_kembali,
+            'status' => 'Dipinjam',
+        ]);
+
+        // Simpan semua buku ke detail_pinjam
+        foreach ($request->buku_ids as $bukuId) {
+            DB::table('detail_pinjam')->insert([
+                'peminjaman_id' => $peminjaman->id,
+                'buku_id' => $bukuId,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
+        }
+
+    });
 
     return redirect()
         ->route('peminjaman.index')
         ->with('success', 'Data peminjaman berhasil ditambahkan.');
 }
+
     public function show(Peminjaman $peminjaman)
 {
-    $peminjaman->load('buku');
+    $peminjaman->load('bukus');
 
     /*
     |--------------------------------------------------------------------------
@@ -198,7 +219,8 @@ public function status($status)
         'mulaiTerlambat',
         'statusTampilan'
     ));
-}
+
+    }
 
     public function edit(Peminjaman $peminjaman)
     {
@@ -229,13 +251,18 @@ public function status($status)
     }
 
     public function destroy(Peminjaman $peminjaman)
-    {
-        $peminjaman->delete();
-
-        return redirect()
-            ->route('peminjaman.index')
-            ->with('success', 'Data peminjaman berhasil dihapus.');
+{
+    // Hanya admin yang boleh menghapus
+    if (!auth()->check() || auth()->user()->role !== 'admin') {
+        abort(403, 'Anda tidak memiliki izin untuk menghapus data peminjaman.');
     }
+
+    $peminjaman->delete();
+
+    return redirect()
+        ->route('peminjaman.index')
+        ->with('success', 'Data peminjaman berhasil dihapus.');
+}
 
 public function konfirmasi(Peminjaman $peminjaman)
 {
@@ -281,5 +308,6 @@ public function kembalikan(Peminjaman $peminjaman)
     return redirect()
         ->route('peminjaman.show', $peminjaman->id)
         ->with('success', 'Buku berhasil dikembalikan.');
-}
+
+        }
 }

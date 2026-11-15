@@ -164,3 +164,132 @@
 }
 
 }
+
+
+/* =====================================
+   POPUP HAPUS ANGGOTA
+===================================== */
+
+.modal-anggota {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: rgba(25, 40, 30, .45);
+    backdrop-filter: blur(3px);
+}
+
+.modal-anggota.active {
+    display: flex;
+}
+
+.modal-anggota-content {
+    width: 390px;
+    max-width: 100%;
+    padding: 30px 28px 25px;
+    background: #ffffff;
+    border-radius: 17px;
+    box-shadow: 0 15px 45px rgba(0, 0, 0, .15);
+    text-align: center;
+    animation: modalMasuk .2s ease;
+}
+
+@keyframes modalMasuk {
+    from {
+        opacity: 0;
+        transform: translateY(12px) scale(.97);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.modal-anggota .icon-hapus {
+    width: 65px;
+    height: 65px;
+    margin: 0 auto 17px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: #fff0f0;
+    color: #e35b5b;
+    font-size: 27px;
+}
+
+.modal-anggota-content h3 {
+    margin: 0 0 10px;
+    color: #354438;
+    font-size: 17px;
+    font-weight: 700;
+}
+
+.modal-anggota-content p {
+    margin: 0 auto 12px;
+    color: #788378;
+    font-size: 12px;
+    line-height: 1.7;
+}
+
+.modal-anggota-content p strong {
+    color: #354438;
+}
+
+.modal-warning {
+    display: block;
+    margin-bottom: 23px;
+    color: #d17a55;
+    font-size: 10px;
+}
+
+.modal-anggota .modal-footer-kategori {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.modal-anggota .modal-footer-kategori form {
+    margin: 0;
+}
+
+.modal-anggota .btn-batal,
+.modal-anggota .btn-konfirmasi-hapus {
+    min-width: 105px;
+    height: 37px;
+    padding: 0 16px;
+    border-radius: 8px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.modal-anggota .btn-batal {
+    border: 1px solid #e1e8e1;
+    background: #ffffff;
+    color: #647264;
+}
+
+.modal-anggota .btn-batal:hover {
+    background: #f1f5f1;
+}
+
+.modal-anggota .btn-konfirmasi-hapus {
+    border: none;
+    background: #e35b5b;
+    color: #ffffff;
+}
+
+.modal-anggota .btn-konfirmasi-hapus:hover {
+    background: #cb4545;
+}
+
+body.modal-anggota-open {
+    overflow: hidden;
+}

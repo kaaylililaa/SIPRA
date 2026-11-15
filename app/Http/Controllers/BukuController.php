@@ -5,6 +5,7 @@ use App\Models\Kategori;
 use App\Models\Buku;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\DB;
 
 class BukuController extends Controller
 {
@@ -132,8 +133,8 @@ public function destroy(Buku $buku)
         abort(403, 'Kamu tidak memiliki izin untuk menghapus buku.');
     }
 
-    // Periksa apakah buku masih digunakan dalam data peminjaman
-    $masihDipinjam = \Illuminate\Support\Facades\DB::table('peminjaman')
+    // Periksa apakah buku masih terhubung dengan data peminjaman
+    $masihDipinjam = DB::table('detail_pinjam')
         ->where('buku_id', $buku->id)
         ->exists();
 
@@ -152,6 +153,7 @@ public function destroy(Buku $buku)
         }
     }
 
+    // Hapus data buku
     $buku->delete();
 
     return redirect()

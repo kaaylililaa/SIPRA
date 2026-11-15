@@ -75,7 +75,6 @@ Route::get(
     [AnggotaController::class, 'cetakKartu']
 )->name('anggota.kartu.cetak');
 
-
 // LAPORAN PERPUSTAKAAN
 Route::prefix('laporan')->name('laporan.')->group(function () {
 

@@ -281,143 +281,122 @@
         </div>
 
 
-        {{-- =================================================
-             BUKU YANG DIPINJAM
-        ================================================== --}}
+{{-- BUKU YANG DIPINJAM --}}
+<div class="detail-card books-card">
 
-        <div class="detail-card books-card">
+    <div class="card-heading">
+        <i class="bi bi-book-half"></i>
+        <span>Buku yang Dipinjam</span>
+    </div>
 
-            <div class="card-heading">
+    <div class="card-line"></div>
 
-                <i class="bi bi-book-half"></i>
+    @forelse ($peminjaman->bukus as $buku)
 
-                <span>Buku yang Dipinjam</span>
+        <div class="borrowed-book">
+
+            <div class="borrowed-book-cover">
+
+                @if ($buku->gambar_sampul)
+                    <img
+                        src="{{ asset('uploads/sampul/' . $buku->gambar_sampul) }}"
+                        alt="{{ $buku->judul_buku }}"
+                        class="buku-cover"
+                    >
+                @else
+                    <div class="buku-cover-placeholder">
+                        <i class="bi bi-book"></i>
+                        <span>Sampul tidak tersedia</span>
+                    </div>
+                @endif
 
             </div>
 
-            <div class="card-line">
-            @if ($peminjaman->buku)
+            <div class="borrowed-book-info">
+                <strong>{{ $buku->judul_buku }}</strong>
+                <span>{{ $buku->nama_pengarang }}</span>
+                <small>{{ $buku->tahun_terbit }}</small>
+            </div>
 
-                <div class="borrowed-book">
+        </div>
 
-                    <div class="borrowed-book-cover">
+    @empty
 
-                       @if ($peminjaman->buku && $peminjaman->buku->gambar_sampul)
-    <img
-        src="{{ asset('uploads/sampul/' . $peminjaman->buku->gambar_sampul) }}"
-        alt="{{ $peminjaman->buku->judul_buku }}"
-        class="buku-cover"
-    >
-@else
-    <div class="buku-cover-placeholder">
-        <i class="bi bi-book"></i>
-        <span>Sampul tidak tersedia</span>
+        <div class="empty-books">
+            <i class="bi bi-book"></i>
+            <span>Belum ada buku dalam peminjaman ini.</span>
+        </div>
+
+    @endforelse
+
+</div>
+
+</div> {{-- Penutup detail-main-grid --}}
+
+
+{{-- RIWAYAT PEMINJAMAN --}}
+<div class="history-card">
+
+    <div class="history-heading">
+        <i class="bi bi-clock-history"></i>
+        <span>Riwayat Peminjaman</span>
     </div>
-@endif
-@endif
 
-    {{-- =====================================================
-         RIWAYAT PEMINJAMAN
-    ====================================================== --}}
+    <div class="history-table-wrapper">
 
-    <div class="history-card">
+        <table class="history-table">
 
-        <div class="history-heading">
+            <thead>
+                <tr>
+                    <th>No.</th>
+                    <th>Tanggal</th>
+                    <th>Status</th>
+                    <th>Keterangan</th>
+                    <th>Petugas</th>
+                </tr>
+            </thead>
 
-            <i class="bi bi-clock-history"></i>
+            <tbody>
+                <tr>
+                    <td>1</td>
 
-            <span>Riwayat Peminjaman</span>
+                    <td>
+                        {{ $peminjaman->tanggal_pinjam
+                            ? $peminjaman->tanggal_pinjam->locale('id')->translatedFormat('d F Y')
+                            : '-' }}
+                    </td>
 
-        </div>
-
-
-        <div class="history-table-wrapper">
-
-            <table class="history-table">
-
-                <thead>
-
-                    <tr>
-
-                        <th>No.</th>
-
-                        <th>Tanggal</th>
-
-                        <th>Status</th>
-
-                        <th>Keterangan</th>
-
-                        <th>Petugas</th>
-
-                    </tr>
-
-                </thead>
-
-                <tbody>
-
-                    <tr>
-
-                        <td>1</td>
-
-                        <td>
-                            {{ $peminjaman->tanggal_pinjam
-                                ? $peminjaman->tanggal_pinjam->locale('id')->translatedFormat('d F Y')
-                                : '-' }}
-                        </td>
-
-                        <td>
-
-                            @if ($statusTampilan === 'Terlambat')
-
-                                <span class="table-status table-terlambat">
-                                    Terlambat
-                                </span>
-
-                            @elseif ($statusTampilan === 'Dikembalikan')
-
-                                <span class="table-status table-dikembalikan">
-                                    Dikembalikan
-                                </span>
-
-                            @else
-
-                                <span class="table-status table-dipinjam">
-                                    Dipinjam
-                                </span>
-
-                            @endif
-
-                        </td>
-
-                        <td>
-
-                            @if ($statusTampilan === 'Terlambat')
-
+                    <td>
+                        @if ($statusTampilan === 'Terlambat')
+                            <span class="table-status table-terlambat">
                                 Terlambat
+                            </span>
+                        @elseif ($statusTampilan === 'Dikembalikan')
+                            <span class="table-status table-dikembalikan">
+                                Dikembalikan
+                            </span>
+                        @else
+                            <span class="table-status table-dipinjam">
+                                Dipinjam
+                            </span>
+                        @endif
+                    </td>
 
-                            @elseif ($statusTampilan === 'Dikembalikan')
+                    <td>
+                        @if ($statusTampilan === 'Terlambat')
+                            Terlambat
+                        @elseif ($statusTampilan === 'Dikembalikan')
+                            Sudah Dikembalikan
+                        @else
+                            Peminjaman Berlangsung
+                        @endif
+                    </td>
 
-                                Sudah Dikembalikan
+                    <td>Kay</td>
+                </tr>
+            </tbody>
 
-                            @else
-
-                                Peminjaman Berlangsung
-
-                            @endif
-
-                        </td>
-
-                        <td>
-                            Kay
-                        </td>
-
-                    </tr>
-
-                </tbody>
-
-            </table>
-
-        </div>
+        </table>
 
     </div>
 

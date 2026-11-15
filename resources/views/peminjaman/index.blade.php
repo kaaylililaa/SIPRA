@@ -159,7 +159,6 @@
 
             </div>
 
-
             {{-- TANGGAL --}}
             <div class="filter-date-wrapper">
 
@@ -197,16 +196,17 @@
                         <th>Batas Kembali</th>
                         <th>Jumlah Buku</th>
                         <th>Status</th>
+                       @if (auth()->check() && auth()->user()->role === 'admin')
+    <th class="text-center">Aksi</th>
+@endif
 
                     </tr>
 
                 </thead>
 
-
                 <tbody>
-
+                    
                     @if ($peminjamans->count() > 0)
-
                         @foreach ($peminjamans as $index => $peminjaman)
 
                             <tr>
@@ -266,17 +266,10 @@
                                 </td>
 
 
-                                {{-- JUMLAH BUKU --}}
-                                <td class="jumlah-buku">
-
-                                    @if ($peminjaman->buku_id)
-                                        1
-                                    @else
-                                        0
-                                    @endif
-
-                                </td>
-
+{{-- JUMLAH BUKU --}}
+<td class="jumlah-buku">
+    {{ $peminjaman->bukus_count }}
+</td>
 
                                 {{-- STATUS --}}
                                 <td>
@@ -315,11 +308,82 @@
                                         </a>
 
                                     @endif
-
+                            
                                 </td>
 
-                            </tr>
+                                {{-- AKSI --}}
+                @if (auth()->check() && auth()->user()->role === 'admin')
+    <td class="text-center">
+        <button type="button"
+            class="btn-hapus"
+            data-bs-toggle="modal"
+            data-bs-target="#modalHapus{{ $peminjaman->id }}"
+            title="Hapus peminjaman">
 
+            <i class="bi bi-trash3"></i>
+
+        </button>
+    </td>
+@endif
+{{-- MODAL HAPUS PEMINJAMAN --}}
+@if (auth()->check() && auth()->user()->role === 'admin')
+@foreach($peminjamans as $peminjaman)
+
+<div class="modal fade"
+     id="modalHapus{{ $peminjaman->id }}"
+     tabindex="-1"
+     aria-hidden="true">
+
+    <div class="modal-dialog modal-dialog-centered modal-sm">
+
+        <div class="modal-content modal-kategori">
+
+            <div class="modal-body text-center">
+
+                <div class="icon-hapus">
+                    <i class="bi bi-trash3"></i>
+                </div>
+
+                <h5>Hapus Data Peminjaman?</h5>
+
+                <p>
+                    Data peminjaman atas nama
+                    <strong>{{ $peminjaman->nama_peminjam }}</strong>
+                    akan dihapus. Tindakan ini tidak dapat dibatalkan.
+                </p>
+
+                <form action="{{ route('peminjaman.destroy', $peminjaman->id) }}"
+                      method="POST">
+
+                    @csrf
+                    @method('DELETE')
+
+                    <div class="modal-footer-kategori">
+
+                        <button type="button"
+                                class="btn-batal"
+                                data-bs-dismiss="modal">
+                            Batal
+                        </button>
+
+                        <button type="submit"
+                                class="btn-konfirmasi-hapus">
+                            Ya, Hapus
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+@endforeach
+@endif
                         @endforeach
 
                     @else
@@ -327,7 +391,7 @@
                         <tr>
 
                             <td
-                                colspan="6"
+                                colspan="{{ auth()->user()->role === 'admin' ? 7 : 6 }}"
                                 class="empty-data"
                             >
 

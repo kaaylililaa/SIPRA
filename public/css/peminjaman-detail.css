@@ -990,3 +990,145 @@
     box-sizing: border-box !important;
 }
 
+
+/* =====================================
+   1. MEMPERBESAR TEKS BAGIAN ATAS
+===================================== */
+
+/* Ringkasan peminjaman */
+.loan-summary {
+    padding: 22px 28px;
+    min-height: 100px;
+}
+
+.summary-label {
+    font-size: 13px !important;
+}
+
+.summary-item strong {
+    font-size: 15px !important;
+}
+
+.summary-date {
+    font-size: 14px !important;
+}
+
+.summary-item small {
+    font-size: 12px !important;
+}
+
+.status-badge {
+    font-size: 12px !important;
+    padding: 6px 10px;
+}
+
+/* Judul kartu */
+.card-heading {
+    font-size: 17px !important;
+    margin-bottom: 16px;
+}
+
+/* Informasi peminjam */
+.borrower-info span {
+    font-size: 14px !important;
+}
+
+.borrower-info strong {
+    font-size: 17px !important;
+}
+
+/* =====================================
+   2. MEMPERBESAR SAMPUL BUKU
+===================================== */
+
+.borrowed-book {
+    gap: 20px;
+    padding: 12px 0;
+    min-height: 115px;
+}
+
+.borrowed-book-cover {
+    width: 90px !important;
+    height: 115px !important;
+    flex-shrink: 0;
+    overflow: hidden;
+}
+
+.borrowed-book-cover .buku-cover {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain;
+    border-radius: 7px;
+}
+
+.borrowed-book-info strong {
+    font-size: 16px !important;
+}
+
+.borrowed-book-info span {
+    font-size: 14px !important;
+}
+
+.borrowed-book-info small {
+    font-size: 13px !important;
+}
+
+/* =====================================
+   3. TABEL RIWAYAT MEMANJANG
+===================================== */
+
+.history-card {
+    grid-column: 1 / -1;
+    width: 100% !important;
+    max-width: none !important;
+    margin: 20px 0 !important;
+    padding: 22px;
+    box-sizing: border-box;
+}
+
+.history-heading {
+    font-size: 16px !important;
+    margin-bottom: 15px;
+}
+
+.history-table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.history-table {
+    width: 100% !important;
+    table-layout: auto;
+    border-collapse: collapse;
+}
+
+.history-table th,
+.history-table td {
+    padding: 13px 15px !important;
+    font-size: 13px !important;
+}
+
+
+/* RIWAYAT PEMINJAMAN FULL WIDTH */
+.history-card {
+    width: 100% !important;
+    max-width: none !important;
+    box-sizing: border-box;
+    margin: 25px 0;
+}
+
+.history-table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.history-table {
+    width: 100% !important;
+    table-layout: fixed;
+    border-collapse: collapse;
+}
+
+.history-table th,
+.history-table td {
+    padding: 14px 12px;
+}

@@ -3,23 +3,13 @@
 @section('title', 'Tambah Anggota - SIPRA')
 @section('header-title', 'TAMBAH ANGGOTA')
 @section('header-description', 'Tambahkan data anggota baru Perpustakaan Desa Rajeg Bersatu.')
+@section('header-icon', 'bi bi-plus-circle-fill')
 
 @section('content')
 
 <div class="anggota-form-container">
 
     <div class="anggota-form-card">
-
-        <div class="anggota-form-heading">
-            <div class="anggota-form-icon">
-                <i class="bi bi-person-plus-fill"></i>
-            </div>
-
-            <div>
-                <h3>Formulir Anggota</h3>
-                <p>Lengkapi informasi anggota perpustakaan berikut.</p>
-            </div>
-        </div>
 
         <form action="{{ route('anggota.store') }}" method="POST">
             @csrf

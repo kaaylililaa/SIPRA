@@ -847,3 +847,93 @@
     object-position: center !important;
     display: block !important;
 }
+
+
+/* DAFTAR BUKU TERPILIH */
+
+.selected-books {
+    margin-top: 18px;
+    padding: 15px;
+    background: #f4faf4;
+    border: 1px solid #dceedd;
+    border-radius: 12px;
+}
+
+.selected-books-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.selected-books-header strong {
+    color: #328b48;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.selected-books-header small {
+    color: #899489;
+    font-size: 10px;
+}
+
+.selected-book-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 11px 12px;
+    margin-top: 8px;
+    background: white;
+    border: 1px solid #e3eee3;
+    border-radius: 9px;
+}
+
+.selected-book-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 0;
+}
+
+.selected-book-info > i {
+    color: #60b56b;
+    font-size: 17px;
+}
+
+.selected-book-info div {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.selected-book-info strong {
+    color: #354438;
+    font-size: 11px;
+}
+
+.selected-book-info small {
+    color: #899489;
+    font-size: 9px;
+}
+
+.btn-remove-book {
+    width: 28px;
+    height: 28px;
+    flex-shrink: 0;
+    border: none;
+    border-radius: 7px;
+    background: #fff0f0;
+    color: #dc5555;
+    cursor: pointer;
+}
+
+.btn-remove-book:hover {
+    background: #ffe0e0;
+}
+
+.btn-pilih-buku.is-selected {
+    background: #e6f4e8;
+    color: #328b48;
+    border: 1px solid #b9dfbd;
+}

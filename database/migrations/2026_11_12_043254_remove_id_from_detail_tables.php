@@ -1,36 +1,50 @@
+
 <?php
 
 use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\DB;
 
 return new class extends Migration
 {
     public function up(): void
     {
-        // Hapus PK dan kolom id dari detail_pinjam
-        Schema::table('detail_pinjam', function (Blueprint $table) {
-            $table->dropPrimary();
-            $table->dropColumn('id');
-        });
+        // DETAIL_PINJAM
+        DB::statement("
+            ALTER TABLE detail_pinjam
+            MODIFY id BIGINT UNSIGNED NOT NULL
+        ");
 
-        // Hapus PK dan kolom id dari detail_kembali
-        Schema::table('detail_kembali', function (Blueprint $table) {
-            $table->dropPrimary();
-            $table->dropColumn('id');
-        });
+        DB::statement("
+            ALTER TABLE detail_pinjam
+            DROP PRIMARY KEY,
+            DROP COLUMN id
+        ");
+
+        // DETAIL_KEMBALI
+        DB::statement("
+            ALTER TABLE detail_kembali
+            MODIFY id BIGINT UNSIGNED NOT NULL
+        ");
+
+        DB::statement("
+            ALTER TABLE detail_kembali
+            DROP PRIMARY KEY,
+            DROP COLUMN id
+        ");
     }
 
     public function down(): void
     {
-        // Kembalikan id pada detail_pinjam
-        Schema::table('detail_pinjam', function (Blueprint $table) {
-            $table->bigIncrements('id');
-        });
+        // Mengembalikan kolom id detail_pinjam
+        DB::statement("
+            ALTER TABLE detail_pinjam
+            ADD id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY FIRST
+        ");
 
-        // Kembalikan id pada detail_kembali
-        Schema::table('detail_kembali', function (Blueprint $table) {
-            $table->bigIncrements('id');
-        });
+        // Mengembalikan kolom id detail_kembali
+        DB::statement("
+            ALTER TABLE detail_kembali
+            ADD id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY FIRST
+        ");
     }
 };

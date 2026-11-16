@@ -391,7 +391,7 @@
                         <tr>
 
                             <td
-                                colspan="{{ auth()->user()->role === 'admin' ? 7 : 6 }}"
+                                colspan="{{ auth()->check() && auth()->user()->role === 'admin' ? 7 : 6 }}"
                                 class="empty-data"
                             >
 

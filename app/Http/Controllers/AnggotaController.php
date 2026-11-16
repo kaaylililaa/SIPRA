@@ -28,21 +28,25 @@ class AnggotaController extends Controller
     }
 
     // Menyimpan anggota baru
-    public function store(Request $request)
-    {
-        $request->validate([
-            'nama' => 'required|string|max:255',
-            'nik' => 'required|digits:16|unique:anggota,nik',
-            'tempat_lahir' => 'required|string|max:100',
-            'tanggal_lahir' => 'required|date',
-            'alamat' => 'required|string',
-        ]);
+    
+public function store(Request $request)
+{
+    $data = $request->validate([
+        'nama' => 'required|string|max:255',
+        'nik' => 'required|digits:16|unique:anggota,nik',
+        'tempat_lahir' => 'required|string|max:100',
+        'tanggal_lahir' => 'required|date',
+        'alamat' => 'required|string',
+    ]);
 
-        Anggota::create($request->all());
+    // Mencatat akun admin/petugas yang menambahkan anggota
+    $data['user_id'] = auth()->id();
 
-        return redirect()->route('anggota.index')
-            ->with('success', 'Data anggota berhasil ditambahkan!');
-    }
+    Anggota::create($data);
+
+    return redirect()->route('anggota.index')
+        ->with('success', 'Data anggota berhasil ditambahkan!');
+}
 
     // Menampilkan detail anggota
     public function show(Anggota $anggota)
@@ -57,21 +61,22 @@ class AnggotaController extends Controller
     }
 
     // Memperbarui data anggota
-    public function update(Request $request, Anggota $anggota)
-    {
-        $request->validate([
-            'nama' => 'required|string|max:255',
-            'nik' => 'required|digits:16|unique:anggota,nik,' . $anggota->id,
-            'tempat_lahir' => 'required|string|max:100',
-            'tanggal_lahir' => 'required|date',
-            'alamat' => 'required|string',
-        ]);
+    
+public function update(Request $request, Anggota $anggota)
+{
+    $data = $request->validate([
+        'nama' => 'required|string|max:255',
+        'nik' => 'required|digits:16|unique:anggota,nik,' . $anggota->id,
+        'tempat_lahir' => 'required|string|max:100',
+        'tanggal_lahir' => 'required|date',
+        'alamat' => 'required|string',
+    ]);
 
-        $anggota->update($request->all());
+    $anggota->update($data);
 
-        return redirect()->route('anggota.index')
-            ->with('success', 'Data anggota berhasil diperbarui!');
-    }
+    return redirect()->route('anggota.index')
+        ->with('success', 'Data anggota berhasil diperbarui!');
+}
 
     // Menghapus anggota
     public function destroy(Anggota $anggota)

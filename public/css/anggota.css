@@ -293,3 +293,44 @@
 body.modal-anggota-open {
     overflow: hidden;
 }
+
+/* SEARCH ANGGOTA */
+.header-search {
+    position: relative !important;
+    width: 230px !important;
+    flex: 0 0 230px !important;
+}
+
+.header-search input {
+    width: 100% !important;
+    height: 40px !important;
+    padding: 0 25px 0 14px !important;
+    font-size: 12px !important;
+    box-sizing: border-box !important;
+    border-radius: 8px !important;
+}
+
+/* ICON SEARCH DI DALAM INPUT */
+.header-search button {
+    position: absolute !important;
+    right: 7px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+
+    width: 28px !important;
+    height: 28px !important;
+
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+}
+
+.header-search button i {
+    font-size: 16px !important;
+    color: #286d50 !important;
+}

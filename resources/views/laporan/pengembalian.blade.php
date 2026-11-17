@@ -2,7 +2,7 @@
 @extends('layouts.app')
 
 @section('title', 'Laporan Peminjaman - SIPRA')
-@section('header-title', 'LAPORAN PEMINJAMAN')
+@section('header-title', 'LAPORAN PENGEMBALIAN')
 @section('header-description', 'Laporan transaksi peminjaman buku.')
 
 @section('content')
@@ -18,7 +18,7 @@
     <div class="laporan-card-content">
 
         <div class="laporan-judul">
-            <h2>LAPORAN DATA PEMINJAMAN</h2>
+            <h2>LAPORAN DATA PENGEMBALIAN</h2>
             <p>PERPUSTAKAAN DESA RAJEG BERSATU</p>
             <span>Periode: {{ $namaBulan }} {{ $tahun }}</span>
         </div>

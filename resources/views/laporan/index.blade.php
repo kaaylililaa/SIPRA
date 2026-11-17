@@ -9,13 +9,6 @@
 
 <div class="laporan-container">
 
-    <div class="laporan-heading">
-        <div>
-            <h2>Laporan Perpustakaan</h2>
-            <p>Pilih jenis laporan yang ingin ditampilkan atau dicetak.</p>
-        </div>
-    </div>
-
     <div class="laporan-grid">
 
         <a href="{{ route('laporan.buku') }}" class="laporan-card">

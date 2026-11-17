@@ -76,23 +76,19 @@
             <span>Dipinjam</span>
         </div>
     </a>
-
+    
     {{-- ANGGOTA --}}
-    <div class="stat-card">
-        @if (auth()->check() && auth()->user()->role === 'admin')
-        <a href="{{ route('users.index') }}"
-   class="{{ request()->routeIs('users.*') ? 'active' : '' }}">
-   @endif
+    <a href="{{ route('anggota.index') }}" class="stat-card stat-card-link">
         <div class="stat-icon purple">
             <i class="bi bi-person-fill"></i>
         </div>
-</a>
 
         <div class="stat-info">
             <strong>{{ $jumlahAnggota ?? 0 }}</strong>
             <span>Anggota</span>
         </div>
-    </div>
+    </a>
+
 
     {{-- KATEGORI --}}
     <a href="{{ route('kategori.index') }}" class="stat-card stat-card-link">

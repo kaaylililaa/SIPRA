@@ -51,7 +51,7 @@
                 <strong>
                     PMJ-{{ $peminjaman->tanggal_pinjam
                         ? $peminjaman->tanggal_pinjam->format('Ymd')
-                        : '00000000' }}-{{ str_pad($peminjaman->id, 6, '0', STR_PAD_LEFT) }}
+                        : '0000000' }}-{{ str_pad($peminjaman->id, 6, '0', STR_PAD_LEFT) }}
                 </strong>
 
             </div>
@@ -285,7 +285,6 @@
 <div class="detail-card books-card">
 
     <div class="card-heading">
-        <i class="bi bi-book-half"></i>
         <span>Buku yang Dipinjam</span>
     </div>
 

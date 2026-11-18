@@ -11,8 +11,22 @@
 
     <div class="anggota-form-card">
 
-        <form action="{{ route('anggota.store') }}" method="POST">
-            @csrf
+        <form action="{{ route('anggota.store') }}" method="POST" enctype="multipart/form-data">
+        
+        <div class="form-group">
+    <label for="foto">Foto Anggota</label>
+    <input
+        type="file"
+        name="foto"
+        id="foto"
+        accept="image/*"
+    >
+    @error('foto')
+        <small class="text-danger">{{ $message }}</small>
+    @enderror
+</div>
+
+        @csrf
 
             <div class="anggota-form-grid">
 

@@ -11,7 +11,7 @@
 
     <div class="anggota-form-card">
 
-        <form action="{{ route('anggota.update', $anggota->id) }}" method="POST">
+        <form action="{{ route('anggota.update', $anggota->id) }}" method="POST" enctype="multipart/form-data"x>
             @csrf
             @method('PUT')
 
@@ -95,9 +95,36 @@
                         <small class="form-error">{{ $message }}</small>
                     @enderror
                 </div>
+</div>
 
-            </div>
+            {{-- FOTO ANGGOTA --}}
+<div class="form-group">
+    <label for="foto">Foto Anggota</label>
 
+    {{-- Menampilkan foto yang sudah tersimpan --}}
+    @if ($anggota->foto)
+        <div style="margin-bottom: 12px;">
+            <img
+                src="{{ asset('images/anggota/' . $anggota->foto) }}"
+                alt="Foto Anggota"
+                width="100"
+                style="height: 100px; object-fit: cover; border-radius: 10px;"
+            >
+        </div>
+    @endif
+
+    {{-- Upload foto baru --}}
+    <input
+        type="file"
+        name="foto"
+        id="foto"
+        accept="image/*"
+    >
+
+    @error('foto')
+        <small class="text-danger">{{ $message }}</small>
+    @enderror
+</div>
             {{-- TOMBOL --}}
             <div class="anggota-form-footer">
 

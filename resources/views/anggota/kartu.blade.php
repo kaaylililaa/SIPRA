@@ -753,16 +753,16 @@
 
                         @if(!empty($anggota->foto))
 
-                            <img
-                                src="{{ asset('storage/' . $anggota->foto) }}"
-                                alt="Foto {{ $anggota->nama }}"
-                            >
+    <img
+        src="{{ asset('images/anggota/' . $anggota->foto) }}"
+        alt="Foto {{ $anggota->nama }}"
+    >
 
-                        @else
+@else
 
-                            <i class="bi bi-person-fill"></i>
+    <i class="bi bi-person-fill"></i>
 
-                        @endif
+    @endif
 
                     </div>
 
@@ -948,7 +948,7 @@ pdf.addImage(
         tombol.disabled = false;
         tombol.innerHTML = '<i class="bi bi-file-earmark-pdf-fill"></i> Download PDF';
     }
-}
+    }
 </script>
 </body>
 </html>
